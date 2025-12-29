@@ -27,62 +27,173 @@ class AudioManager {
    * Inicializa sistema de áudio com mocks
    */
   inicializar() {
-    // UM ÚNICO arquivo de voz (usado para TODAS as narrações)
+    // Narração do Chapéu (PLACEHOLDER - apenas 1 arquivo disponível)
     this.narracao = new Howl({
-      src: ['src/assets/audio/voice/hat-phase0-voice-0.mp3'], // Voz do chapéu
+      src: ['src/assets/audio/voice/hat-phase0-voice-0.mp3'],
       volume: this.volumeNarracao * this.volumeGeral,
       onloaderror: () => {
         console.warn('Áudio de voz não encontrado em src/assets/audio/voice/hat-phase0-voice-0.mp3');
       }
     });
 
-    // UM ÚNICO arquivo de SFX (usado para TODOS os efeitos)
-    const sfxUnico = new Howl({
-      src: ['src/assets/audio/sfx/click.mp3'], // SFX único
-      volume: this.volumeSFX * this.volumeGeral,
-      onloaderror: () => {
-        console.warn('SFX não encontrado em src/assets/audio/sfx/click.mp3');
-      }
-    });
+    // SFX individuais (arquivos reais)
+    this.sfx = {
+      coruja: new Howl({
+        src: ['src/assets/audio/sfx/coruja.mp3'],
+        volume: this.volumeSFX * this.volumeGeral,
+        onloaderror: () => console.warn('SFX coruja não encontrado')
+      }),
+      clique: new Howl({
+        src: ['src/assets/audio/sfx/click.mp3'],
+        volume: this.volumeSFX * this.volumeGeral,
+        onloaderror: () => console.warn('SFX click não encontrado')
+      }),
+      progresso: new Howl({
+        src: ['src/assets/audio/sfx/progresso.mp3'],
+        volume: this.volumeSFX * this.volumeGeral,
+        onloaderror: () => console.warn('SFX progresso não encontrado')
+      }),
+      tenteNovamente: new Howl({
+        src: ['src/assets/audio/sfx/erro.mp3'],
+        volume: this.volumeSFX * this.volumeGeral,
+        onloaderror: () => console.warn('SFX tenteNovamente não encontrado')
+      }),
+      trovao: new Howl({
+        src: ['src/assets/audio/sfx/trovao.mp3'],
+        volume: this.volumeSFX * this.volumeGeral,
+        onloaderror: () => console.warn('SFX trovao não encontrado')
+      }),
+      chuva: new Howl({
+        src: ['src/assets/audio/sfx/chuva.mp3'],
+        loop: true, // Loop para chuva
+        volume: this.volumeSFX * this.volumeGeral,
+        onloaderror: () => console.warn('SFX chuva não encontrado')
+      }),
+      voo: new Howl({
+        src: ['src/assets/audio/sfx/voo.mp3'],
+        volume: this.volumeSFX * this.volumeGeral,
+        onloaderror: () => console.warn('SFX voo não encontrado')
+      }),
+      fenix: new Howl({
+        src: ['src/assets/audio/sfx/fenix.mp3'],
+        volume: this.volumeSFX * this.volumeGeral,
+        onloaderror: () => console.warn('SFX fenix não encontrado')
+      }),
+      sucesso: new Howl({
+        src: ['src/assets/audio/sfx/sucesso.mp3'],
+        volume: this.volumeSFX * this.volumeGeral,
+        onloaderror: () => console.warn('SFX sucesso não encontrado')
+      }),
+      erro: new Howl({
+        src: ['src/assets/audio/sfx/erro.mp3'],
+        volume: this.volumeSFX * this.volumeGeral,
+        onloaderror: () => console.warn('SFX erro não encontrado')
+      }),
+      'expecto-patronum': new Howl({
+        src: ['src/assets/audio/sfx/expecto-patronum.mp3'],
+        volume: this.volumeSFX * this.volumeGeral,
+        onloaderror: () => console.warn('SFX expecto-patronum não encontrado')
+      }),
+      luz: new Howl({
+        src: ['src/assets/audio/sfx/luz.mp3'],
+        volume: this.volumeSFX * this.volumeGeral,
+        onloaderror: () => console.warn('SFX luz não encontrado')
+      }),
+      'avada-kedavra': new Howl({
+        src: ['src/assets/audio/sfx/avada-kedavra.mp3'],
+        volume: this.volumeSFX * this.volumeGeral,
+        onloaderror: () => console.warn('SFX avada-kedavra não encontrado')
+      }),
+      whoosh: new Howl({
+        src: ['src/assets/audio/sfx/whoosh.mp3'],
+        volume: this.volumeSFX * this.volumeGeral,
+        onloaderror: () => console.warn('SFX whoosh não encontrado')
+      }),
+      pagina: new Howl({
+        src: ['src/assets/audio/sfx/pagina.mp3'],
+        volume: this.volumeSFX * this.volumeGeral,
+        onloaderror: () => console.warn('SFX pagina não encontrado')
+      }),
+      bau: new Howl({
+        src: ['src/assets/audio/sfx/bau.mp3'],
+        volume: this.volumeSFX * this.volumeGeral,
+        onloaderror: () => console.warn('SFX bau não encontrado')
+      }),
+      penseira: new Howl({
+        src: ['src/assets/audio/sfx/penseira.mp3'],
+        volume: this.volumeSFX * this.volumeGeral,
+        onloaderror: () => console.warn('SFX penseira não encontrado')
+      })
+    };
 
-    // Todos os tipos de SFX apontam para o mesmo arquivo
-    const tiposSFX = [
-      'coruja', 'clique', 'progresso', 'tenteNovamente',
-      'trovao', 'chuva', 'voo', 'fenix', 'sucesso', 'erro',
-      'expecto-patronum', 'luz', 'avada-kedavra', 'whoosh',
-      'pagina', 'bau'
-    ];
-
-    tiposSFX.forEach(tipo => {
-      this.sfx[tipo] = sfxUnico;
-    });
-
-    // UMA ÚNICA música de fundo (usada para tudo)
-    const musicaUnica = new Howl({
-      src: ['src/assets/audio/music/intro.mp3'], // Música única
-      loop: true,
-      volume: this.volumeMusica * this.volumeGeral,
-      onloaderror: () => console.warn('Música não encontrada em src/assets/audio/music/intro.mp3')
-    });
-
-    // Todas as trilhas apontam para a mesma música (PLACEHOLDER)
+    // Músicas de fundo por capítulo (arquivos reais)
     this.trilhas = {
-      inicio: musicaUnica,
-      jornada: musicaUnica,
-      desafio: musicaUnica,
-      climax: musicaUnica,
-      revelacao: musicaUnica,
-      // Músicas específicas por capítulo (placeholders)
-      cap1: musicaUnica,      // "Hedwig's Theme" ou música de introdução
-      cap3: musicaUnica,      // "The Chamber of Secrets"
-      cap4: musicaUnica,      // "Harry in Winter"
-      cap5: musicaUnica,      // "Dumbledore's Army"
-      cap6: musicaUnica,      // "Obliviate"
-      cap7_pre: musicaUnica,  // "Statues"
-      cap7_patronus: musicaUnica, // "The Patronus Light" (Prisoner of Azkaban)
-      cap7_batalha: musicaUnica, // "The Battle of Hogwarts"
-      triste: musicaUnica,    // "Lily's Theme" (Cap 8 pós-derrota)
-      alegre: musicaUnica     // "Leaving Hogwarts" (Cap 8 vida nova)
+      inicio: new Howl({
+        src: ['src/assets/audio/music/intro.mp3'],
+        loop: true,
+        volume: this.volumeMusica * this.volumeGeral,
+        onloaderror: () => console.warn('Música intro não encontrada')
+      }),
+      cap1: new Howl({
+        src: ['src/assets/audio/music/cap1.mp3'], // "Hedwig's Theme"
+        loop: true,
+        volume: this.volumeMusica * this.volumeGeral,
+        onloaderror: () => console.warn('Música cap1 não encontrada')
+      }),
+      cap3: new Howl({
+        src: ['src/assets/audio/music/cap3.mp3'], // "The Chamber of Secrets"
+        loop: true,
+        volume: this.volumeMusica * this.volumeGeral,
+        onloaderror: () => console.warn('Música cap3 não encontrada')
+      }),
+      cap4: new Howl({
+        src: ['src/assets/audio/music/cap4.mp3'], // "Harry in Winter"
+        loop: true,
+        volume: this.volumeMusica * this.volumeGeral,
+        onloaderror: () => console.warn('Música cap4 não encontrada')
+      }),
+      cap5: new Howl({
+        src: ['src/assets/audio/music/cap5.mp3'], // "Dumbledore's Army"
+        loop: true,
+        volume: this.volumeMusica * this.volumeGeral,
+        onloaderror: () => console.warn('Música cap5 não encontrada')
+      }),
+      cap6: new Howl({
+        src: ['src/assets/audio/music/cap6.mp3'], // "Obliviate"
+        loop: true,
+        volume: this.volumeMusica * this.volumeGeral,
+        onloaderror: () => console.warn('Música cap6 não encontrada')
+      }),
+      cap7_pre: new Howl({
+        src: ['src/assets/audio/music/cap7-pre.mp3'], // "Statues"
+        loop: true,
+        volume: this.volumeMusica * this.volumeGeral,
+        onloaderror: () => console.warn('Música cap7_pre não encontrada')
+      }),
+      cap7_patronus: new Howl({
+        src: ['src/assets/audio/music/cap7-patronus.mp3'], // "The Patronus Light"
+        loop: true,
+        volume: this.volumeMusica * this.volumeGeral,
+        onloaderror: () => console.warn('Música cap7_patronus não encontrada')
+      }),
+      cap7_batalha: new Howl({
+        src: ['src/assets/audio/music/cap7-batalha.mp3'], // "The Battle of Hogwarts"
+        loop: true,
+        volume: this.volumeMusica * this.volumeGeral,
+        onloaderror: () => console.warn('Música cap7_batalha não encontrada')
+      }),
+      triste: new Howl({
+        src: ['src/assets/audio/music/triste.mp3'], // "Lily's Theme"
+        loop: true,
+        volume: this.volumeMusica * this.volumeGeral,
+        onloaderror: () => console.warn('Música triste não encontrada')
+      }),
+      alegre: new Howl({
+        src: ['src/assets/audio/music/alegre.mp3'], // "Leaving Hogwarts"
+        loop: true,
+        volume: this.volumeMusica * this.volumeGeral,
+        onloaderror: () => console.warn('Música alegre não encontrada')
+      })
     };
 
     // Mapeamento de capítulos para trilhas
@@ -149,8 +260,34 @@ class AudioManager {
    * Troca música de fundo
    */
   trocarMusicaDeFundo(nomeTrilha, fadeOut = 1000, fadeIn = 1000) {
+    const novaTrilha = this.trilhas[nomeTrilha];
+
+    if (!novaTrilha) {
+      console.warn(`Trilha "${nomeTrilha}" não encontrada`);
+      return;
+    }
+
+    // IMPORTANTE: Se a nova trilha é o MESMO OBJETO Howl que está tocando,
+    // NÃO pare e reinicie (isso causa interrupções no sistema placeholder)
+    if (this.musicaFundo && this.musicaFundo === novaTrilha) {
+      // Verifica se já está tocando
+      if (this.musicaFundo.playing()) {
+        console.log(`🎵 Música "${nomeTrilha}" já está tocando (mesmo arquivo), mantendo reprodução`);
+        estadoGlobal.definir('musicaAtual', nomeTrilha);
+        return;
+      }
+      // Se não está tocando, inicia
+      console.log(`🎵 Iniciando música "${nomeTrilha}"`);
+      this.musicaFundo.volume(this.volumeMusica * this.volumeGeral);
+      this.musicaFundo.play();
+      estadoGlobal.definir('musicaAtual', nomeTrilha);
+      return;
+    }
+
+    // Se chegou aqui, são objetos Howl diferentes (arquivos reais diferentes)
+
     // Para música atual com fade out
-    if (this.musicaFundo) {
+    if (this.musicaFundo && this.musicaFundo.playing()) {
       this.musicaFundo.fade(
         this.volumeMusica * this.volumeGeral,
         0,
@@ -165,16 +302,14 @@ class AudioManager {
     }
 
     // Inicia nova música com fade in
-    if (this.trilhas[nomeTrilha]) {
-      this.musicaFundo = this.trilhas[nomeTrilha];
-      this.musicaFundo.volume(0);
-      this.musicaFundo.play();
-      this.musicaFundo.fade(0, this.volumeMusica * this.volumeGeral, fadeIn);
+    this.musicaFundo = novaTrilha;
 
-      estadoGlobal.definir('musicaAtual', nomeTrilha);
-    } else {
-      console.warn(`Trilha "${nomeTrilha}" não encontrada`);
-    }
+    this.musicaFundo.volume(0);
+    this.musicaFundo.play();
+    this.musicaFundo.fade(0, this.volumeMusica * this.volumeGeral, fadeIn);
+
+    estadoGlobal.definir('musicaAtual', nomeTrilha);
+    console.log(`🎵 Música trocada para: ${nomeTrilha}`);
   }
 
   /**

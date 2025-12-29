@@ -8,6 +8,7 @@ import gsap from 'gsap';
 import { estadoGlobal } from './stateManager.js';
 import { cenaGlobal } from './sceneManager.js';
 import { dialogoGlobal } from './dialogueManager.js';
+import { audioGlobal } from './audioManager.js';
 
 export class ScrollManagerStory {
   constructor() {
@@ -16,6 +17,7 @@ export class ScrollManagerStory {
     this.bloqueado = false;
     this.scrollingProgramaticamente = false;
     this.arrowElement = null;
+    this.verificandoDialogos = false; // Flag para evitar múltiplos intervals
   }
 
   /**
@@ -43,6 +45,9 @@ export class ScrollManagerStory {
     // Observa estado
     this.observarEstado();
 
+    // Configura SFX automáticos por capítulo
+    this.configurarSFXAutomaticos();
+
     // Ativa conteúdo da primeira seção (já está visível)
     const primeiraSecao = this.secoes[0];
     const content = primeiraSecao.querySelector('.section-content');
@@ -51,6 +56,93 @@ export class ScrollManagerStory {
     }
 
     console.log('✅ ScrollManagerStory inicializado');
+  }
+
+  /**
+   * Configura SFX automáticos baseados em IntersectionObserver
+   */
+  configurarSFXAutomaticos() {
+    // Cap 4 - SFX Penseira (quando entra nas memórias)
+    const cap4 = document.querySelector('#cap4');
+    if (cap4) {
+      let penseiraJaTocada = false;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.5 && !penseiraJaTocada) {
+            penseiraJaTocada = true;
+            audioGlobal.tocarSFX('penseira');
+            console.log('🔮 SFX: Penseira (entrando nas memórias Cap 4)');
+          }
+        });
+      }, { threshold: 0.5 });
+
+      observer.observe(cap4);
+    }
+
+    // Cap 4/5 - SFX Página (transições finais e recompensas)
+    const secoesComPagina = [
+      '#cap4-final',
+      '#cap4-recompensa',
+      '#cap5-final',
+      '#cap5-recompensa'
+    ];
+
+    secoesComPagina.forEach(seletor => {
+      const secao = document.querySelector(seletor);
+      if (secao) {
+        let paginaJaTocada = false;
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting && entry.intersectionRatio > 0.5 && !paginaJaTocada) {
+              paginaJaTocada = true;
+              audioGlobal.tocarSFX('pagina');
+              console.log(`📄 SFX: Página (transição ${seletor})`);
+            }
+          });
+        }, { threshold: 0.5 });
+
+        observer.observe(secao);
+      }
+    });
+
+    // Cap 6 - SFX Coruja (recompensa)
+    const cap6Recompensa = document.querySelector('#cap6-recompensa');
+    if (cap6Recompensa) {
+      let corujaJaTocada = false;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.5 && !corujaJaTocada) {
+            corujaJaTocada = true;
+            audioGlobal.tocarSFX('coruja');
+            console.log('🦉 SFX: Coruja (recompensa Cap 6)');
+          }
+        });
+      }, { threshold: 0.5 });
+
+      observer.observe(cap6Recompensa);
+    }
+
+    // Cap 8 - SFX Chuva LOOP (pós-derrota)
+    const cap8PosDerrota = document.querySelector('#cap8-pos-derrota');
+    if (cap8PosDerrota) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+            // Inicia loop de chuva
+            audioGlobal.tocarSFX('chuva');
+            console.log('🌧️ SFX: Chuva (loop) - Cap 8 pós-derrota iniciado');
+          } else {
+            // Para chuva quando sai da seção
+            if (audioGlobal.sfx.chuva && audioGlobal.sfx.chuva.playing()) {
+              audioGlobal.sfx.chuva.stop();
+              console.log('🌧️ SFX: Chuva (loop) parado');
+            }
+          }
+        });
+      }, { threshold: 0.5 });
+
+      observer.observe(cap8PosDerrota);
+    }
   }
 
   /**
@@ -260,9 +352,17 @@ export class ScrollManagerStory {
           }
         });
 
-        // Atualiza capítulo
+        // Atualiza capítulo E TROCA MÚSICA AUTOMATICAMENTE
         if (capitulo) {
-          estadoGlobal.definir('capituloAtual', parseInt(capitulo));
+          const capituloNum = parseInt(capitulo);
+          const capituloAnterior = estadoGlobal.obter('capituloAtual');
+
+          estadoGlobal.definir('capituloAtual', capituloNum);
+
+          // Troca música automaticamente quando muda de capítulo
+          if (capituloNum !== capituloAnterior && capituloNum > 0) {
+            audioGlobal.trocarMusicaPorCapitulo(capituloNum, 2000, 2500);
+          }
         }
 
         // Verifica desafio
@@ -342,11 +442,15 @@ export class ScrollManagerStory {
         this.bloqueado = false;
 
         // Mostra seta após desbloquear (e após diálogos terminarem)
-        if (this.indiceAtual < this.secoes.length - 1) {
+        if (this.indiceAtual < this.secoes.length - 1 && !this.verificandoDialogos) {
+          this.verificandoDialogos = true;
+
           // Aguarda até que não haja mais diálogos ativos
           const verificarDialogos = setInterval(() => {
             if (!dialogoGlobal.estaAtivo()) {
               clearInterval(verificarDialogos);
+              this.verificandoDialogos = false;
+
               setTimeout(() => {
                 this.mostrarSeta();
                 console.log('⬇️ Seta mostrada após desbloquear e diálogos finalizarem');
@@ -357,6 +461,7 @@ export class ScrollManagerStory {
           // Timeout de segurança (10 segundos)
           setTimeout(() => {
             clearInterval(verificarDialogos);
+            this.verificandoDialogos = false;
           }, 10000);
         }
       }

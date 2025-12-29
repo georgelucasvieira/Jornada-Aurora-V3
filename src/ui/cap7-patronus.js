@@ -57,7 +57,7 @@ export class Cap7Patronus {
    * 9. Reveal background com Patrono de Harry
    * 10. Texto: "Não temos mais como fugir, temos que lutar. Preparada?"
    * 11. Música: Battle theme
-   * 12. Scroll para desafios
+   * 12. Scroll para desafios (usando scrollManager, não scrollIntoView)
    */
   async iniciarSequenciaPatronus() {
     if (this.sequenciaIniciada) return;
@@ -65,13 +65,14 @@ export class Cap7Patronus {
 
     console.log('✨ Iniciando sequência Expecto Patronum...');
 
-    const secaoVFX = document.querySelector('#cap7-patronus-vfx');
+    // IMPORTANTE: Container VFX é OVERLAY fixo, não uma seção separada
+    const overlayVFX = document.querySelector('#cap7-patronus-vfx');
     const esfera = document.querySelector('.patronus-sphere');
     const flash = document.querySelector('.patronus-flash');
     const background = document.querySelector('.patronus-background');
-    const secaoPreBatalha = document.querySelector('#cap7-pre-batalha');
+    const textoPreBatalha = document.querySelector('#cap7-pre-batalha-texto');
 
-    if (!secaoVFX || !esfera || !flash || !background) {
+    if (!overlayVFX || !esfera || !flash || !background) {
       console.error('Elementos VFX do Patrono não encontrados');
       return;
     }
@@ -89,8 +90,9 @@ export class Cap7Patronus {
     // 4. Delay 1s
     await this.delay(1000);
 
-    // 5. Mostra seção VFX e esfera aparece (fade in)
-    secaoVFX.style.display = 'flex';
+    // 5. Mostra overlay VFX e esfera aparece (fade in)
+    overlayVFX.style.display = 'flex';
+    overlayVFX.style.opacity = '1';
     esfera.classList.add('ativo');
     console.log('💫 Esfera luminosa aparecendo...');
 
@@ -99,6 +101,7 @@ export class Cap7Patronus {
 
     // 7. Esfera se expande para preencher tela
     esfera.classList.add('expandindo');
+    audioGlobal.tocarSFX('whoosh'); // SFX de expansão
     console.log('⚡ Esfera expandindo...');
 
     // Aguarda expansão completar (1.5s)
@@ -121,43 +124,40 @@ export class Cap7Patronus {
     // Aguarda 3s para usuário apreciar o Patrono
     await this.delay(3000);
 
-    // 10. Fade out da seção VFX
-    gsap.to(secaoVFX, {
-      opacity: 0,
-      duration: 1,
-      onComplete: () => {
-        secaoVFX.style.display = 'none';
-      }
-    });
-
-    // Aguarda fade out
-    await this.delay(1000);
-
-    // 11. Mostra texto pré-batalha
-    secaoPreBatalha.style.display = 'flex';
-    gsap.fromTo(secaoPreBatalha,
-      { opacity: 0 },
-      { opacity: 1, duration: 1.5 }
-    );
-
-    // Aguarda 2s
-    await this.delay(2000);
-
-    // 12. Música: Battle theme
-    audioGlobal.trocarMusicaPorCapitulo('7_batalha', 1000, 2000);
-    console.log('⚔️ Música de batalha iniciada!');
+    // 10. Mostra texto pré-batalha (ainda dentro do overlay)
+    if (textoPreBatalha) {
+      textoPreBatalha.style.display = 'block';
+      gsap.fromTo(textoPreBatalha,
+        { opacity: 0 },
+        { opacity: 1, duration: 1.5 }
+      );
+    }
 
     // Aguarda 3s
     await this.delay(3000);
 
-    // 13. Scroll suave para primeiro desafio (Lumos Máxima)
-    const desafioLumos = document.querySelector('#desafio-lumos');
-    if (desafioLumos) {
-      desafioLumos.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      console.log('📜 Scrolling para Desafio Lumos...');
-    }
+    // 11. Música: Battle theme
+    audioGlobal.trocarMusicaPorCapitulo('7_batalha', 1000, 2000);
+    console.log('⚔️ Música de batalha iniciada!');
 
-    console.log('✅ Sequência Expecto Patronum concluída!');
+    // Aguarda 2s
+    await this.delay(2000);
+
+    // 12. Fade out do overlay VFX
+    gsap.to(overlayVFX, {
+      opacity: 0,
+      duration: 1.5,
+      onComplete: () => {
+        overlayVFX.style.display = 'none';
+      }
+    });
+
+    // Aguarda fade out completar
+    await this.delay(1500);
+
+    // 13. Desbloqueia scroll e mostra seta
+    // O scrollManager vai detectar automaticamente que pode avançar
+    console.log('✅ Sequência Expecto Patronum concluída! Usuário pode avançar.');
   }
 
   /**
@@ -173,13 +173,16 @@ export class Cap7Patronus {
   reset() {
     this.sequenciaIniciada = false;
 
-    const secaoVFX = document.querySelector('#cap7-patronus-vfx');
+    const overlayVFX = document.querySelector('#cap7-patronus-vfx');
     const esfera = document.querySelector('.patronus-sphere');
     const flash = document.querySelector('.patronus-flash');
     const background = document.querySelector('.patronus-background');
-    const secaoPreBatalha = document.querySelector('#cap7-pre-batalha');
+    const textoPreBatalha = document.querySelector('#cap7-pre-batalha-texto');
 
-    if (secaoVFX) secaoVFX.style.display = 'none';
+    if (overlayVFX) {
+      overlayVFX.style.display = 'none';
+      overlayVFX.style.opacity = '0';
+    }
     if (esfera) {
       esfera.classList.remove('ativo', 'expandindo');
       esfera.style.display = 'block';
@@ -192,7 +195,9 @@ export class Cap7Patronus {
       background.classList.remove('ativo');
       background.style.display = 'none';
     }
-    if (secaoPreBatalha) secaoPreBatalha.style.display = 'none';
+    if (textoPreBatalha) {
+      textoPreBatalha.style.display = 'none';
+    }
 
     console.log('🔄 Sequência Patronus resetada');
   }

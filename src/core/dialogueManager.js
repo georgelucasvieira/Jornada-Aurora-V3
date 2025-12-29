@@ -13,6 +13,7 @@ class DialogueManager {
     this.fadeVelocidade = 300; // ms
     this.filaDialogos = [];
     this.processando = false;
+    this.inicializado = false; // Flag para evitar múltiplas inicializações
   }
 
   /**
@@ -20,7 +21,7 @@ class DialogueManager {
    */
   inicializar() {
     // Cria container de diálogo se não existir
-    if (!this.containerDialogo) {
+    if (!this.inicializado) {
       this.containerDialogo = document.createElement('div');
       this.containerDialogo.className = 'dialogo-container';
       this.containerDialogo.innerHTML = `
@@ -31,9 +32,11 @@ class DialogueManager {
       `;
       document.body.appendChild(this.containerDialogo);
 
-      // Event listener para botão continuar
+      // Event listener para botão continuar (registrado apenas UMA VEZ)
       const botao = this.containerDialogo.querySelector('.dialogo-botao');
       botao.addEventListener('click', () => this.proximoDialogo());
+
+      this.inicializado = true;
     }
   }
 

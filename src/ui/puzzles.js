@@ -659,8 +659,25 @@ export class PuzzleManager {
     const contadorMovimentos = document.getElementById('contador-movimentos');
     const btnReset = document.getElementById('btn-reset-sliding');
     const mensagem = document.querySelector('#desafio-sliding-blocks .mensagem-erro');
+    const secaoDesafio = document.querySelector('#desafio-sliding-blocks');
 
     if (!grid || !nivelAtualSpan || !contadorMovimentos || !btnReset) return;
+
+    // SFX: Trovão quando o baú/desafio se revela
+    if (secaoDesafio) {
+      let trovaoJaTocado = false;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.5 && !trovaoJaTocado) {
+            trovaoJaTocado = true;
+            audioGlobal.tocarSFX('trovao');
+            console.log('⚡ SFX: Trovão (revelação do baú Cap 3)');
+          }
+        });
+      }, { threshold: 0.5 });
+
+      observer.observe(secaoDesafio);
+    }
 
     // Configurações dos 3 níveis
     const niveis = [
@@ -825,6 +842,10 @@ export class PuzzleManager {
           });
         } else {
           // Todos os níveis completos
+          // SFX: Baú abrindo
+          audioGlobal.tocarSFX('bau');
+          console.log('📦 SFX: Baú abrindo (Cap 3 completo)');
+
           dialogoGlobal.exibir('Os três selos foram quebrados. O baú se abre...', {
             comAudio: true,
             callback: () => {

@@ -2441,15 +2441,20 @@ body {
    CAP 7 - EXPECTO PATRONUM VFX
    ========================================== */
 
-/* Seção VFX do Patrono */
-.section-patronus-vfx {
-  position: relative;
+/* Overlay VFX do Patrono (FIXED FULLSCREEN) */
+.patronus-vfx-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   background: linear-gradient(to bottom, #0a0a1a 0%, #1a1a2e 100%);
-  min-height: 100vh;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 9999; /* Sobre tudo */
+  transition: opacity 1.5s ease;
 }
 
 .patronus-vfx-container {

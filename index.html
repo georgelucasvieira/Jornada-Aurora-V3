@@ -698,8 +698,8 @@
         </div>
       </section>
 
-      <!-- CONTAINER VFX PATRONO (inicialmente invisível) -->
-      <section id="cap7-patronus-vfx" class="section section-patronus-vfx" data-capitulo="7" style="display: none;">
+      <!-- OVERLAY VFX PATRONO (FIXED FULLSCREEN - NÃO É SEÇÃO) -->
+      <div id="cap7-patronus-vfx" class="patronus-vfx-overlay" style="display: none; opacity: 0;">
         <div class="patronus-vfx-container">
           <!-- Esfera luminosa -->
           <div class="patronus-sphere"></div>
@@ -711,18 +711,14 @@
           <div class="patronus-background" style="display: none;">
             <img src="src/assets/images/patrono-harry.png" alt="Patrono de Harry" class="patronus-image" />
           </div>
-        </div>
-      </section>
 
-      <!-- TEXTO PÓS-PATRONO -->
-      <section id="cap7-pre-batalha" class="section" data-capitulo="7" style="display: none;">
-        <div class="section-content">
-          <div class="texto-narrativo texto-centro">
+          <!-- Texto pré-batalha (aparece sobre o Patrono) -->
+          <div id="cap7-pre-batalha-texto" class="texto-narrativo texto-centro" style="display: none; position: absolute; z-index: 10; color: white; text-shadow: 0 0 20px rgba(0,0,0,0.8);">
             <p>Não temos mais como fugir,<br>temos que lutar.</p>
             <p>Preparada?</p>
           </div>
         </div>
-      </section>
+      </div>
 
       <!-- DESAFIO CAP 7.1 - LUMOS MÁXIMA (SIMON SAYS) -->
       <section id="desafio-lumos" class="section section-desafio" data-desafio="lumos">
