@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Jornada - Aurora</title>
+  </head>
+  <body>
+    <!-- Canvas 3D (overlay transparente) -->
+    <canvas id="canvas-3d" class="canvas-3d"></canvas>
+
+    <!-- Container principal do site -->
+    <div id="app">
+      <!-- START -->
+      <section id="start" class="section section-start">
+        <div class="section-content">
+          <h1 class="titulo-principal">A Jornada</h1>
+          <button id="btn-iniciar" class="btn-primary">Iniciar Jornada</button>
+        </div>
+      </section>
+
+      <!-- CAPÍTULO 1 - A CONVOCAÇÃO -->
+      <section id="cap1" class="section" data-capitulo="1">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Algumas histórias não começam quando escolhemos...</p>
+            <p>Começam quando somos chamados.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="cap1-2" class="section" data-capitulo="1">
+        <div class="section-content">
+          <div class="texto-narrativo texto-direita">
+            <p>Aurora,</p>
+            <p>Você não foi trazida aqui</p>
+            <p>por acaso.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="cap1-3" class="section" data-capitulo="1">
+        <div class="section-content">
+          <div class="texto-narrativo texto-esquerda">
+            <p>Nem tudo o que chama explica.</p>
+            <p>Algumas portas só se abrem fora daqui.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- DESAFIO 1 - CÓDIGO DO CARTÃO -->
+      <section id="desafio-codigo" class="section section-desafio" data-desafio="codigo">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Leia a Carta 1</p>
+          </div>
+          <div id="puzzle-codigo" class="puzzle-container">
+            <input type="text" id="input-codigo" class="input-codigo" placeholder="Digite o código..." maxlength="10" />
+            <button id="btn-codigo" class="btn-primary">Continuar</button>
+            <p class="mensagem-erro"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CAPÍTULO 2 - O CHAPÉU OBSERVA -->
+      <section id="cap2" class="section" data-capitulo="2">
+        <div class="section-content">
+          <div class="texto-narrativo texto-esquerda">
+            <p>Antes de seguir…</p>
+            <p>Uma pergunta.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- DESAFIO 2 - ESCOLHA -->
+      <section id="desafio-escolha" class="section section-desafio" data-desafio="escolha">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Você prefere<br>entender tudo<br>antes de avançar?</p>
+            <p>Ou avançar<br>mesmo sem certeza?</p>
+          </div>
+          <div id="puzzle-escolha" class="puzzle-container">
+            <button class="btn-escolha" data-escolha="entender">Entender primeiro</button>
+            <button class="btn-escolha" data-escolha="avancar">Avançar sem certeza</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="cap2-2" class="section" data-capitulo="2">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>O Chapéu observa.</p>
+            <p>Ele não julga.</p>
+            <p>Apenas escuta.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="cap2-3" class="section" data-capitulo="2">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Toda resposta<br>diz menos<br>do que parece.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CAPÍTULO 3 - A ORDEM IMPERFEITA -->
+      <section id="cap3" class="section" data-capitulo="3">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Histórias raramente<br>acontecem em ordem.</p>
+            <p>Algumas partes ficam.</p>
+            <p>Outras se perdem.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- DESAFIO 3 - MEMÓRIA AFETIVA (Drag and Drop) -->
+      <section id="desafio-memoria" class="section section-desafio" data-desafio="memoria">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Algumas histórias<br>não seguem adiante<br>se não forem lembradas.</p>
+            <p>Observe.</p>
+          </div>
+          <div id="puzzle-memoria" class="puzzle-container">
+            <div id="cartas-memorizar" class="cartas-grid">
+              <!-- Cartas serão inseridas via JS -->
+            </div>
+            <div id="cartas-selecionar" class="cartas-grid" style="display: none;">
+              <!-- Cartas para seleção -->
+            </div>
+            <button id="btn-confirmar-memoria" class="btn-primary" style="display: none;">Confirmar</button>
+            <p class="mensagem-erro"></p>
+          </div>
+        </div>
+      </section>
+
+      <section id="cap3-2" class="section" data-capitulo="3">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Não é assim<br>que toda história segue?</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CAPÍTULO 4 - A PASSAGEM (FÊNIX) -->
+      <section id="cap4" class="section" data-capitulo="4">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Há momentos<br>em que algo termina.</p>
+            <p>Mesmo sem parecer<br>um fim.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="cap4-2" class="section" data-capitulo="4">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Nem toda travessia<br>deixa marcas visíveis.</p>
+            <p>Algumas apenas<br>conduzem.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- DESAFIO 4 - ORTOGRAFIA -->
+      <section id="desafio-ortografia" class="section section-desafio" data-desafio="ortografia">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Às vezes<br>a diferença entre avançar<br>e tropeçar<br>está em um detalhe.</p>
+            <p>Observe com cuidado.</p>
+          </div>
+          <div id="puzzle-ortografia" class="puzzle-container">
+            <p class="pergunta">Qual destas está correta?</p>
+            <div class="opcoes-quiz">
+              <button class="btn-opcao" data-correto="false">Expectro Patronum</button>
+              <button class="btn-opcao" data-correto="true">Expecto Patronum</button>
+              <button class="btn-opcao" data-correto="false">Exspecto Patronum</button>
+            </div>
+            <p class="mensagem-erro"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CAPÍTULO 5 - O VOO (Flappy Bird) -->
+      <section id="cap5" class="section" data-capitulo="5">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Voar não é sobre força.</p>
+            <p>É sobre constância.</p>
+            <p>Nem subir demais.</p>
+            <p>Nem desistir cedo demais.</p>
+            <p>Apenas seguir.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MINIGAME - FLAPPY BIRD -->
+      <section id="minigame-voo" class="section section-minigame" data-desafio="voo">
+        <div class="section-content">
+          <div id="game-container">
+            <canvas id="game-canvas"></canvas>
+            <div id="game-overlay">
+              <p>Toque ou pressione ESPAÇO para voar</p>
+              <button id="btn-iniciar-voo" class="btn-primary">Iniciar</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CAPÍTULO 6 - A SOMBRA -->
+      <section id="cap6" class="section" data-capitulo="6">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Toda jornada<br>encontra um limite.</p>
+            <p>Não por falta<br>de vontade.</p>
+            <p>Nem por falta<br>de coragem.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="cap6-2" class="section" data-capitulo="6">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Mas porque<br>há lugares<br>que não se atravessam<br>sozinhos.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- DESAFIO FINAL - O LIMITE -->
+      <section id="desafio-limite" class="section section-desafio" data-desafio="limite">
+        <div class="section-content">
+          <div id="puzzle-limite" class="puzzle-container">
+            <button id="btn-tentar" class="btn-primary">Tentar</button>
+            <p id="texto-limite"></p>
+            <button id="btn-continuar-limite" class="btn-primary" style="display: none;">Continuar</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- CAPÍTULO 7 - O LIMIAR -->
+      <section id="cap7" class="section" data-capitulo="7">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Você chegou<br>até aqui.</p>
+            <p>Não porque acertou tudo.</p>
+            <p>Nem porque foi forte<br>o bastante.</p>
+            <p>Mas porque<br>permaneceu.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CAPÍTULO FINAL - A REVELAÇÃO -->
+      <section id="cap-final" class="section" data-capitulo="8">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Há histórias<br>que parecem derrotas.</p>
+            <p>Até que se olha<br>com outros olhos.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="cap-final-2" class="section" data-capitulo="8">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Assim como houve<br>quem fosse salvo<br>pelo sacrifício<br>de outro…</p>
+            <p>Há vitórias<br>que acontecem<br>quando não lutamos.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="cap-final-3" class="section" data-capitulo="8">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>A maldição<br>não foi quebrada<br>por força.</p>
+            <p>Nem por inteligência.</p>
+            <p>Foi quebrada<br>por amor.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="cap-final-4" class="section" data-capitulo="8">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Não porque você mereceu.</p>
+            <p>Mas porque foi amada<br>antes.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="cap-final-5" class="section" data-capitulo="8">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>E agora…</p>
+            <p>Você pode seguir.</p>
+            <p>Não carregando<br>o peso da prova.</p>
+            <p>Mas a leveza<br>de quem não caminha<br>sozinha.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- EPÍLOGO -->
+      <section id="epilogo" class="section section-epilogo">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Para Aurora.</p>
+            <p>Que esta jornada<br>te lembre:</p>
+            <p>Algumas escolhas<br>não definem quem somos.</p>
+            <p>O que nos define<br>é Quem caminha conosco<br>quando cessam<br>as respostas.</p>
+            <p class="assinatura">Com todo o amor,<br><strong>[Seu nome]</strong></p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
