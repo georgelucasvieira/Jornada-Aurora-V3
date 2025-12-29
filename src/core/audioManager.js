@@ -165,19 +165,19 @@ class AudioManager {
         onloaderror: () => console.warn('Música cap6 não encontrada')
       }),
       cap7_pre: new Howl({
-        src: ['src/assets/audio/music/cap7-pre.mp3'], // "Statues"
+        src: ['src/assets/audio/music/cap7_pre.mp3'], // "Statues"
         loop: true,
         volume: this.volumeMusica * this.volumeGeral,
         onloaderror: () => console.warn('Música cap7_pre não encontrada')
       }),
       cap7_patronus: new Howl({
-        src: ['src/assets/audio/music/cap7-patronus.mp3'], // "The Patronus Light"
+        src: ['src/assets/audio/music/cap7_patronus.mp3'], // "The Patronus Light"
         loop: true,
         volume: this.volumeMusica * this.volumeGeral,
         onloaderror: () => console.warn('Música cap7_patronus não encontrada')
       }),
       cap7_batalha: new Howl({
-        src: ['src/assets/audio/music/cap7-batalha.mp3'], // "The Battle of Hogwarts"
+        src: ['src/assets/audio/music/cap7_batalha.mp3'], // "The Battle of Hogwarts"
         loop: true,
         volume: this.volumeMusica * this.volumeGeral,
         onloaderror: () => console.warn('Música cap7_batalha não encontrada')

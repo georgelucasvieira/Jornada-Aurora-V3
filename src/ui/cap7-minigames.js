@@ -6,6 +6,7 @@
 import { estadoGlobal } from '../core/stateManager.js';
 import { audioGlobal } from '../core/audioManager.js';
 import { dialogoGlobal } from '../core/dialogueManager.js';
+import { cap7Derrota } from './cap7-derrota.js';
 
 export class Cap7Minigames {
   constructor() {
@@ -441,32 +442,11 @@ export class Cap7Minigames {
   }
 
   triggerAvadaKedavra() {
-    const flashVerde = document.querySelector('#flash-verde');
-    const arteVoldemort = document.querySelector('#arte-voldemort');
+    // Marca desafio como concluído (necessário para progressão do estado)
+    estadoGlobal.concluirDesafio('maze-runner');
 
-    // Flash verde
-    flashVerde.classList.add('ativo');
-    audioGlobal.tocarSFX('avada-kedavra');
-
-    setTimeout(() => {
-      flashVerde.classList.remove('ativo');
-      arteVoldemort.style.display = 'block';
-
-      setTimeout(() => {
-        dialogoGlobal.exibir('A escuridão venceu...', {
-          comAudio: true,
-          callback: () => {
-            dialogoGlobal.exibir('Ou será que não?', {
-              comAudio: true,
-              callback: () => {
-                estadoGlobal.concluirDesafio('maze');
-                estadoGlobal.desbloquearScroll();
-              }
-            });
-          }
-        });
-      }, 2000);
-    }, 800);
+    // Inicia sequência automatizada de derrota
+    cap7Derrota.iniciarSequenciaDerrota();
   }
 
   delay(ms) {

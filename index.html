@@ -706,19 +706,26 @@
 
           <!-- Flash branco -->
           <div class="patronus-flash"></div>
-
-          <!-- Background do Patrono (revelado após flash) -->
-          <div class="patronus-background" style="display: none;">
-            <img src="src/assets/images/patrono-harry.png" alt="Patrono de Harry" class="patronus-image" />
-          </div>
-
-          <!-- Texto pré-batalha (aparece sobre o Patrono) -->
-          <div id="cap7-pre-batalha-texto" class="texto-narrativo texto-centro" style="display: none; position: absolute; z-index: 10; color: white; text-shadow: 0 0 20px rgba(0,0,0,0.8);">
-            <p>Não temos mais como fugir,<br>temos que lutar.</p>
-            <p>Preparada?</p>
-          </div>
         </div>
       </div>
+
+      <!-- SEÇÃO PATRONO (LAYOUT 40/60 - IMAGEM ESQUERDA + TEXTO DIREITA) -->
+      <section id="cap7-patronus-revelado" class="section section-patronus-revelado" data-capitulo="7" style="display: none;">
+        <div class="section-content layout-patronus">
+          <!-- Imagem do Patrono à esquerda (40% horizontal, 80% vertical) -->
+          <div class="patronus-imagem-container">
+            <img src="src/assets/images/patrono-harry.png" alt="Patrono de Harry" class="patronus-image-final" />
+          </div>
+
+          <!-- Texto à direita (60%) -->
+          <div class="patronus-texto-container">
+            <div class="texto-narrativo texto-direita">
+              <p>Não temos mais como fugir,<br>temos que lutar.</p>
+              <p>Preparada?</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- DESAFIO CAP 7.1 - LUMOS MÁXIMA (SIMON SAYS) -->
       <section id="desafio-lumos" class="section section-desafio" data-desafio="lumos">
@@ -783,25 +790,27 @@
         </div>
       </section>
 
-      <!-- VFX AVADA KEDAVRA + VOLDEMORT -->
-      <section id="cap7-avada" class="section section-vfx" data-capitulo="7">
+      <!-- SEÇÃO AVADA KEDAVRA (Background escuro para VFX) -->
+      <section id="cap7-avada-vfx" class="section section-avada-vfx" data-capitulo="7" style="display: none; background: #000;">
         <div class="section-content">
-          <div class="avada-kedavra-container">
-            <h2 class="avada-texto">Avada Kedavra</h2>
-            <div id="flash-verde" class="flash-verde"></div>
-            <div id="arte-voldemort" class="arte-voldemort" style="display: none;">
-              <img src="src/assets/images/voldemort.png" alt="Voldemort" class="imagem-voldemort" />
-            </div>
-          </div>
+          <!-- VFX será criado aqui via JavaScript -->
         </div>
       </section>
 
-      <!-- RECOMPENSA CAP 7 - VERSÍCULO -->
-      <section id="cap7-recompensa" class="section" data-capitulo="7">
-        <div class="section-content">
-          <div class="texto-narrativo texto-centro versiculo-revelacao">
-            <p class="versiculo-referencia">1 Coríntios 15:55</p>
-            <p class="versiculo-texto">"Onde está, ó morte, a tua vitória?<br>Onde está, ó morte, o teu aguilhão?"</p>
+      <!-- SEÇÃO DERROTA - VOLDEMORT + VERSÍCULO (LAYOUT 40/60) -->
+      <section id="cap7-derrota" class="section section-derrota" data-capitulo="7" style="display: none;">
+        <div class="section-content layout-voldemort">
+          <!-- Imagem de Voldemort à direita (40% horizontal, 80% vertical) -->
+          <div class="voldemort-imagem-container">
+            <img src="src/assets/images/voldemort.jpg" alt="Voldemort" class="imagem-voldemort-final" />
+          </div>
+
+          <!-- Texto à esquerda (60%) -->
+          <div class="voldemort-texto-container">
+            <div class="texto-narrativo texto-esquerda versiculo-revelacao">
+              <p class="versiculo-referencia">1 Coríntios 15:55</p>
+              <p class="versiculo-texto">"Onde está, ó morte, a tua vitória?<br>Onde está, ó morte, o teu aguilhão?"</p>
+            </div>
           </div>
         </div>
       </section>

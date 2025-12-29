@@ -136,7 +136,7 @@ export class FlappyBirdGame {
    */
   pular() {
     this.vassoura.velocidadeY = this.vassoura.forcaPulo;
-    audioGlobal.tocarSFX('voo');
+    audioGlobal.tocarSFX('whoosh');
   }
 
   /**

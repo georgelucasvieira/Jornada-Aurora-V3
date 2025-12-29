@@ -21,8 +21,10 @@ import { Fenix } from './three/objects/fenix.js';
 import { puzzleGlobal } from './ui/puzzles.js';
 import { flappyBirdGlobal } from './ui/minigames.js';
 import { cap7Patronus } from './ui/cap7-patronus.js';
+import { cap7Derrota } from './ui/cap7-derrota.js';
 import { cap7Minigames } from './ui/cap7-minigames.js';
 import { cap8Final } from './ui/cap8-final.js';
+import { cap8Cinematic } from './ui/cap8-cinematic.js';
 
 /**
  * Classe principal da aplicação
@@ -59,16 +61,22 @@ class JornadaAurora {
     // 7. Inicializa Cap 7 Patronus VFX
     cap7Patronus.inicializar();
 
-    // 8. Inicializa Cap 7 Minigames
+    // 8. Inicializa Cap 7 Derrota
+    cap7Derrota.inicializar();
+
+    // 9. Inicializa Cap 7 Minigames
     cap7Minigames.inicializar();
 
     // 9. Inicializa Cap 8 Final
     cap8Final.inicializar();
 
-    // 9. Configura botão de início
+    // 10. Inicializa Cap 8 Cinematic
+    cap8Cinematic.inicializar();
+
+    // 11. Configura botão de início
     this.configurarInicio();
 
-    // 10. Configura botões de debug (desenvolvimento)
+    // 12. Configura botões de debug (desenvolvimento)
     this.configurarBotoesDebug();
 
     console.log('✅ A Jornada inicializada com sucesso!');
