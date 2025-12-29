@@ -17,6 +17,8 @@ export class Cap7Minigames {
     this.protegoCount = 0;
     this.protegoTotal = 10;
     this.protegoActive = false;
+    this.protegoCanDefend = false;
+    this.protegoDefendido = false;
     this.protegoAttackTimeout = null;
 
     this.mazeInterval = null;
@@ -194,35 +196,55 @@ export class Cap7Minigames {
 
     // Force reflow
     void ataque.offsetWidth;
-    ataque.style.animation = 'ataqueDescendo 2s linear';
+    ataque.style.animation = 'ataqueDescendo 2.5s linear';
 
-    // Marca que pode defender (janela de 0.8s a 1.5s do início do ataque)
+    // Janela de defesa: 0.5s até 2.0s (1.5s de janela, muito mais generosa)
     this.protegoCanDefend = false;
+    this.protegoDefendido = false; // Flag para saber se defendeu
+
+    // Inicia janela de defesa após 0.5s
     setTimeout(() => {
       this.protegoCanDefend = true;
-    }, 800);
+    }, 500);
 
+    // Fecha janela de defesa após 2.0s
     setTimeout(() => {
       this.protegoCanDefend = false;
-      if (this.protegoActive) {
-        // Falhou em defender
+    }, 2000);
+
+    // Verifica se falhou (após animação completa de 2.5s)
+    this.protegoAttackTimeout = setTimeout(() => {
+      // Se não defendeu ainda, falhou
+      if (!this.protegoDefendido && this.protegoActive) {
+        this.protegoActive = false; // Para o jogo
         audioGlobal.tocarSFX('erro');
         ataque.style.display = 'none';
 
         dialogoGlobal.exibir('O ataque te atingiu! Tente novamente.', {
           comAudio: true,
           callback: () => {
+            // Só reinicia DEPOIS do usuário clicar em Continuar
             this.startProtego();
           }
         });
       }
-    }, 2000);
+    }, 2500);
   }
 
   defenderAtaque() {
     if (!this.protegoCanDefend) {
-      // Clicou cedo ou tarde demais
+      // Clicou cedo ou tarde demais - não faz nada
       return;
+    }
+
+    // Marca que defendeu com sucesso
+    this.protegoDefendido = true;
+    this.protegoCanDefend = false; // Fecha janela (não pode defender novamente)
+
+    // Cancela timeout de falha
+    if (this.protegoAttackTimeout) {
+      clearTimeout(this.protegoAttackTimeout);
+      this.protegoAttackTimeout = null;
     }
 
     const ataque = document.querySelector('#protego-ataque');
@@ -241,7 +263,7 @@ export class Cap7Minigames {
     this.protegoCount++;
     counter.textContent = this.protegoCount;
 
-    // Próximo ataque
+    // Próximo ataque após 1.5s
     setTimeout(() => {
       if (this.protegoActive) {
         this.lancarAtaque();
