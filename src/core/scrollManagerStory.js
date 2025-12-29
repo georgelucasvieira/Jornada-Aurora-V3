@@ -12,7 +12,7 @@ import { dialogoGlobal } from './dialogueManager.js';
 export class ScrollManagerStory {
   constructor() {
     this.secoes = [];
-    this.indiceAtual = 0;
+    this.indiceAtual = 1;
     this.bloqueado = false;
     this.scrollingProgramaticamente = false;
     this.arrowElement = null;
@@ -198,7 +198,8 @@ export class ScrollManagerStory {
    */
   irParaSecao(indice, duracao = 1.2) {
     console.log(`🎯 irParaSecao: ${indice}`);
-
+    console.log(`📜 Total de seções: ${this.secoes.length}`);
+    
     if (indice < 0 || indice >= this.secoes.length) {
       console.error(`❌ Índice inválido: ${indice}`);
       return;

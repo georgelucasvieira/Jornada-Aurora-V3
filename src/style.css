@@ -651,6 +651,2044 @@ body {
 }
 
 /* ==========================================
+   NOVOS PUZZLES - CAPÍTULO 1
+   ========================================== */
+
+/* Ordenar Frase Bíblica */
+.frase-referencia {
+  font-size: 0.9rem;
+  color: var(--cor-texto-secundario);
+  font-style: italic;
+  margin-bottom: var(--espacamento-md);
+}
+
+.fragmentos-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+  margin: var(--espacamento-md) 0;
+  min-height: 100px;
+}
+
+.fragmento {
+  padding: 0.8rem 1.2rem;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: var(--cor-texto);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all var(--transicao-rapida);
+  user-select: none;
+}
+
+.fragmento:hover:not(.selecionado) {
+  background-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-3px);
+}
+
+.fragmento.selecionado {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.area-montagem {
+  min-height: 120px;
+  padding: var(--espacamento-md);
+  background-color: rgba(100, 108, 255, 0.1);
+  border: 2px dashed rgba(100, 108, 255, 0.3);
+  border-radius: 8px;
+  margin: var(--espacamento-md) 0;
+}
+
+.instrucao {
+  font-size: 0.9rem;
+  color: var(--cor-texto-secundario);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.frase-montada {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.fragmento-montado {
+  padding: 0.6rem 1rem;
+  background-color: rgba(100, 108, 255, 0.3);
+  border: 2px solid var(--cor-destaque);
+  border-radius: 4px;
+  color: var(--cor-texto);
+  font-size: 1rem;
+  position: relative;
+  animation: fadeInFragmento 0.3s ease;
+}
+
+@keyframes fadeInFragmento {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.puzzle-controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: var(--espacamento-md);
+}
+
+.btn-secondary {
+  font-family: var(--fonte-secundaria);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.8rem 1.5rem;
+  background-color: transparent;
+  color: var(--cor-texto-secundario);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--transicao-rapida);
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Quiz Qualidades (Casas de Hogwarts) */
+.pergunta-qualidade {
+  font-size: 1.1rem;
+  margin-bottom: var(--espacamento-md);
+  color: var(--cor-texto);
+}
+
+/* Desafio 3 - Quiz Qualidades (Layout Lado a Lado) */
+.pergunta-qualidade {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--cor-destaque);
+  margin-bottom: var(--espacamento-md);
+}
+
+.instrucao-qualidades {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--cor-texto-secundario);
+  font-style: italic;
+  margin-top: var(--espacamento-md);
+}
+
+.qualidades-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Coluna Momentos (Esquerda) */
+.coluna-momentos {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.momento-item {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all var(--transicao-rapida);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.momento-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--cor-destaque);
+  transform: translateX(5px);
+}
+
+.momento-item.selecionado {
+  background-color: rgba(218, 165, 32, 0.2);
+  border-color: #daa520;
+  box-shadow: 0 0 20px rgba(218, 165, 32, 0.4);
+}
+
+.momento-item.completo {
+  opacity: 0.6;
+  cursor: default;
+  border-color: rgba(76, 175, 80, 0.6);
+}
+
+.momento-item.completo:hover {
+  transform: none;
+}
+
+.momento-numero {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  font-weight: bold;
+  color: var(--cor-destaque);
+  font-size: 0.95rem;
+}
+
+.momento-texto {
+  flex: 1;
+  font-size: 0.95rem;
+  color: var(--cor-texto);
+  line-height: 1.5;
+}
+
+.momento-conector {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: bold;
+  transition: all var(--transicao-rapida);
+}
+
+.momento-conector.ativo {
+  border-style: solid;
+}
+
+.momento-conector.grifinoria {
+  background-color: rgba(116, 0, 1, 0.6);
+  border-color: #740001;
+  color: #ffc500;
+}
+
+.momento-conector.lufalufa {
+  background-color: rgba(255, 212, 0, 0.6);
+  border-color: #ffd400;
+  color: #000;
+}
+
+.momento-conector.corvinal {
+  background-color: rgba(0, 86, 184, 0.6);
+  border-color: #0056b8;
+  color: #fff;
+}
+
+.momento-conector.sonserina {
+  background-color: rgba(26, 71, 42, 0.6);
+  border-color: #1a472a;
+  color: #aaa;
+}
+
+/* Coluna Casas (Direita) */
+.coluna-casas {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.casa-item {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all var(--transicao-rapida);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.casa-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--cor-destaque);
+  transform: translateX(-5px);
+}
+
+.casa-badge {
+  flex-shrink: 0;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+  border: 3px solid;
+}
+
+.casa-badge.grifinoria {
+  background-color: #740001;
+  color: #ffc500;
+  border-color: #d3a625;
+}
+
+.casa-badge.lufa-lufa {
+  background-color: #ffd400;
+  color: #000;
+  border-color: #000;
+}
+
+.casa-badge.corvinal {
+  background-color: #0056b8;
+  color: #fff;
+  border-color: #946b2d;
+}
+
+.casa-badge.sonserina {
+  background-color: #1a472a;
+  color: #aaa;
+  border-color: #5d5d5d;
+}
+
+.casa-nome {
+  flex: 1;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--cor-texto);
+  margin: 0;
+}
+
+.casa-descricao {
+  font-size: 0.85rem;
+  color: var(--cor-texto-secundario);
+  font-style: italic;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .qualidades-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .momento-item, .casa-item {
+    font-size: 0.9rem;
+  }
+}
+
+/* Riddikulus */
+.select-medo {
+  width: 100%;
+  max-width: 400px;
+  padding: 1rem;
+  margin: 1rem auto;
+  display: block;
+  font-size: 1rem;
+  font-family: var(--fonte-secundaria);
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: var(--cor-texto);
+  cursor: pointer;
+  transition: all var(--transicao-rapida);
+}
+
+.select-medo:focus {
+  outline: none;
+  border-color: var(--cor-destaque);
+  box-shadow: 0 0 15px rgba(100, 108, 255, 0.3);
+}
+
+.select-medo option {
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+}
+
+#area-riddikulus {
+  margin-top: var(--espacamento-md);
+  animation: fadeIn 0.5s ease;
+}
+
+.instrucao-riddikulus {
+  font-size: 0.9rem;
+  color: var(--cor-texto-secundario);
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.input-riddikulus {
+  width: 100%;
+  max-width: 600px;
+  min-height: 120px;
+  padding: 1rem;
+  margin: 1rem auto;
+  display: block;
+  font-size: 1rem;
+  font-family: var(--fonte-principal);
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: var(--cor-texto);
+  line-height: 1.6;
+  resize: vertical;
+  transition: all var(--transicao-rapida);
+}
+
+.input-riddikulus:focus {
+  outline: none;
+  border-color: var(--cor-destaque);
+  box-shadow: 0 0 15px rgba(100, 108, 255, 0.3);
+}
+
+.input-riddikulus::placeholder {
+  color: var(--cor-texto-secundario);
+  font-style: italic;
+}
+
+/* Versículo Revelação */
+.versiculo-revelacao {
+  padding: var(--espacamento-lg);
+}
+
+.versiculo-referencia {
+  font-size: 1rem;
+  color: var(--cor-destaque);
+  font-weight: 600;
+  margin-bottom: var(--espacamento-md);
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}
+
+.versiculo-texto {
+  font-size: 1.8rem !important;
+  line-height: 1.8;
+  color: var(--cor-texto);
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* ==========================================
+   CAP 3 - SLIDING BLOCKS PUZZLE
+   ========================================== */
+
+.nivel-info {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.nivel-texto {
+  font-size: 1.2rem;
+  color: var(--cor-destaque);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.sliding-grid {
+  display: grid;
+  gap: 4px;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 8px;
+  border-radius: 8px;
+  margin: 0 auto 1.5rem;
+  width: fit-content;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+/* Grid dinâmico por nível */
+.sliding-grid[data-nivel="1"] {
+  grid-template-columns: repeat(3, 80px);
+  grid-template-rows: repeat(3, 80px);
+}
+
+.sliding-grid[data-nivel="2"] {
+  grid-template-columns: repeat(4, 70px);
+  grid-template-rows: repeat(4, 70px);
+}
+
+.sliding-grid[data-nivel="3"] {
+  grid-template-columns: repeat(4, 70px);
+  grid-template-rows: repeat(5, 70px);
+}
+
+.sliding-block {
+  background: linear-gradient(135deg, rgba(100, 108, 255, 0.3), rgba(100, 108, 255, 0.15));
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--cor-texto);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.sliding-block::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.1));
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.sliding-block:hover::before {
+  opacity: 1;
+}
+
+.sliding-block.movable {
+  border-color: rgba(100, 255, 108, 0.6);
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(100, 255, 108, 0.3);
+}
+
+.sliding-block.movable:hover {
+  background: linear-gradient(135deg, rgba(100, 255, 108, 0.4), rgba(100, 255, 108, 0.2));
+  transform: scale(1.05);
+  border-color: rgba(100, 255, 108, 0.9);
+}
+
+.sliding-block.empty {
+  background: transparent;
+  border: 2px dashed rgba(255, 255, 255, 0.15);
+  cursor: default;
+}
+
+.sliding-block.empty::before {
+  display: none;
+}
+
+/* Animação ao mover bloco */
+@keyframes slideBlock {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.sliding-block.moving {
+  animation: slideBlock 0.2s ease;
+}
+
+.puzzle-stats {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.puzzle-stats p {
+  font-size: 1rem;
+  color: var(--cor-texto-secundario);
+  margin: 0;
+}
+
+.puzzle-stats span {
+  color: var(--cor-destaque);
+  font-weight: 600;
+}
+
+/* Efeito de conclusão de nível */
+@keyframes nivelCompleto {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 24px rgba(100, 255, 108, 0.6);
+  }
+}
+
+.sliding-grid.nivel-completo {
+  animation: nivelCompleto 0.6s ease;
+}
+
+/* ==========================================
+   CAP 4 - MEMÓRIAS (QUIZZES + QUEBRA-CABEÇA)
+   ========================================== */
+
+/* Hint do código Obliviate */
+.hint-texto {
+  margin-top: var(--espacamento-md);
+  padding: 1rem;
+  background-color: rgba(255, 200, 100, 0.1);
+  border-left: 4px solid rgba(255, 200, 100, 0.6);
+  color: rgba(255, 200, 100, 0.9);
+  font-size: 0.95rem;
+  font-style: italic;
+  border-radius: 4px;
+  animation: fadeIn 0.5s ease;
+}
+
+/* Quiz Perguntas sobre Memórias */
+#quiz-memorias-container {
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+.quiz-pergunta-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 2rem;
+  animation: fadeIn 0.5s ease;
+}
+
+.quiz-numero {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--cor-texto-secundario);
+  margin-bottom: 1rem;
+}
+
+.quiz-pergunta-texto {
+  font-size: 1.2rem;
+  color: var(--cor-texto);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.quiz-opcoes {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.quiz-opcao {
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: var(--cor-texto);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all var(--transicao-rapida);
+  text-align: left;
+}
+
+.quiz-opcao:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--cor-destaque);
+  transform: translateX(5px);
+}
+
+.quiz-opcao:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+
+.quiz-opcao.correta {
+  background-color: rgba(76, 175, 80, 0.3);
+  border-color: #4caf50;
+  box-shadow: 0 0 20px rgba(76, 175, 80, 0.4);
+}
+
+.quiz-opcao.errada {
+  background-color: rgba(244, 67, 54, 0.3);
+  border-color: #f44336;
+  animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
+.quiz-resultado {
+  text-align: center;
+  padding: 2rem;
+  animation: fadeIn 0.5s ease;
+}
+
+.quiz-resultado-titulo {
+  font-size: 1.8rem;
+  color: var(--cor-destaque);
+  margin-bottom: 1rem;
+}
+
+.quiz-resultado-pontos {
+  font-size: 1.3rem;
+  color: var(--cor-texto);
+  margin-bottom: 0.5rem;
+}
+
+.quiz-resultado-mensagem {
+  font-size: 1rem;
+  color: var(--cor-texto-secundario);
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+
+/* Quiz Cronologia */
+.instrucao-linha {
+  font-size: 0.9rem;
+  color: var(--cor-texto-secundario);
+  margin-bottom: 1rem;
+}
+
+.eventos-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-bottom: var(--espacamento-md);
+}
+
+.evento-card {
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: var(--cor-texto);
+  cursor: pointer;
+  transition: all var(--transicao-rapida);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  position: relative;
+}
+
+.evento-card:hover:not(.selecionado) {
+  background-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.evento-card.selecionado {
+  opacity: 0.4;
+  cursor: not-allowed;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.linha-tempo {
+  min-height: 150px;
+  padding: var(--espacamento-md);
+  background-color: rgba(100, 108, 255, 0.1);
+  border: 2px dashed rgba(100, 108, 255, 0.3);
+  border-radius: 8px;
+  margin-bottom: var(--espacamento-md);
+}
+
+.eventos-ordenados-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.evento-ordenado {
+  padding: 0.8rem;
+  background-color: rgba(100, 108, 255, 0.3);
+  border: 2px solid var(--cor-destaque);
+  border-radius: 4px;
+  color: var(--cor-texto);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  animation: fadeInFragmento 0.3s ease;
+}
+
+.evento-numero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background-color: var(--cor-destaque);
+  color: var(--cor-fundo);
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+/* Quebra-cabeça de Foto VERTICAL (4 colunas x 6 linhas = 24 peças) */
+.quebra-cabeca-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 150px);
+  grid-template-rows: repeat(6, 150px);
+  gap: 4px;
+  width: fit-content;
+  margin: 0 auto var(--espacamento-md);
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.peca-quebra-cabeca {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  cursor: grab;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  /* background-size e background-position são definidos via JS */
+  background-repeat: no-repeat;
+  width: 150px;
+  height: 150px;
+}
+
+.peca-quebra-cabeca:active {
+  cursor: grabbing;
+}
+
+.peca-quebra-cabeca:hover {
+  border-color: var(--cor-destaque);
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+.peca-quebra-cabeca.correta {
+  border-color: rgba(100, 255, 108, 0.8);
+  cursor: default;
+  animation: pecaCorreta 0.4s ease;
+}
+
+.peca-quebra-cabeca.correta:hover {
+  transform: none;
+}
+
+@keyframes pecaCorreta {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Placeholder para imagem (antes de carregar foto real) */
+.peca-quebra-cabeca::before {
+  content: attr(data-numero);
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 600;
+}
+
+.peca-quebra-cabeca.correta::before {
+  display: none;
+}
+
+/* Responsividade para quebra-cabeça VERTICAL */
+@media (max-width: 768px) {
+  .quebra-cabeca-grid {
+    grid-template-columns: repeat(4, 120px);
+    grid-template-rows: repeat(6, 120px);
+  }
+
+  .peca-quebra-cabeca {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 550px) {
+  .quebra-cabeca-grid {
+    grid-template-columns: repeat(4, 80px);
+    grid-template-rows: repeat(6, 80px);
+  }
+
+  .peca-quebra-cabeca {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+/* ==========================================
+   CAP 5 - LINGUAGEM SAGRADA (FEITIÇOS + PAI NOSSO)
+   ========================================== */
+
+/* Botões de quiz (já existem como .btn-opcao, mas vamos garantir) */
+.opcoes-quiz {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: var(--espacamento-md) 0;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-opcao {
+  padding: 1rem 1.5rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: var(--cor-texto);
+  font-size: 1rem;
+  font-family: var(--fonte-secundaria);
+  cursor: pointer;
+  transition: all var(--transicao-rapida);
+  text-align: left;
+  line-height: 1.5;
+}
+
+.btn-opcao:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--cor-destaque);
+  transform: translateX(8px);
+}
+
+.btn-opcao.correto {
+  background-color: rgba(100, 255, 108, 0.2);
+  border-color: rgba(100, 255, 108, 0.8);
+}
+
+.btn-opcao.incorreto {
+  background-color: rgba(255, 100, 100, 0.2);
+  border-color: rgba(255, 100, 100, 0.8);
+}
+
+/* Completar Lacunas - Pai Nosso */
+.frase-lacunas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin: var(--espacamento-md) 0;
+  padding: var(--espacamento-md);
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+}
+
+.frase-parte {
+  font-size: 1.3rem;
+  color: var(--cor-texto);
+  font-weight: 300;
+  font-style: italic;
+  text-align: center;
+}
+
+.lacunas-opcoes {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-lacuna {
+  padding: 0.8rem 1.5rem;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: var(--cor-texto);
+  font-size: 1.1rem;
+  font-family: var(--fonte-secundaria);
+  cursor: pointer;
+  transition: all var(--transicao-rapida);
+  font-style: italic;
+}
+
+.btn-lacuna:hover:not(.selecionado) {
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: var(--cor-destaque);
+  transform: scale(1.05);
+}
+
+.btn-lacuna.selecionado {
+  background-color: rgba(100, 108, 255, 0.3);
+  border-color: var(--cor-destaque);
+  box-shadow: 0 0 16px rgba(100, 108, 255, 0.5);
+  cursor: default;
+}
+
+.btn-lacuna.correto {
+  background-color: rgba(100, 255, 108, 0.3);
+  border-color: rgba(100, 255, 108, 0.8);
+  animation: pulseCorreto 0.6s ease;
+}
+
+.btn-lacuna.incorreto {
+  background-color: rgba(255, 100, 100, 0.3);
+  border-color: rgba(255, 100, 100, 0.8);
+  animation: shake 0.4s ease;
+}
+
+@keyframes pulseCorreto {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-8px);
+  }
+  75% {
+    transform: translateX(8px);
+  }
+}
+
+.traducao-hint {
+  font-size: 0.9rem;
+  color: var(--cor-texto-secundario);
+  font-style: italic;
+  margin-top: var(--espacamento-md);
+  text-align: center;
+}
+
+/* Animação Tom Riddle Diary para versículo */
+.versiculo-tom-riddle {
+  position: relative;
+}
+
+.versiculo-animado {
+  opacity: 0;
+  animation: tomRiddleReveal 4s ease forwards;
+}
+
+@keyframes tomRiddleReveal {
+  0% {
+    opacity: 0;
+    filter: blur(8px);
+  }
+  30% {
+    opacity: 0.3;
+    filter: blur(4px);
+  }
+  60% {
+    opacity: 0.7;
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+/* Efeito de tinta aparecendo (opcional, mais complexo) */
+.versiculo-tom-riddle .versiculo-texto::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, transparent 40%, rgba(0, 0, 0, 0.8) 100%);
+  pointer-events: none;
+  opacity: 0;
+  animation: inkFade 4s ease;
+}
+
+@keyframes inkFade {
+  0% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ==========================================
+   CAP 6 - VOO (CÓDIGO ARUOSSAV + CORUJA)
+   ========================================== */
+
+/* O código Aruossav usa os mesmos estilos do Obliviate (hint-texto já existe) */
+
+/* Recompensa Coruja - Layout lado a lado */
+.recompensa-coruja {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espacamento-xl);
+  padding: var(--espacamento-lg);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.coruja-container {
+  flex: 0 0 auto;
+  max-width: 400px;
+  animation: corujaFadeIn 1.2s ease forwards;
+}
+
+.imagem-coruja {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.4));
+  transition: filter 0.3s ease;
+}
+
+.imagem-coruja:hover {
+  filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.6));
+}
+
+@keyframes corujaFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.versiculo-coruja {
+  flex: 1;
+  text-align: left;
+  animation: versiculoCorujaFadeIn 1.2s 0.8s ease forwards;
+  opacity: 0;
+}
+
+@keyframes versiculoCorujaFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.versiculo-coruja .versiculo-referencia {
+  font-size: 1rem;
+  color: var(--cor-destaque);
+  font-weight: 600;
+  margin-bottom: var(--espacamento-md);
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}
+
+.versiculo-coruja .versiculo-texto {
+  font-size: 1.6rem;
+  line-height: 1.8;
+  color: var(--cor-texto);
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* Responsive para coruja */
+@media (max-width: 768px) {
+  .recompensa-coruja {
+    flex-direction: column;
+    gap: var(--espacamento-md);
+  }
+
+  .coruja-container {
+    max-width: 300px;
+  }
+
+  .versiculo-coruja {
+    text-align: center;
+  }
+
+  .versiculo-coruja .versiculo-texto {
+    font-size: 1.3rem;
+  }
+}
+
+/* ==========================================
+   CAP 7 - SOMBRA E LUZ (LUMOS + PROTEGO + MAZE + VFX)
+   ========================================== */
+
+/* LUMOS MÁXIMA - Simon Says com luzes */
+.lumos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 12px;
+  margin: var(--espacamento-md) auto;
+  width: fit-content;
+}
+
+.lumos-light {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.lumos-light::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255, 255, 100, 0.6), transparent);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.lumos-light.active {
+  background: radial-gradient(circle, rgba(255, 255, 100, 0.8), rgba(255, 200, 0, 0.4));
+  border-color: rgba(255, 255, 100, 0.9);
+  box-shadow: 0 0 30px rgba(255, 255, 100, 0.8), inset 0 0 20px rgba(255, 255, 255, 0.5);
+  transform: scale(1.05);
+}
+
+.lumos-light.active::before {
+  opacity: 1;
+}
+
+.lumos-light:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 100, 0.4);
+}
+
+/* PROTEGO - Timing-based defense */
+.protego-arena {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 200px;
+  margin: var(--espacamento-md) auto;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.protego-jogador {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 3rem;
+  filter: drop-shadow(0 0 10px rgba(100, 108, 255, 0.6));
+  transition: transform 0.2s ease;
+}
+
+.protego-jogador.defendendo {
+  transform: translateX(-50%) scale(1.3);
+  filter: drop-shadow(0 0 20px rgba(100, 255, 255, 0.9));
+  animation: pulseDefesa 0.3s ease;
+}
+
+@keyframes pulseDefesa {
+  0%, 100% { transform: translateX(-50%) scale(1.3); }
+  50% { transform: translateX(-50%) scale(1.5); }
+}
+
+.protego-ataque {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.5rem;
+  filter: drop-shadow(0 0 8px rgba(255, 0, 0, 0.8));
+  animation: ataqueDescendo 2s linear;
+}
+
+@keyframes ataqueDescendo {
+  0% {
+    top: -50px;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    top: 180px;
+  }
+}
+
+.protego-ataque.bloqueado {
+  animation: ataqueBloqueado 0.5s ease forwards;
+}
+
+@keyframes ataqueBloqueado {
+  0% {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) scale(3);
+    opacity: 0;
+  }
+}
+
+/* MAZE RUNNER */
+#maze-canvas {
+  display: block;
+  margin: var(--espacamento-md) auto;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.5);
+  max-width: 100%;
+  height: auto;
+}
+
+/* VFX AVADA KEDAVRA */
+.avada-kedavra-container {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.avada-texto {
+  font-family: var(--fonte-secundaria);
+  font-size: 4rem;
+  color: rgba(0, 255, 100, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.3rem;
+  text-shadow: 0 0 30px rgba(0, 255, 100, 0.8), 0 0 60px rgba(0, 255, 100, 0.5);
+  animation: avadaAppear 1.5s ease forwards;
+  margin-bottom: var(--espacamento-xl);
+}
+
+@keyframes avadaAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+    filter: blur(10px);
+  }
+  50% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.flash-verde {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 255, 100, 0);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.flash-verde.ativo {
+  animation: flashVerde 0.8s ease;
+}
+
+@keyframes flashVerde {
+  0% {
+    background-color: rgba(0, 255, 100, 0);
+  }
+  30% {
+    background-color: rgba(0, 255, 100, 0.9);
+  }
+  100% {
+    background-color: rgba(0, 255, 100, 0);
+  }
+}
+
+.arte-voldemort {
+  margin-top: var(--espacamento-xl);
+  animation: voldemortReveal 2s ease forwards;
+}
+
+.imagem-voldemort {
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 30px rgba(0, 255, 100, 0.6));
+}
+
+@keyframes voldemortReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(30px);
+    filter: blur(10px) drop-shadow(0 0 30px rgba(0, 255, 100, 0.6));
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0) drop-shadow(0 0 30px rgba(0, 255, 100, 0.6));
+  }
+}
+
+/* Responsive Cap 7 */
+@media (max-width: 768px) {
+  .lumos-grid {
+    grid-template-columns: repeat(3, 80px);
+    grid-template-rows: repeat(3, 80px);
+    gap: 8px;
+  }
+
+  .lumos-light {
+    width: 80px;
+    height: 80px;
+  }
+
+  .protego-arena {
+    height: 150px;
+  }
+
+  .protego-jogador {
+    font-size: 2rem;
+  }
+
+  .protego-ataque {
+    font-size: 1.8rem;
+  }
+
+  .avada-texto {
+    font-size: 2.5rem;
+  }
+
+  .imagem-voldemort {
+    max-width: 300px;
+  }
+}
+
+/* ==========================================
+   CAP 8+9 - SACRIFÍCIO E RESSURREIÇÃO
+   ========================================== */
+
+/* SEÇÃO 1 - PÓS-DERROTA (tela preta + chuva) */
+.section-pos-derrota {
+  background-color: #000000;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.tela-preta-chuva {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: linear-gradient(to bottom, #000000 0%, #0a0a0a 50%, #000000 100%);
+}
+
+/* Efeito de chuva com CSS (partículas animadas) */
+.tela-preta-chuva::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(transparent 0%, transparent 95%, rgba(255, 255, 255, 0.05) 95%, rgba(255, 255, 255, 0.05) 100%);
+  background-size: 2px 50px;
+  animation: chuvaDescendo 1s linear infinite;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+@keyframes chuvaDescendo {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 50px;
+  }
+}
+
+.texto-pos-derrota {
+  position: relative;
+  z-index: 2;
+  color: rgba(255, 255, 255, 0.7);
+  animation: textoPosDerrotaFadeIn 3s ease forwards;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+@keyframes textoPosDerrotaFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* SEÇÃO 2+3 - REVELAÇÃO E SACRIFÍCIO (Calvário + texto) */
+.section-revelacao,
+.section-sacrificio {
+  background: linear-gradient(to bottom, #0a0a0a 0%, #1a1a2e 100%);
+  min-height: 100vh;
+}
+
+.layout-calvario {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espacamento-xl);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.layout-invertido {
+  flex-direction: row-reverse;
+}
+
+.calvario-container {
+  flex: 0 0 auto;
+  max-width: 500px;
+  opacity: 0;
+}
+
+.calvario-esquerda {
+  animation: calvarioFadeInEsquerda 2s 0.5s ease forwards;
+}
+
+.calvario-direita {
+  animation: calvarioFadeInDireita 2s 0.5s ease forwards;
+}
+
+@keyframes calvarioFadeInEsquerda {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes calvarioFadeInDireita {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.imagem-calvario {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.2));
+  border-radius: var(--borda-radius);
+}
+
+.texto-revelacao,
+.texto-sacrificio {
+  flex: 1;
+  text-align: left;
+  animation: textoRevelacaoFadeIn 2s 1s ease forwards;
+  opacity: 0;
+}
+
+@keyframes textoRevelacaoFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.versiculo-container {
+  margin-top: var(--espacamento-xl);
+  padding: var(--espacamento-md);
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 4px solid var(--cor-dourada);
+  border-radius: var(--borda-radius);
+  animation: versiculoFadeIn 1.5s 2s ease forwards;
+  opacity: 0;
+}
+
+@keyframes versiculoFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* SEÇÃO 4 - A VITÓRIA (só texto) */
+.section-vitoria {
+  background: linear-gradient(to bottom, #1a1a2e 0%, #16213e 100%);
+  min-height: 100vh;
+}
+
+.section-vitoria .texto-narrativo {
+  animation: vitoriaFadeIn 2s ease forwards;
+}
+
+@keyframes vitoriaFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* SEÇÃO 5 - O BOTÃO (Pedra da Ressurreição) */
+.section-pedra {
+  background: linear-gradient(to bottom, #16213e 0%, #0f3460 100%);
+  min-height: 100vh;
+}
+
+.btn-pedra {
+  margin-top: var(--espacamento-xl);
+  padding: var(--espacamento-md) var(--espacamento-xl);
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--cor-texto);
+  background: linear-gradient(135deg, rgba(100, 108, 255, 0.3), rgba(255, 100, 255, 0.3));
+  border: 2px solid var(--cor-dourada);
+  border-radius: var(--borda-radius);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  box-shadow: 0 0 30px rgba(218, 165, 32, 0.4);
+  animation: pedraPulsando 2s ease-in-out infinite;
+}
+
+@keyframes pedraPulsando {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 30px rgba(218, 165, 32, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 50px rgba(218, 165, 32, 0.7);
+  }
+}
+
+.btn-pedra:hover {
+  background: linear-gradient(135deg, rgba(100, 108, 255, 0.5), rgba(255, 100, 255, 0.5));
+  box-shadow: 0 0 60px rgba(218, 165, 32, 0.8);
+  transform: scale(1.1);
+}
+
+.btn-pedra:active {
+  transform: scale(0.98);
+}
+
+/* SEÇÃO 6 - VIDA NOVA (Jesus + casal + versículo) */
+.section-vida-nova {
+  background: linear-gradient(to bottom, #ffffff 0%, #f0f0f0 100%);
+  min-height: 100vh;
+  color: #1a1a2e;
+}
+
+.vida-nova-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espacamento-xl);
+  animation: vidaNovaFadeIn 4s ease forwards;
+  opacity: 0;
+}
+
+@keyframes vidaNovaFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.imagem-jesus-casal-container {
+  max-width: 600px;
+  width: 100%;
+  animation: jesusImagemFadeIn 3s 1s ease forwards;
+  opacity: 0;
+}
+
+@keyframes jesusImagemFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.imagem-jesus-casal {
+  width: 100%;
+  height: auto;
+  border-radius: var(--borda-radius);
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.2);
+  filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.3));
+}
+
+.versiculo-vida-nova {
+  text-align: center;
+  animation: versiculoVidaNovaFadeIn 2s 3s ease forwards;
+  opacity: 0;
+}
+
+@keyframes versiculoVidaNovaFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.versiculo-vida-nova .versiculo-referencia {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--cor-dourada);
+  margin-bottom: var(--espacamento-sm);
+}
+
+.versiculo-vida-nova .versiculo-texto {
+  font-size: 1.8rem;
+  font-style: italic;
+  color: #1a1a2e;
+  line-height: 1.6;
+}
+
+/* Overlay de fade to black (para transição do botão) */
+.fade-to-black-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+
+.fade-to-black-overlay.ativo {
+  opacity: 1;
+}
+
+/* RESPONSIVE - Cap 8+9 */
+@media (max-width: 768px) {
+  .layout-calvario {
+    flex-direction: column;
+    gap: var(--espacamento-lg);
+  }
+
+  .layout-invertido {
+    flex-direction: column;
+  }
+
+  .calvario-container {
+    max-width: 100%;
+  }
+
+  .texto-revelacao,
+  .texto-sacrificio {
+    text-align: center;
+  }
+
+  .btn-pedra {
+    font-size: 1.2rem;
+    padding: var(--espacamento-sm) var(--espacamento-lg);
+  }
+
+  .imagem-jesus-casal-container {
+    max-width: 100%;
+  }
+
+  .versiculo-vida-nova .versiculo-texto {
+    font-size: 1.4rem;
+  }
+}
+
+/* ==========================================
+   CAP 7 - EXPECTO PATRONUM VFX
+   ========================================== */
+
+/* Seção VFX do Patrono */
+.section-patronus-vfx {
+  position: relative;
+  background: linear-gradient(to bottom, #0a0a1a 0%, #1a1a2e 100%);
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.patronus-vfx-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Esfera Luminosa */
+.patronus-sphere {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(173, 216, 230, 0.8) 40%, rgba(135, 206, 250, 0.4) 100%);
+  box-shadow:
+    0 0 60px rgba(255, 255, 255, 0.8),
+    0 0 120px rgba(173, 216, 230, 0.6),
+    0 0 180px rgba(135, 206, 250, 0.4);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 2s ease, transform 2s ease;
+  z-index: 10;
+}
+
+/* Esfera ativa (fade in) */
+.patronus-sphere.ativo {
+  opacity: 1;
+  transform: scale(1);
+  animation: patronusPulsando 2s ease-in-out infinite;
+}
+
+@keyframes patronusPulsando {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow:
+      0 0 60px rgba(255, 255, 255, 0.8),
+      0 0 120px rgba(173, 216, 230, 0.6),
+      0 0 180px rgba(135, 206, 250, 0.4);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow:
+      0 0 80px rgba(255, 255, 255, 1),
+      0 0 160px rgba(173, 216, 230, 0.8),
+      0 0 240px rgba(135, 206, 250, 0.6);
+  }
+}
+
+/* Esfera expandindo para preencher tela */
+.patronus-sphere.expandindo {
+  animation: none; /* Remove pulsação */
+  transform: scale(15);
+  opacity: 1;
+  transition: transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Flash Branco */
+.patronus-flash {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  opacity: 0;
+  z-index: 20;
+  pointer-events: none;
+  transition: opacity 1s ease;
+}
+
+/* Flash ativo */
+.patronus-flash.ativo {
+  opacity: 1;
+  animation: flashFadeOut 1s ease forwards;
+}
+
+@keyframes flashFadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Background do Patrono (revelado após flash) */
+.patronus-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #e0f7fa 0%, #b3e5fc 100%);
+  opacity: 0;
+  z-index: 5;
+  transition: opacity 2s ease;
+}
+
+/* Background ativo (fade in) */
+.patronus-background.ativo {
+  opacity: 1;
+}
+
+.patronus-image {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.6));
+  animation: patronoAparecer 2s ease forwards;
+}
+
+@keyframes patronoAparecer {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Texto "E esperança!" (trigger) */
+.texto-esperanca {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ffd700;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+  animation: esperancaBrilho 2s ease-in-out infinite;
+}
+
+@keyframes esperancaBrilho {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+  }
+  50% {
+    text-shadow: 0 0 40px rgba(255, 215, 0, 1);
+  }
+}
+
+/* ==========================================
+   BOTÕES DE DEBUG (DESENVOLVIMENTO)
+   ========================================== */
+
+.debug-buttons {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 10000;
+}
+
+.debug-skip-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input-debug {
+  padding: 10px 12px;
+  background-color: rgba(30, 30, 30, 0.95);
+  border: 2px solid rgba(255, 87, 34, 0.5);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.85rem;
+  font-family: 'Courier New', monospace;
+  backdrop-filter: blur(10px);
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.input-debug::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+  font-style: italic;
+}
+
+.input-debug:focus {
+  border-color: #ff5722;
+  box-shadow: 0 0 12px rgba(255, 87, 34, 0.4);
+}
+
+.btn-debug {
+  padding: 12px 20px;
+  background-color: rgba(255, 87, 34, 0.9);
+  border: 2px solid #ff5722;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 87, 34, 0.4);
+  backdrop-filter: blur(10px);
+  white-space: nowrap;
+}
+
+.btn-debug:hover {
+  background-color: rgba(255, 87, 34, 1);
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(255, 87, 34, 0.6);
+}
+
+.btn-debug:active {
+  transform: scale(0.98);
+}
+
+/* Ocultar em mobile para não atrapalhar */
+@media (max-width: 768px) {
+  .debug-buttons {
+    top: 10px;
+    right: 10px;
+    gap: 8px;
+  }
+
+  .debug-skip-container {
+    gap: 5px;
+  }
+
+  .input-debug {
+    padding: 8px 10px;
+    font-size: 0.8rem;
+  }
+
+  .btn-debug {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+  }
+}
+
+/* ==========================================
    RESPONSIVE
    ========================================== */
 

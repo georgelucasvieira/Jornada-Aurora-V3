@@ -48,7 +48,9 @@ class AudioManager {
     // Todos os tipos de SFX apontam para o mesmo arquivo
     const tiposSFX = [
       'coruja', 'clique', 'progresso', 'tenteNovamente',
-      'trovao', 'chuva', 'voo', 'fenix', 'sucesso', 'erro'
+      'trovao', 'chuva', 'voo', 'fenix', 'sucesso', 'erro',
+      'expecto-patronum', 'luz', 'avada-kedavra', 'whoosh',
+      'pagina', 'bau'
     ];
 
     tiposSFX.forEach(tipo => {
@@ -63,13 +65,40 @@ class AudioManager {
       onloaderror: () => console.warn('Música não encontrada em src/assets/audio/music/intro.mp3')
     });
 
-    // Todas as trilhas apontam para a mesma música
+    // Todas as trilhas apontam para a mesma música (PLACEHOLDER)
     this.trilhas = {
       inicio: musicaUnica,
       jornada: musicaUnica,
       desafio: musicaUnica,
       climax: musicaUnica,
-      revelacao: musicaUnica
+      revelacao: musicaUnica,
+      // Músicas específicas por capítulo (placeholders)
+      cap1: musicaUnica,      // "Hedwig's Theme" ou música de introdução
+      cap3: musicaUnica,      // "The Chamber of Secrets"
+      cap4: musicaUnica,      // "Harry in Winter"
+      cap5: musicaUnica,      // "Dumbledore's Army"
+      cap6: musicaUnica,      // "Obliviate"
+      cap7_pre: musicaUnica,  // "Statues"
+      cap7_patronus: musicaUnica, // "The Patronus Light" (Prisoner of Azkaban)
+      cap7_batalha: musicaUnica, // "The Battle of Hogwarts"
+      triste: musicaUnica,    // "Lily's Theme" (Cap 8 pós-derrota)
+      alegre: musicaUnica     // "Leaving Hogwarts" (Cap 8 vida nova)
+    };
+
+    // Mapeamento de capítulos para trilhas
+    this.mapeamentoCapitulos = {
+      0: 'inicio',        // Tela inicial
+      1: 'cap1',          // Cap 1 - A Convocação
+      2: 'cap1',          // (Cap 2 fundiu com Cap 1)
+      3: 'cap3',          // Cap 3 - Segredos Guardados
+      4: 'cap4',          // Cap 4 - Memórias
+      5: 'cap5',          // Cap 5 - Linguagem Sagrada
+      6: 'cap6',          // Cap 6 - O Voo
+      7: 'cap7_pre',      // Cap 7 - Sombra e Luz (início)
+      '7_patronus': 'cap7_patronus', // Cap 7 - Expecto Patronum
+      '7_batalha': 'cap7_batalha', // Cap 7 - Batalha
+      8: 'triste',        // Cap 8 - Pós-derrota
+      '8_alegre': 'alegre' // Cap 8 - Vida Nova
     };
   }
 
@@ -146,6 +175,24 @@ class AudioManager {
     } else {
       console.warn(`Trilha "${nomeTrilha}" não encontrada`);
     }
+  }
+
+  /**
+   * Troca música de fundo baseada no capítulo
+   * @param {number|string} capitulo - Número do capítulo ou identificador especial ('7_batalha', '8_alegre')
+   * @param {number} fadeOut - Tempo de fade out em ms (padrão: 2000)
+   * @param {number} fadeIn - Tempo de fade in em ms (padrão: 2000)
+   */
+  trocarMusicaPorCapitulo(capitulo, fadeOut = 2000, fadeIn = 2000) {
+    const nomeTrilha = this.mapeamentoCapitulos[capitulo];
+
+    if (!nomeTrilha) {
+      console.warn(`Capítulo "${capitulo}" não possui música mapeada`);
+      return;
+    }
+
+    console.log(`🎵 Trocando música para Capítulo ${capitulo}: ${nomeTrilha}`);
+    this.trocarMusicaDeFundo(nomeTrilha, fadeOut, fadeIn);
   }
 
   /**

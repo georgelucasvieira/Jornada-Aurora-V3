@@ -10,6 +10,33 @@
     <!-- Canvas 3D (overlay transparente) -->
     <canvas id="canvas-3d" class="canvas-3d"></canvas>
 
+    <!-- BOTÕES DE DEBUG (DESENVOLVIMENTO) -->
+    <div class="debug-buttons">
+      <button id="btn-debug-scroll" class="btn-debug">🔓 Liberar Scroll</button>
+
+      <div class="debug-skip-container">
+        <input
+          type="text"
+          id="input-debug-desafio"
+          class="input-debug"
+          placeholder="Nome do desafio..."
+          title="Ex: lumos, protego, maze-runner"
+        />
+        <button id="btn-debug-skip" class="btn-debug">⏭️ Pular</button>
+      </div>
+
+      <div class="debug-skip-container">
+        <input
+          type="text"
+          id="input-debug-secao"
+          class="input-debug"
+          placeholder="ID da seção..."
+          title="Ex: cap7, desafio-lumos, cap8-pedra"
+        />
+        <button id="btn-debug-ir" class="btn-debug">📍 Ir Para</button>
+      </div>
+    </div>
+
     <!-- Container principal do site -->
     <div id="app">
       <!-- START -->
@@ -20,7 +47,7 @@
         </div>
       </section>
 
-      <!-- CAPÍTULO 1 - A CONVOCAÇÃO -->
+      <!-- CAPÍTULO 1 - A CONVOCAÇÃO (FUNDIDO COM CAP 2) -->
       <section id="cap1" class="section" data-capitulo="1">
         <div class="section-content">
           <div class="texto-narrativo texto-centro">
@@ -49,45 +76,150 @@
         </div>
       </section>
 
-      <!-- DESAFIO 1 - CÓDIGO DO CARTÃO -->
+      <section id="cap1-4" class="section" data-capitulo="1">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Mas antes de entrar...</p>
+            <p>Precisamos saber:</p>
+            <p>Quem é você realmente?</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- DESAFIO 1 - CÓDIGO DO CARTÃO (DESEMBARALHAR) -->
       <section id="desafio-codigo" class="section section-desafio" data-desafio="codigo">
         <div class="section-content">
           <div class="texto-narrativo texto-centro">
-            <p>Leia a Carta 1</p>
+            <p>Desembaralhe a palavra que está no Cartão 1</p>
           </div>
           <div id="puzzle-codigo" class="puzzle-container">
-            <input type="text" id="input-codigo" class="input-codigo" placeholder="Digite o código..." maxlength="10" />
+            <input type="text" id="input-codigo" class="input-codigo" placeholder="Digite a palavra..." maxlength="10" />
             <button id="btn-codigo" class="btn-primary">Continuar</button>
             <p class="mensagem-erro"></p>
           </div>
         </div>
       </section>
 
-      <!-- CAPÍTULO 2 - O CHAPÉU OBSERVA -->
-      <section id="cap2" class="section" data-capitulo="2">
-        <div class="section-content">
-          <div class="texto-narrativo texto-esquerda">
-            <p>Antes de seguir…</p>
-            <p>Uma pergunta.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- DESAFIO 2 - ESCOLHA -->
-      <section id="desafio-escolha" class="section section-desafio" data-desafio="escolha">
+      <!-- DESAFIO 2 - ORDENAR FRASE BÍBLICA -->
+      <section id="desafio-ordenar-frase" class="section section-desafio" data-desafio="ordenar-frase">
         <div class="section-content">
           <div class="texto-narrativo texto-centro">
-            <p>Você prefere<br>entender tudo<br>antes de avançar?</p>
-            <p>Ou avançar<br>mesmo sem certeza?</p>
+            <p>Ordene as palavras para revelar a verdade</p>
           </div>
-          <div id="puzzle-escolha" class="puzzle-container">
-            <button class="btn-escolha" data-escolha="entender">Entender primeiro</button>
-            <button class="btn-escolha" data-escolha="avancar">Avançar sem certeza</button>
+          <div id="puzzle-ordenar-frase" class="puzzle-container">
+            <p class="frase-referencia">Jeremias 1:5</p>
+            <div id="fragmentos-frase" class="fragmentos-container">
+              <!-- Fragmentos serão inseridos via JS -->
+            </div>
+            <div id="area-montagem" class="area-montagem">
+              <p class="instrucao">Clique nos fragmentos na ordem correta</p>
+            </div>
+            <div class="puzzle-controls">
+              <button id="btn-limpar-frase" class="btn-secondary">Recomeçar</button>
+              <button id="btn-confirmar-frase" class="btn-primary">Confirmar</button>
+            </div>
+            <p class="mensagem-erro"></p>
           </div>
         </div>
       </section>
 
-      <section id="cap2-2" class="section" data-capitulo="2">
+      <!-- DESAFIO 3 - QUIZ QUALIDADES (SEM RESPOSTA CERTA) -->
+      <section id="desafio-qualidades" class="section section-desafio" data-desafio="qualidades">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>O Chapéu Seletor vê além das aparências.</p>
+            <p>Ele vê o coração.</p>
+          </div>
+          <div id="puzzle-qualidades" class="puzzle-container">
+            <p class="pergunta-qualidade">Ligue cada momento à Casa de Hogwarts que você sentiu naquele momento</p>
+            <div class="qualidades-layout">
+              <!-- Coluna Esquerda: Momentos -->
+              <div class="coluna-momentos">
+                <div class="momento-item" data-momento="1">
+                  <span class="momento-numero">1</span>
+                  <p class="momento-texto">Quando você decidiu arriscar algo novo por coragem</p>
+                  <div class="momento-conector"></div>
+                </div>
+                <div class="momento-item" data-momento="2">
+                  <span class="momento-numero">2</span>
+                  <p class="momento-texto">Quando você trabalhou duro para alcançar um objetivo</p>
+                  <div class="momento-conector"></div>
+                </div>
+                <div class="momento-item" data-momento="3">
+                  <span class="momento-numero">3</span>
+                  <p class="momento-texto">Quando você ajudou alguém que precisava</p>
+                  <div class="momento-conector"></div>
+                </div>
+                <div class="momento-item" data-momento="4">
+                  <span class="momento-numero">4</span>
+                  <p class="momento-texto">Quando você usou criatividade para resolver um problema</p>
+                  <div class="momento-conector"></div>
+                </div>
+              </div>
+
+              <!-- Coluna Direita: Casas -->
+              <div class="coluna-casas">
+                <div class="casa-item" data-casa="grifinoria">
+                  <div class="casa-badge grifinoria">G</div>
+                  <p class="casa-nome">Grifinória</p>
+                  <p class="casa-descricao">Coragem e ousadia</p>
+                </div>
+                <div class="casa-item" data-casa="lufa-lufa">
+                  <div class="casa-badge lufa-lufa">L</div>
+                  <p class="casa-nome">Lufa-Lufa</p>
+                  <p class="casa-descricao">Trabalho e lealdade</p>
+                </div>
+                <div class="casa-item" data-casa="corvinal">
+                  <div class="casa-badge corvinal">C</div>
+                  <p class="casa-nome">Corvinal</p>
+                  <p class="casa-descricao">Inteligência e sabedoria</p>
+                </div>
+                <div class="casa-item" data-casa="sonserina">
+                  <div class="casa-badge sonserina">S</div>
+                  <p class="casa-nome">Sonserina</p>
+                  <p class="casa-descricao">Ambição e astúcia</p>
+                </div>
+              </div>
+            </div>
+            <p class="instrucao-qualidades">Clique em um momento (esquerda) e depois na Casa correspondente (direita)</p>
+            <button id="btn-continuar-qualidades" class="btn-primary" style="display: none;">Continuar</button>
+            <p class="mensagem-erro"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- DESAFIO 4 - RIDDIKULUS -->
+      <section id="desafio-riddikulus" class="section section-desafio" data-desafio="riddikulus">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Mas mesmo o Chapéu precisa da sua honestidade.</p>
+            <p>Encare seu maior medo...</p>
+            <p>E transforme-o em algo ridículo!</p>
+          </div>
+          <div id="puzzle-riddikulus" class="puzzle-container">
+            <p class="pergunta">Qual é o seu maior medo?</p>
+            <select id="select-medo" class="select-medo">
+              <option value="">Escolha...</option>
+              <option value="solidao">Solidão</option>
+              <option value="fracasso">Fracasso</option>
+              <option value="rejeicao">Rejeição</option>
+              <option value="perda">Perder alguém que ama</option>
+              <option value="escuro">Escuridão</option>
+            </select>
+
+            <div id="area-riddikulus" style="display: none;">
+              <p class="pergunta">Agora... como você o tornaria ridículo?</p>
+              <p class="instrucao-riddikulus">Descreva como transformaria esse medo em algo engraçado</p>
+              <textarea id="input-riddikulus" class="input-riddikulus" placeholder="Ex: Meu medo de aranhas vira uma aranha usando patins de gelo e tropeçando..." maxlength="200"></textarea>
+              <button id="btn-riddikulus" class="btn-primary">Riddikulus!</button>
+            </div>
+            <p class="mensagem-erro"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO TRANSIÇÃO - CHAPÉU OBSERVA -->
+      <section id="cap1-final" class="section" data-capitulo="1">
         <div class="section-content">
           <div class="texto-narrativo texto-centro">
             <p>O Chapéu observa.</p>
@@ -97,7 +229,7 @@
         </div>
       </section>
 
-      <section id="cap2-3" class="section" data-capitulo="2">
+      <section id="cap1-final-2" class="section" data-capitulo="1">
         <div class="section-content">
           <div class="texto-narrativo texto-centro">
             <p>Toda resposta<br>diz menos<br>do que parece.</p>
@@ -105,85 +237,347 @@
         </div>
       </section>
 
-      <!-- CAPÍTULO 3 - A ORDEM IMPERFEITA -->
-      <section id="cap3" class="section" data-capitulo="3">
+      <!-- RECOMPENSA CAP 1 - VERSÍCULO -->
+      <section id="cap1-recompensa" class="section" data-capitulo="1">
         <div class="section-content">
-          <div class="texto-narrativo texto-centro">
-            <p>Histórias raramente<br>acontecem em ordem.</p>
-            <p>Algumas partes ficam.</p>
-            <p>Outras se perdem.</p>
+          <div class="texto-narrativo texto-centro versiculo-revelacao">
+            <p class="versiculo-referencia">João 15:16</p>
+            <p class="versiculo-texto">"Não fostes vós que me escolhestes,<br>mas eu vos escolhi."</p>
           </div>
         </div>
       </section>
 
-      <!-- DESAFIO 3 - MEMÓRIA AFETIVA (Drag and Drop) -->
-      <section id="desafio-memoria" class="section section-desafio" data-desafio="memoria">
+      <!-- CAPÍTULO 3 - SEGREDOS GUARDADOS -->
+      <section id="cap3" class="section" data-capitulo="3">
         <div class="section-content">
           <div class="texto-narrativo texto-centro">
-            <p>Algumas histórias<br>não seguem adiante<br>se não forem lembradas.</p>
-            <p>Observe.</p>
-          </div>
-          <div id="puzzle-memoria" class="puzzle-container">
-            <div id="cartas-memorizar" class="cartas-grid">
-              <!-- Cartas serão inseridas via JS -->
-            </div>
-            <div id="cartas-selecionar" class="cartas-grid" style="display: none;">
-              <!-- Cartas para seleção -->
-            </div>
-            <button id="btn-confirmar-memoria" class="btn-primary" style="display: none;">Confirmar</button>
-            <p class="mensagem-erro"></p>
+            <p>Há coisas que ficam trancadas.</p>
+            <p>Não porque não importam.</p>
+            <p>Mas porque ainda não era hora.</p>
           </div>
         </div>
       </section>
 
       <section id="cap3-2" class="section" data-capitulo="3">
         <div class="section-content">
-          <div class="texto-narrativo texto-centro">
-            <p>Não é assim<br>que toda história segue?</p>
+          <div class="texto-narrativo texto-esquerda">
+            <p>Guardar não é o mesmo que esquecer.</p>
+            <p>Às vezes é proteger.</p>
           </div>
         </div>
       </section>
 
-      <!-- CAPÍTULO 4 - A PASSAGEM (FÊNIX) -->
+      <section id="cap3-3" class="section" data-capitulo="3">
+        <div class="section-content">
+          <div class="texto-narrativo texto-direita">
+            <p>O baú à sua frente não se abre com força.</p>
+            <p>Só com paciência.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- DESAFIO CAP 3 - SLIDING BLOCKS (3 NÍVEIS) -->
+      <section id="desafio-sliding-blocks" class="section section-desafio" data-desafio="sliding-blocks">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Organize as peças.</p>
+            <p>Cada camada revela parte do segredo.</p>
+          </div>
+          <div id="puzzle-sliding-blocks" class="puzzle-container">
+            <!-- Indicador de nível -->
+            <div class="nivel-info">
+              <p class="nivel-texto">Nível <span id="nivel-atual">1</span> de 3</p>
+            </div>
+
+            <!-- Grade do puzzle -->
+            <div id="sliding-grid" class="sliding-grid">
+              <!-- Blocos serão inseridos via JS -->
+            </div>
+
+            <!-- Contador de movimentos -->
+            <div class="puzzle-stats">
+              <p>Movimentos: <span id="contador-movimentos">0</span></p>
+            </div>
+
+            <!-- Botão de reset -->
+            <div class="puzzle-controls">
+              <button id="btn-reset-sliding" class="btn-secondary">Recomeçar Nível</button>
+            </div>
+
+            <p class="mensagem-erro"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRANSIÇÃO CAP 3 -->
+      <section id="cap3-final" class="section" data-capitulo="3">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>O baú se abre.</p>
+            <p>Dentro, não há ouro.</p>
+            <p>Apenas palavras.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- RECOMPENSA CAP 3 - VERSÍCULO -->
+      <section id="cap3-recompensa" class="section" data-capitulo="3">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro versiculo-revelacao">
+            <p class="versiculo-referencia">Mateus 13:44</p>
+            <p class="versiculo-texto">"O reino dos céus é semelhante a um tesouro escondido num campo.<br>Certo homem, tendo-o achado, escondeu-o de novo e, então, cheio de alegria,<br>foi, vendeu tudo o que possuía e comprou aquele campo."</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CAPÍTULO 4 - MEMÓRIAS -->
       <section id="cap4" class="section" data-capitulo="4">
         <div class="section-content">
           <div class="texto-narrativo texto-centro">
-            <p>Há momentos<br>em que algo termina.</p>
-            <p>Mesmo sem parecer<br>um fim.</p>
+            <p>Há histórias que se constroem aos poucos.</p>
+            <p>Não de uma vez.</p>
+            <p>Mas em pequenos instantes<br>que vão se tornando memória.</p>
           </div>
         </div>
       </section>
 
       <section id="cap4-2" class="section" data-capitulo="4">
         <div class="section-content">
-          <div class="texto-narrativo texto-centro">
-            <p>Nem toda travessia<br>deixa marcas visíveis.</p>
-            <p>Algumas apenas<br>conduzem.</p>
+          <div class="texto-narrativo texto-direita">
+            <p>Às vezes, lembrar<br>é mais importante<br>que descobrir.</p>
           </div>
         </div>
       </section>
 
-      <!-- DESAFIO 4 - ORTOGRAFIA -->
-      <section id="desafio-ortografia" class="section section-desafio" data-desafio="ortografia">
+      <section id="cap4-3" class="section" data-capitulo="4">
+        <div class="section-content">
+          <div class="texto-narrativo texto-esquerda">
+            <p>E há uma chave<br>escondida no Cartão 3.</p>
+            <p>Ela revelará o próximo passo.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- DESAFIO CAP 4.1 - CÓDIGO OBLIVIATE -->
+      <section id="desafio-obliviate" class="section section-desafio" data-desafio="obliviate">
         <div class="section-content">
           <div class="texto-narrativo texto-centro">
-            <p>Às vezes<br>a diferença entre avançar<br>e tropeçar<br>está em um detalhe.</p>
-            <p>Observe com cuidado.</p>
+            <p>Digite o código do Cartão 3</p>
           </div>
-          <div id="puzzle-ortografia" class="puzzle-container">
-            <p class="pergunta">Qual destas está correta?</p>
-            <div class="opcoes-quiz">
-              <button class="btn-opcao" data-correto="false">Expectro Patronum</button>
-              <button class="btn-opcao" data-correto="true">Expecto Patronum</button>
-              <button class="btn-opcao" data-correto="false">Exspecto Patronum</button>
+          <div id="puzzle-obliviate" class="puzzle-container">
+            <input type="text" id="input-obliviate" class="input-codigo" placeholder="Digite o código..." maxlength="15" />
+            <button id="btn-obliviate" class="btn-primary">Continuar</button>
+            <p class="mensagem-erro"></p>
+            <p id="hint-obliviate" class="hint-texto" style="display: none;">
+              💡 Dica: Olhe no verso do cartão
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- DESAFIO CAP 4.2 - QUIZ PERGUNTAS SOBRE MEMÓRIAS -->
+      <section id="desafio-memorias-quiz" class="section section-desafio" data-desafio="memorias-quiz">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Algumas memórias ficam gravadas no coração.</p>
+            <p>Vamos revisitar os detalhes?</p>
+          </div>
+          <div id="puzzle-memorias-quiz" class="puzzle-container">
+            <div id="quiz-memorias-container">
+              <!-- Perguntas serão inseridas via JS -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DESAFIO CAP 4.3 - QUIZ CRONOLOGIA -->
+      <section id="desafio-memorias-cronologia" class="section section-desafio" data-desafio="memorias-cronologia">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>O tempo organiza histórias.</p>
+            <p>Coloque os momentos na ordem certa.</p>
+          </div>
+          <div id="puzzle-memorias-cronologia" class="puzzle-container">
+            <p class="instrucao">Clique nos eventos na ordem em que aconteceram</p>
+            <div id="eventos-cronologia" class="eventos-container">
+              <!-- Eventos serão inseridos via JS -->
+            </div>
+            <div id="linha-tempo" class="linha-tempo">
+              <p class="instrucao-linha">Sua linha do tempo:</p>
+              <div id="eventos-ordenados" class="eventos-ordenados-container">
+                <!-- Eventos selecionados aparecerão aqui -->
+              </div>
+            </div>
+            <div class="puzzle-controls">
+              <button id="btn-limpar-cronologia" class="btn-secondary">Recomeçar</button>
+              <button id="btn-confirmar-cronologia" class="btn-primary">Confirmar</button>
             </div>
             <p class="mensagem-erro"></p>
           </div>
         </div>
       </section>
 
-      <!-- CAPÍTULO 5 - O VOO (Flappy Bird) -->
+      <!-- DESAFIO CAP 4.4 - QUEBRA-CABEÇA DE FOTO (mantém numeração) -->
+      <section id="desafio-quebra-cabeca" class="section section-desafio" data-desafio="quebra-cabeca">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Há uma imagem esperando ser revelada.</p>
+            <p>Peça por peça.</p>
+          </div>
+          <div id="puzzle-quebra-cabeca" class="puzzle-container">
+            <div id="quebra-cabeca-grid" class="quebra-cabeca-grid">
+              <!-- 20 peças serão inseridas via JS -->
+            </div>
+            <div class="puzzle-stats">
+              <p>Peças no lugar: <span id="contador-pecas">0</span>/20</p>
+            </div>
+            <button id="btn-reset-quebra-cabeca" class="btn-secondary">Recomeçar</button>
+            <p class="mensagem-erro"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRANSIÇÃO CAP 4 -->
+      <section id="cap4-final" class="section" data-capitulo="4">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>A imagem se completa.</p>
+            <p>E com ela, a lembrança<br>de que algumas histórias<br>valem a pena ser guardadas.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- RECOMPENSA CAP 4 - VERSÍCULO -->
+      <section id="cap4-recompensa" class="section" data-capitulo="4">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro versiculo-revelacao">
+            <p class="versiculo-referencia">Lucas 22:19</p>
+            <p class="versiculo-texto">"Fazei isto em memória de mim."</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CAPÍTULO 5 - LINGUAGEM SAGRADA -->
       <section id="cap5" class="section" data-capitulo="5">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Há palavras que carregam poder.</p>
+            <p>Não porque são mágicas.</p>
+            <p>Mas porque dizem<br>o que não se vê.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="cap5-2" class="section" data-capitulo="5">
+        <div class="section-content">
+          <div class="texto-narrativo texto-esquerda">
+            <p>Toda língua esconde algo.</p>
+            <p>Algumas escondem verdades<br>que apenas o coração entende.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- DESAFIO CAP 5.1 - FEITIÇO EXPECTO PATRONUM -->
+      <section id="desafio-expecto-patronum" class="section section-desafio" data-desafio="expecto-patronum">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>O feitiço mais poderoso<br>nasce da memória mais feliz.</p>
+          </div>
+          <div id="puzzle-expecto-patronum" class="puzzle-container">
+            <p class="pergunta">Qual é o ingrediente essencial do Expecto Patronum?</p>
+            <div class="opcoes-quiz">
+              <button class="btn-opcao" data-correto="false">Força de vontade</button>
+              <button class="btn-opcao" data-correto="true">Uma memória feliz</button>
+              <button class="btn-opcao" data-correto="false">Palavras em latim</button>
+            </div>
+            <p class="mensagem-erro"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- DESAFIO CAP 5.2 - FEITIÇO WINGARDIUM LEVIOSA -->
+      <section id="desafio-wingardium-leviosa" class="section section-desafio" data-desafio="wingardium-leviosa">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Não basta dizer as palavras.</p>
+            <p>É preciso intenção.</p>
+          </div>
+          <div id="puzzle-wingardium-leviosa" class="puzzle-container">
+            <p class="pergunta">Qual a pronúncia correta de Wingardium Leviosa?</p>
+            <div class="opcoes-quiz">
+              <button class="btn-opcao" data-correto="false">Wingardium Levio-SAH</button>
+              <button class="btn-opcao" data-correto="true">Wingardium Levi-O-sa</button>
+              <button class="btn-opcao" data-correto="false">Wingardiun Leviosa</button>
+            </div>
+            <p class="mensagem-erro"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- DESAFIO CAP 5.3 - PAI NOSSO EM LATIM (QUIZ) -->
+      <section id="desafio-pai-nosso-1" class="section section-desafio" data-desafio="pai-nosso-1">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Há uma oração que atravessa séculos.</p>
+            <p>Em latim, ela guarda segredos.</p>
+          </div>
+          <div id="puzzle-pai-nosso-1" class="puzzle-container">
+            <p class="pergunta">Qual a tradução de "Et dimitte nobis debita nostra"?</p>
+            <div class="opcoes-quiz">
+              <button class="btn-opcao" data-correto="false">Venha a nós o vosso reino</button>
+              <button class="btn-opcao" data-correto="true">Perdoai-nos as nossas ofensas</button>
+              <button class="btn-opcao" data-correto="false">Santificado seja o vosso nome</button>
+            </div>
+            <p class="mensagem-erro"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- DESAFIO CAP 5.4 - PAI NOSSO EM LATIM (COMPLETAR LACUNAS) -->
+      <section id="desafio-pai-nosso-2" class="section section-desafio" data-desafio="pai-nosso-2">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Complete a segunda parte:</p>
+          </div>
+          <div id="puzzle-pai-nosso-2" class="puzzle-container">
+            <p class="frase-referencia">Complete as lacunas:</p>
+            <div class="frase-lacunas">
+              <p class="frase-parte">Sicut et nos</p>
+              <div class="lacunas-opcoes">
+                <button class="btn-lacuna" data-palavra="dimittimus">dimittimus</button>
+                <button class="btn-lacuna" data-palavra="sanctificetur">sanctificetur</button>
+                <button class="btn-lacuna" data-palavra="dimitte">dimitte</button>
+              </div>
+              <p class="frase-parte">debitoribus nostris</p>
+            </div>
+            <p class="traducao-hint">"Assim como nós perdoamos aos nossos devedores"</p>
+            <p class="mensagem-erro"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRANSIÇÃO CAP 5 -->
+      <section id="cap5-final" class="section" data-capitulo="5">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Palavras certas no momento certo<br>podem mudar tudo.</p>
+            <p>Mas há uma palavra<br>que transforma mais que qualquer feitiço.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- RECOMPENSA CAP 5 - VERSÍCULO COM ANIMAÇÃO TOM RIDDLE -->
+      <section id="cap5-recompensa" class="section" data-capitulo="5">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro versiculo-revelacao versiculo-tom-riddle">
+            <p class="versiculo-referencia">Provérbios 18:21</p>
+            <p class="versiculo-texto versiculo-animado">"A morte e a vida estão no poder da língua."</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CAPÍTULO 6 - O VOO (Flappy Bird) -->
+      <section id="cap6" class="section" data-capitulo="6">
         <div class="section-content">
           <div class="texto-narrativo texto-centro">
             <p>Voar não é sobre força.</p>
@@ -191,6 +585,33 @@
             <p>Nem subir demais.</p>
             <p>Nem desistir cedo demais.</p>
             <p>Apenas seguir.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="cap6-2" class="section" data-capitulo="6">
+        <div class="section-content">
+          <div class="texto-narrativo texto-esquerda">
+            <p>Mas antes de voar...</p>
+            <p>Há um último código.</p>
+            <p>No Cartão 5.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- DESAFIO CAP 6.1 - CÓDIGO ARUOSSAV -->
+      <section id="desafio-aruossav" class="section section-desafio" data-desafio="aruossav">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Digite o código do Cartão 5</p>
+          </div>
+          <div id="puzzle-aruossav" class="puzzle-container">
+            <input type="text" id="input-aruossav" class="input-codigo" placeholder="Digite o código..." maxlength="15" />
+            <button id="btn-aruossav" class="btn-primary">Continuar</button>
+            <p class="mensagem-erro"></p>
+            <p id="hint-aruossav" class="hint-texto" style="display: none;">
+              💡 Dica: Tente olhar pelo outro lado
+            </p>
           </div>
         </div>
       </section>
@@ -208,93 +629,286 @@
         </div>
       </section>
 
-      <!-- CAPÍTULO 6 - A SOMBRA -->
-      <section id="cap6" class="section" data-capitulo="6">
+      <!-- TRANSIÇÃO CAP 6 -->
+      <section id="cap6-final" class="section" data-capitulo="6">
         <div class="section-content">
           <div class="texto-narrativo texto-centro">
-            <p>Toda jornada<br>encontra um limite.</p>
-            <p>Não por falta<br>de vontade.</p>
-            <p>Nem por falta<br>de coragem.</p>
+            <p>Você voou.</p>
+            <p>Não porque tinha asas.</p>
+            <p>Mas porque não desistiu.</p>
           </div>
         </div>
       </section>
 
-      <section id="cap6-2" class="section" data-capitulo="6">
+      <!-- RECOMPENSA CAP 6 - CORUJA + VERSÍCULO -->
+      <section id="cap6-recompensa" class="section" data-capitulo="6">
         <div class="section-content">
-          <div class="texto-narrativo texto-centro">
-            <p>Mas porque<br>há lugares<br>que não se atravessam<br>sozinhos.</p>
+          <div class="recompensa-coruja">
+            <div class="coruja-container">
+              <img src="src/assets/images/coruja.png" alt="Coruja" class="imagem-coruja" />
+            </div>
+            <div class="versiculo-coruja">
+              <p class="versiculo-referencia">Isaías 40:31</p>
+              <p class="versiculo-texto">"Mas os que esperam no Senhor renovam as suas forças;<br>sobem com asas como águias,<br>correm e não se cansam,<br>caminham e não se fatigam."</p>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- DESAFIO FINAL - O LIMITE -->
-      <section id="desafio-limite" class="section section-desafio" data-desafio="limite">
-        <div class="section-content">
-          <div id="puzzle-limite" class="puzzle-container">
-            <button id="btn-tentar" class="btn-primary">Tentar</button>
-            <p id="texto-limite"></p>
-            <button id="btn-continuar-limite" class="btn-primary" style="display: none;">Continuar</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- CAPÍTULO 7 - O LIMIAR -->
+      <!-- CAPÍTULO 7 - SOMBRA E LUZ -->
       <section id="cap7" class="section" data-capitulo="7">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Há sombras<br>que não se afastam<br>com coragem.</p>
+            <p>Apenas com luz.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="cap7-2" class="section" data-capitulo="7">
+        <div class="section-content">
+          <div class="texto-narrativo texto-esquerda">
+            <p>Nem todo mal<br>pode ser destruído<br>por força.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="cap7-3" class="section" data-capitulo="7">
+        <div class="section-content">
+          <div class="texto-narrativo texto-direita">
+            <p>Uma sombra<br>que não pode ser vencida<br>sem a luz.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="cap7-4" class="section" data-capitulo="7">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Mais que magia,<br>exige sacrifício...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRIGGER VFX EXPECTO PATRONUM -->
+      <section id="cap7-esperanca" class="section" data-capitulo="7">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro texto-esperanca">
+            <p>E esperança!</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTAINER VFX PATRONO (inicialmente invisível) -->
+      <section id="cap7-patronus-vfx" class="section section-patronus-vfx" data-capitulo="7" style="display: none;">
+        <div class="patronus-vfx-container">
+          <!-- Esfera luminosa -->
+          <div class="patronus-sphere"></div>
+
+          <!-- Flash branco -->
+          <div class="patronus-flash"></div>
+
+          <!-- Background do Patrono (revelado após flash) -->
+          <div class="patronus-background" style="display: none;">
+            <img src="src/assets/images/patrono-harry.png" alt="Patrono de Harry" class="patronus-image" />
+          </div>
+        </div>
+      </section>
+
+      <!-- TEXTO PÓS-PATRONO -->
+      <section id="cap7-pre-batalha" class="section" data-capitulo="7" style="display: none;">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Não temos mais como fugir,<br>temos que lutar.</p>
+            <p>Preparada?</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- DESAFIO CAP 7.1 - LUMOS MÁXIMA (SIMON SAYS) -->
+      <section id="desafio-lumos" class="section section-desafio" data-desafio="lumos">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Primeiro: acenda as luzes.</p>
+            <p>Repita o padrão que se revela.</p>
+          </div>
+          <div id="puzzle-lumos" class="puzzle-container">
+            <p class="instrucao">Memorize e repita a sequência de luzes</p>
+            <div id="lumos-grid" class="lumos-grid">
+              <!-- 9 botões de luz serão inseridos via JS -->
+            </div>
+            <div class="puzzle-stats">
+              <p>Nível: <span id="lumos-nivel">1</span></p>
+            </div>
+            <button id="btn-start-lumos" class="btn-primary">Começar</button>
+            <p class="mensagem-erro"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- DESAFIO CAP 7.2 - PROTEGO (TIMING-BASED) -->
+      <section id="desafio-protego" class="section section-desafio" data-desafio="protego">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Segundo: defenda-se.</p>
+            <p>Bloqueie os ataques<br>no momento exato.</p>
+          </div>
+          <div id="puzzle-protego" class="puzzle-container">
+            <p class="instrucao">Clique em PROTEGO quando o ataque estiver próximo</p>
+            <div id="protego-arena" class="protego-arena">
+              <div id="protego-jogador" class="protego-jogador">🛡️</div>
+              <div id="protego-ataque" class="protego-ataque" style="display: none;">⚡</div>
+            </div>
+            <div class="puzzle-stats">
+              <p>Ataques bloqueados: <span id="protego-bloqueados">0</span>/10</p>
+            </div>
+            <button id="btn-protego" class="btn-primary" disabled>PROTEGO!</button>
+            <button id="btn-start-protego" class="btn-secondary">Iniciar</button>
+            <p class="mensagem-erro"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- DESAFIO CAP 7.3 - MAZE RUNNER IMPOSSÍVEL -->
+      <section id="desafio-maze" class="section section-desafio" data-desafio="maze">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Terceiro: encontre a saída.</p>
+            <p>Se conseguir.</p>
+          </div>
+          <div id="puzzle-maze" class="puzzle-container">
+            <p class="instrucao">Use as setas do teclado para se mover</p>
+            <canvas id="maze-canvas" width="400" height="400"></canvas>
+            <div class="puzzle-stats">
+              <p>Tempo: <span id="maze-tempo">0</span>s</p>
+            </div>
+            <button id="btn-start-maze" class="btn-primary">Começar</button>
+            <p class="mensagem-erro"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- VFX AVADA KEDAVRA + VOLDEMORT -->
+      <section id="cap7-avada" class="section section-vfx" data-capitulo="7">
+        <div class="section-content">
+          <div class="avada-kedavra-container">
+            <h2 class="avada-texto">Avada Kedavra</h2>
+            <div id="flash-verde" class="flash-verde"></div>
+            <div id="arte-voldemort" class="arte-voldemort" style="display: none;">
+              <img src="src/assets/images/voldemort.png" alt="Voldemort" class="imagem-voldemort" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RECOMPENSA CAP 7 - VERSÍCULO -->
+      <section id="cap7-recompensa" class="section" data-capitulo="7">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro versiculo-revelacao">
+            <p class="versiculo-referencia">1 Coríntios 15:55</p>
+            <p class="versiculo-texto">"Onde está, ó morte, a tua vitória?<br>Onde está, ó morte, o teu aguilhão?"</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CAPÍTULO 8+9 - SACRIFÍCIO E RESSURREIÇÃO -->
+
+      <!-- SEÇÃO 1 - PÓS-DERROTA (tela preta + chuva + trovões) -->
+      <section id="cap8-pos-derrota" class="section section-pos-derrota" data-capitulo="8">
+        <div class="tela-preta-chuva">
+          <div class="texto-narrativo texto-centro texto-pos-derrota">
+            <p>A escuridão venceu.</p>
+            <p>O peso do fracasso<br>parece insuportável.</p>
+            <p>Toda jornada tem um fim...</p>
+            <p>Mas será que<br>todo fim<br>é realmente<br>o final?</p>
+          </div>
+        </div>
+        <!-- SFX de chuva e trovões será gerenciado via JS -->
+      </section>
+
+      <!-- SEÇÃO 2 - A REVELAÇÃO (Calvário esquerda + texto direita) -->
+      <section id="cap8-revelacao" class="section section-revelacao" data-capitulo="8">
+        <div class="section-content layout-calvario">
+          <div class="calvario-container calvario-esquerda">
+            <img src="src/assets/images/calvario.png" alt="Calvário" class="imagem-calvario" />
+          </div>
+          <div class="texto-narrativo texto-revelacao">
+            <p>Houve Alguém<br>que também morreu...</p>
+            <p>Não por acidente.</p>
+            <p>Não por fraqueza.</p>
+            <p>Mas porque<br>nos amou<br>primeiro.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO 3 - O SACRIFÍCIO (Calvário direita + texto esquerda + versículo) -->
+      <section id="cap8-sacrificio" class="section section-sacrificio" data-capitulo="8">
+        <div class="section-content layout-calvario layout-invertido">
+          <div class="texto-narrativo texto-sacrificio">
+            <p>Ele carregou<br>o que não era dele.</p>
+            <p>Sofreu<br>o que não merecia.</p>
+            <p>Morreu<br>para que você<br>vivesse.</p>
+            <div class="versiculo-container">
+              <p class="versiculo-referencia">João 3:16</p>
+              <p class="versiculo-texto">"Porque Deus amou o mundo de tal maneira<br>que deu o seu Filho unigênito,<br>para que todo aquele que nele crê<br>não pereça, mas tenha a vida eterna."</p>
+            </div>
+          </div>
+          <div class="calvario-container calvario-direita">
+            <img src="src/assets/images/calvario.png" alt="Calvário" class="imagem-calvario" />
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO 4 - A VITÓRIA (só texto, sem imagem) -->
+      <section id="cap8-vitoria" class="section section-vitoria" data-capitulo="8">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Mas a morte<br>não O segurou.</p>
+            <p>Ao terceiro dia,<br>Ele venceu.</p>
+            <p>E porque Ele vive,<br>você também<br>viverá.</p>
+            <div class="versiculo-container">
+              <p class="versiculo-referencia">1 Coríntios 15:20</p>
+              <p class="versiculo-texto">"Mas Cristo ressuscitou dos mortos,<br>sendo ele as primícias dos que dormem."</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO 5 - O BOTÃO (Pedra da Ressurreição) -->
+      <section id="cap8-pedra" class="section section-pedra" data-capitulo="8">
+        <div class="section-content">
+          <div class="texto-narrativo texto-centro">
+            <p>Há uma escolha<br>que ainda resta...</p>
+            <p>Aceitar o dom<br>da vida nova.</p>
+          </div>
+          <button id="btn-pedra-ressurreicao" class="btn-pedra">
+            Usar a Pedra da Ressurreição
+          </button>
+        </div>
+      </section>
+
+      <!-- SEÇÃO 6 - VIDA NOVA (Jesus + casal + versículo) -->
+      <section id="cap8-vida-nova" class="section section-vida-nova" data-capitulo="8" style="display: none;">
+        <div class="section-content">
+          <div class="vida-nova-container">
+            <div class="imagem-jesus-casal-container">
+              <img src="src/assets/images/jesus-casal.png" alt="Jesus com o Casal" class="imagem-jesus-casal" />
+            </div>
+            <div class="versiculo-vida-nova">
+              <p class="versiculo-referencia">Apocalipse 21:5</p>
+              <p class="versiculo-texto">"Eis que faço novas<br>todas as coisas."</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO FINAL - TRANSIÇÃO PARA EPÍLOGO -->
+      <section id="cap8-transicao" class="section" data-capitulo="8" style="display: none;">
         <div class="section-content">
           <div class="texto-narrativo texto-centro">
             <p>Você chegou<br>até aqui.</p>
             <p>Não porque acertou tudo.</p>
             <p>Nem porque foi forte<br>o bastante.</p>
             <p>Mas porque<br>permaneceu.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- CAPÍTULO FINAL - A REVELAÇÃO -->
-      <section id="cap-final" class="section" data-capitulo="8">
-        <div class="section-content">
-          <div class="texto-narrativo texto-centro">
-            <p>Há histórias<br>que parecem derrotas.</p>
-            <p>Até que se olha<br>com outros olhos.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="cap-final-2" class="section" data-capitulo="8">
-        <div class="section-content">
-          <div class="texto-narrativo texto-centro">
-            <p>Assim como houve<br>quem fosse salvo<br>pelo sacrifício<br>de outro…</p>
-            <p>Há vitórias<br>que acontecem<br>quando não lutamos.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="cap-final-3" class="section" data-capitulo="8">
-        <div class="section-content">
-          <div class="texto-narrativo texto-centro">
-            <p>A maldição<br>não foi quebrada<br>por força.</p>
-            <p>Nem por inteligência.</p>
-            <p>Foi quebrada<br>por amor.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="cap-final-4" class="section" data-capitulo="8">
-        <div class="section-content">
-          <div class="texto-narrativo texto-centro">
-            <p>Não porque você mereceu.</p>
-            <p>Mas porque foi amada<br>antes.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="cap-final-5" class="section" data-capitulo="8">
-        <div class="section-content">
-          <div class="texto-narrativo texto-centro">
-            <p>E agora…</p>
-            <p>Você pode seguir.</p>
-            <p>Não carregando<br>o peso da prova.</p>
-            <p>Mas a leveza<br>de quem não caminha<br>sozinha.</p>
           </div>
         </div>
       </section>
