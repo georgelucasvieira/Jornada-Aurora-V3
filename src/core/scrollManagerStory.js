@@ -64,7 +64,7 @@ export class ScrollManagerStory {
         e.stopPropagation();
       }
     };
-    window.addEventListener('wheel', this.wheelHandler, { passive: false, capture: true });
+    // window.addEventListener('wheel', this.wheelHandler, { passive: false, capture: true });
 
     // Previne touch
     this.touchHandler = (e) => {
@@ -72,7 +72,7 @@ export class ScrollManagerStory {
         e.preventDefault();
       }
     };
-    window.addEventListener('touchmove', this.touchHandler, { passive: false, capture: true });
+    // window.addEventListener('touchmove', this.touchHandler, { passive: false, capture: true });
 
     // Previne teclado
     this.keyHandler = (e) => {
@@ -82,7 +82,7 @@ export class ScrollManagerStory {
         }
       }
     };
-    window.addEventListener('keydown', this.keyHandler, { passive: false });
+    // window.addEventListener('keydown', this.keyHandler, { passive: false });
 
     // Esconde scrollbar
     document.documentElement.style.overflow = 'hidden';
