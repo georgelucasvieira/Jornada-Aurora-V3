@@ -99,8 +99,10 @@ export class Cap7Patronus {
     audioGlobal.tocarSFX('expecto-patronum');
     console.log('🗣️ Harry: "Expecto Patronum!"');
 
-    // 4. Delay 1s
+    // 4. Delay 1s + Música do Patrono
     await this.delay(1000);
+    audioGlobal.tocarMusica('cap7_patronus');
+    console.log('🎵 Música do Patrono iniciada (loop)');
 
     // 5. Mostra overlay VFX e esfera aparece (fade in)
     overlayVFX.style.display = 'flex';
@@ -137,11 +139,7 @@ export class Cap7Patronus {
 
     await this.delay(1000);
 
-    // 10. Música: The Patronus Light (loop contínuo)
-    audioGlobal.trocarMusicaDeFundo('cap7_patronus', 400, 800);
-    console.log('🎵 Música do Patrono iniciada (loop)');
-
-    // 11. Imagem do patrono aparece PRIMEIRO (já está na seção, fade in com GSAP)
+    // 10. Imagem do patrono aparece PRIMEIRO (já está na seção, fade in com GSAP)
     const imagemPatronus = secaoPatronusRevelado.querySelector('.patronus-image-final');
     if (imagemPatronus) {
       // Garante que começa escondida
@@ -157,7 +155,7 @@ export class Cap7Patronus {
     // Aguarda 3s (usuário vê só a imagem)
     await this.delay(3000);
 
-    // 12. Texto aparece DEPOIS (seguindo filosofia do site)
+    // 11. Texto aparece DEPOIS (seguindo filosofia do site)
     const textoContainer = secaoPatronusRevelado.querySelector('.patronus-texto-container .texto-narrativo');
     if (textoContainer) {
       // Garante que começa escondido
@@ -175,7 +173,7 @@ export class Cap7Patronus {
     // Aguarda 4s (tempo para usuário ler texto)
     await this.delay(4000);
 
-    // 13. Desbloqueia scroll e mostra seta
+    // 12. Desbloqueia scroll e mostra seta
     estadoGlobal.desbloquearScroll();
     scrollGlobal.bloqueado = false;
     scrollGlobal.mostrarSeta();

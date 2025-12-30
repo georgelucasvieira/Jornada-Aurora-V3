@@ -290,6 +290,44 @@ class AudioManager {
   }
 
   /**
+   * Toca música (SIMPLES - igual tocarSFX)
+   * Uso: audioGlobal.tocarMusica('intro')
+   */
+  tocarMusica(nomeTrilha) {
+    if (this.mudo) return;
+
+    const novaTrilha = this.trilhas[nomeTrilha];
+
+    if (!novaTrilha) {
+      console.error(`❌ Música "${nomeTrilha}" não encontrada`);
+      console.log('📋 Músicas disponíveis:', Object.keys(this.trilhas));
+      return;
+    }
+
+    console.log(`🎵 Tocando música: "${nomeTrilha}"`);
+
+    // Se já está tocando a mesma música, não faz nada
+    if (this.musicaFundo === novaTrilha && this.musicaFundo.playing()) {
+      console.log(`✅ "${nomeTrilha}" já está tocando`);
+      return;
+    }
+
+    // Para música atual
+    if (this.musicaFundo && this.musicaFundo.playing()) {
+      console.log(`⏹️ Parando música anterior`);
+      this.musicaFundo.stop();
+    }
+
+    // Toca nova música
+    this.musicaFundo = novaTrilha;
+    this.musicaFundo.volume(this.volumeMusica * this.volumeGeral);
+    this.musicaFundo.play();
+
+    estadoGlobal.definir('musicaAtual', nomeTrilha);
+    console.log(`▶️ Música "${nomeTrilha}" tocando`);
+  }
+
+  /**
    * Troca música de fundo
    */
   trocarMusicaDeFundo(nomeTrilha, fadeOut = 1000, fadeIn = 1000) {

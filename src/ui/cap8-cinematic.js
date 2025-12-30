@@ -128,7 +128,8 @@ export class Cap8Cinematic {
       console.log('💎 Pedra clicada!');
 
       audioGlobal.tocarSFX('luz');
-      audioGlobal.trocarMusicaDeFundo('alegre', 500, 1000);
+      audioGlobal.tocarMusica('alegre');
+      console.log('🎵 Música Alegre iniciada');
 
       if (audioGlobal.sfx.chuva?.playing()) {
         audioGlobal.sfx.chuva.stop();

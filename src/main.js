@@ -168,7 +168,7 @@ class JornadaAurora {
     }
 
     // 1. Inicia música de fundo
-    audioGlobal.trocarMusicaDeFundo('inicio', 0, 2000);
+    audioGlobal.tocarMusica('inicio');
 
     // 2. Inicializa sistema de scroll
     scrollGlobal.inicializar();
@@ -300,9 +300,18 @@ class JornadaAurora {
     // 7. Atualiza índice atual do scroll manager
     scrollGlobal.indiceAtual = indiceSecao;
 
-    // 8. Troca música para o capítulo correto
-    if (capituloAlvo > 0) {
-      audioGlobal.trocarMusicaPorCapitulo(capituloAlvo, 500, 1000);
+    // 8. Troca música para o capítulo correto (manual)
+    const musicasPorCapitulo = {
+      1: 'cap1',
+      3: 'cap3',
+      4: 'cap4',
+      5: 'cap5',
+      6: 'cap6',
+      7: 'cap7_pre'
+    };
+
+    if (musicasPorCapitulo[capituloAlvo]) {
+      audioGlobal.tocarMusica(musicasPorCapitulo[capituloAlvo]);
     }
 
     // 9. Navega visualmente para a seção

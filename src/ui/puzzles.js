@@ -240,15 +240,10 @@ export class PuzzleManager {
 
         botaoConfirmar.disabled = true;
 
-        dialogoGlobal.exibir('Você lembrou.', {
+        dialogoGlobal.exibir('Você lembrou. Pode seguir.', {
           comAudio: true,
           callback: () => {
-            dialogoGlobal.exibir('Então pode seguir.', {
-              comAudio: true,
-              callback: () => {
-                this.desbloquearProgresso();
-              }
-            });
+            this.desbloquearProgresso();
           }
         });
       } else {
@@ -576,15 +571,10 @@ export class PuzzleManager {
 
       btnContinuar.disabled = true;
 
-      dialogoGlobal.exibir('O Chapéu vê suas escolhas.', {
+      dialogoGlobal.exibir('O Chapéu vê suas escolhas e reconhece a verdade.', {
         comAudio: true,
         callback: () => {
-          dialogoGlobal.exibir('E reconhece a verdade em cada uma.', {
-            comAudio: true,
-            callback: () => {
-              this.desbloquearProgresso();
-            }
-          });
+          this.desbloquearProgresso();
         }
       });
     });
@@ -631,20 +621,10 @@ export class PuzzleManager {
       inputRiddikulus.disabled = true;
       btnRiddikulus.disabled = true;
 
-      dialogoGlobal.exibir('Riddikulus!', {
+      dialogoGlobal.exibir('Riddikulus! O medo perde seu poder quando vira ridículo.', {
         comAudio: true,
         callback: () => {
-          dialogoGlobal.exibir('O medo se transforma em algo ridículo...', {
-            comAudio: true,
-            callback: () => {
-              dialogoGlobal.exibir('E perde seu poder sobre você.', {
-                comAudio: true,
-                callback: () => {
-                  this.desbloquearProgresso();
-                }
-              });
-            }
-          });
+          this.desbloquearProgresso();
         }
       });
     });
@@ -1183,7 +1163,7 @@ export class PuzzleManager {
     let pecas = [];
     let pecasCorretas = 0;
 
-    const imagemFoto = 'src/assets/images/foto-casal.jpg';
+    const imagemFoto = 'src/assets/images/foto-casal.png';
 
     // Gera peças embaralhadas
     const gerarPecas = () => {
@@ -1515,21 +1495,11 @@ export class PuzzleManager {
         btn.disabled = true;
         input.disabled = true;
 
-        dialogoGlobal.exibir('VASSOURA... A chave está no que parece ao contrário.', {
+        dialogoGlobal.exibir('VASSOURA... Não se trata apenas de voar, mas de não cair.', {
           comAudio: true,
           callback: () => {
-            dialogoGlobal.exibir('Mas não se trata apenas de voar.', {
-              comAudio: true,
-              callback: () => {
-                dialogoGlobal.exibir('Trata-se de não cair.', {
-                  comAudio: true,
-                  callback: () => {
-                    estadoGlobal.concluirDesafio('aruossav');
-                    this.desbloquearProgresso();
-                  }
-                });
-              }
-            });
+            estadoGlobal.concluirDesafio('aruossav');
+            this.desbloquearProgresso();
           }
         });
       } else {

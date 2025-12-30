@@ -356,23 +356,37 @@ export class ScrollManagerStory {
           }
         });
 
-        // Atualiza capítulo E TROCA MÚSICA AUTOMATICAMENTE
+        // Atualiza capítulo
         if (capitulo) {
           const capituloNum = parseInt(capitulo);
-          const capituloAnterior = estadoGlobal.obter('capituloAtual');
-
           estadoGlobal.definir('capituloAtual', capituloNum);
-
-          // Troca música automaticamente quando muda de capítulo
-          if (capituloNum !== capituloAnterior && capituloNum > 0) {
-            // Caps 1-7: troca automática normal
-            // Cap 8: NÃO troca (música triste já está tocando desde Cap 7 derrota)
-            if (capituloNum <= 7) {
-              audioGlobal.trocarMusicaPorCapitulo(capituloNum, 500, 800);
-              console.log(`🎵 Música do Cap ${capituloNum} iniciada automaticamente`);
-            }
-          }
         }
+
+        // ========== MÚSICA: CONTROLE MANUAL POR SEÇÃO ==========
+        // Troca música baseado no ID da seção (não automático por capítulo)
+        if (secaoNova.id === 'start') {
+          audioGlobal.tocarMusica('inicio');
+        }
+        if (secaoNova.id === 'cap1') {
+          audioGlobal.tocarMusica('cap1');
+        }
+        if (secaoNova.id === 'cap3') {
+          audioGlobal.tocarMusica('cap3');
+        }
+        if (secaoNova.id === 'cap4') {
+          audioGlobal.tocarMusica('cap4');
+        }
+        if (secaoNova.id === 'cap5') {
+          audioGlobal.tocarMusica('cap5');
+        }
+        if (secaoNova.id === 'cap6') {
+          audioGlobal.tocarMusica('cap6');
+        }
+        if (secaoNova.id === 'cap7') {
+          audioGlobal.tocarMusica('cap7_pre');
+        }
+        // Cap 7 Patronus e Cap 7 Derrota: música tocada manualmente nas sequências
+        // Cap 8: música tocada manualmente na sequência (triste → alegre)
 
         // Trigger especial: Sequência do Patrono (Cap 7)
         if (secaoNova.id === 'cap7-esperanca') {
@@ -401,7 +415,7 @@ export class ScrollManagerStory {
 
           // Se for desafio do Cap 7 (Lumos, Protego, Maze), troca para música de batalha
           if (desafio === 'lumos' || desafio === 'protego' || desafio === 'maze') {
-            audioGlobal.trocarMusicaDeFundo('cap7_batalha', 400, 600);
+            audioGlobal.tocarMusica('cap7_batalha');
             console.log('⚔️ Música de batalha iniciada (Cap 7 desafios)');
           }
         } else {

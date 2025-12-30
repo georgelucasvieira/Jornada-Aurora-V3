@@ -52,7 +52,7 @@ export class Cap8Final {
     console.log('🌧️ Iniciando pós-derrota...');
 
     // Música triste (Lily's Theme ou similar)
-    audioGlobal.trocarMusicaDeFundo('triste', 0.3, 3000);
+    audioGlobal.tocarMusica('triste');
 
     // Inicia trovões a cada 10 segundos
     this.iniciarTrovoes();
@@ -116,7 +116,7 @@ export class Cap8Final {
    */
   iniciarMusicaTriste() {
     console.log('🎵 Música triste iniciada');
-    audioGlobal.trocarMusicaDeFundo('triste', 0.4, 2000);
+    audioGlobal.tocarMusica('triste');
   }
 
   /**
@@ -178,7 +178,7 @@ export class Cap8Final {
     secaoVidaNova.style.display = 'flex';
 
     // 7. Inicia música alegre (Leaving Hogwarts)
-    audioGlobal.trocarMusicaDeFundo('alegre', 0.5, 2000);
+    audioGlobal.tocarMusica('alegre');
 
     // 8. Remove fade overlay para revelar Vida Nova (2s)
     await this.delay(500);
