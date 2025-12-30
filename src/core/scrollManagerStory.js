@@ -307,6 +307,11 @@ export class ScrollManagerStory {
     // DISPARA ANIMAÇÃO DO CHAPÉU (seções 2 e 3)
     this.animarChapeu(indice);
 
+    // DISPARA ANIMAÇÃO DE OUTROS OBJETOS 3D (baseado no ID da seção)
+    if (secaoNova.id) {
+      this.animarObjeto3D(secaoNova.id);
+    }
+
     // ATIVA CONTEÚDO DA PRÓXIMA SEÇÃO **ANTES** DO SCROLL
     const content = secaoNova.querySelector('.section-content');
     if (content) {
@@ -452,6 +457,59 @@ export class ScrollManagerStory {
       chapeu.animacaoSecao4(() => {
         console.log('✅ Chapéu desapareceu na Seção 4');
       });
+    }
+  }
+
+  /**
+   * Anima objetos 3D baseado na seção (além do chapéu)
+   */
+  animarObjeto3D(secaoId) {
+    // Cap 3 - Baú Mágico aparece
+    if (secaoId.includes('cap3')) {
+      const bau = cenaGlobal.obterObjeto('bau');
+      if (bau && !bau.mesh.visible) {
+        console.log('📦 Baú Mágico aparecendo no Cap 3');
+        cenaGlobal.mostrarObjeto('bau');
+        bau.animacaoEntrada(() => {
+          console.log('✅ Baú Mágico em cena');
+        });
+      }
+    }
+
+    // Cap 4 - Penseira aparece
+    if (secaoId.includes('cap4')) {
+      const penseira = cenaGlobal.obterObjeto('penseira');
+      if (penseira && !penseira.mesh.visible) {
+        console.log('🔮 Penseira aparecendo no Cap 4');
+        cenaGlobal.mostrarObjeto('penseira');
+        penseira.animacaoEntrada(() => {
+          console.log('✅ Penseira em cena');
+        });
+      }
+    }
+
+    // Cap 5 - Varinha aparece
+    if (secaoId.includes('cap5')) {
+      const varinha = cenaGlobal.obterObjeto('varinha');
+      if (varinha && !varinha.mesh.visible) {
+        console.log('✨ Varinha aparecendo no Cap 5');
+        cenaGlobal.mostrarObjeto('varinha');
+        varinha.animacaoEntrada(() => {
+          console.log('✅ Varinha em cena');
+        });
+      }
+    }
+
+    // Cap 6 - Fênix aparece
+    if (secaoId.includes('cap6')) {
+      const fenix = cenaGlobal.obterObjeto('fenix');
+      if (fenix && !fenix.mesh.visible) {
+        console.log('🔥 Fênix aparecendo no Cap 6');
+        cenaGlobal.mostrarObjeto('fenix');
+        fenix.animacaoEntrada(() => {
+          console.log('✅ Fênix em cena');
+        });
+      }
     }
   }
 

@@ -98,6 +98,7 @@ body {
   justify-content: center;
   padding: var(--espacamento-md);
   position: relative;
+  transition: background-color 1.5s ease-in-out, opacity 0.8s ease-in-out;
 }
 
 .section-content {
@@ -3011,5 +3012,65 @@ html {
 
 #scroll-arrow.pulse {
   animation: arrow-pulse 2s ease-in-out infinite;
+}
+
+/* ==========================================
+   CHAPTER-SPECIFIC BACKGROUNDS
+   (Subtle gradients para criar atmosfera)
+   ========================================== */
+
+/* Cap 1 - Abertura mágica (warm glow) */
+#cap1-abertura {
+  background: radial-gradient(circle at center, #1a0a0a 0%, #000000 100%);
+}
+
+/* Cap 3 - Segredos (mysterious dark blue) */
+section[data-capitulo="3"] {
+  background: linear-gradient(135deg, #0a0a1a 0%, #000510 100%);
+}
+
+/* Cap 4 - Memórias (ethereal silver) */
+section[data-capitulo="4"] {
+  background: radial-gradient(ellipse at top, #1a1a25 0%, #000000 100%);
+}
+
+/* Cap 5 - Linguagem Sagrada (golden aura) */
+section[data-capitulo="5"] {
+  background: radial-gradient(circle at bottom, #1a1005 0%, #000000 100%);
+}
+
+/* Cap 6 - O Voo (fiery gradient) */
+section[data-capitulo="6"] {
+  background: radial-gradient(ellipse at center, #1a0505 0%, #000000 100%);
+}
+
+/* Cap 7 - Sombra e Luz (ominous darkness) */
+section[data-capitulo="7"]:not(#cap7-patronus-revelado) {
+  background: radial-gradient(circle at center, #050505 0%, #000000 100%);
+}
+
+/* Cap 7 - Patrono Revelado (keep black as per original design) */
+#cap7-patronus-revelado {
+  background: #000000;
+}
+
+/* Cap 7 - Derrota (stormy dark) */
+#cap7-derrota {
+  background: radial-gradient(circle at top, #0a0505 0%, #000000 100%);
+}
+
+/* Cap 8 - Pós-derrota (void darkness) */
+section[data-capitulo="8"]:not(#cap8-final):not(#cap8-epilogo) {
+  background: linear-gradient(180deg, #000000 0%, #050505 50%, #000000 100%);
+}
+
+/* Cap 8 - Final feliz (soft golden light) */
+#cap8-final {
+  background: radial-gradient(circle at center, #1a1510 0%, #050505 100%);
+}
+
+/* Cap 8 - Epílogo (warm peaceful) */
+#cap8-epilogo {
+  background: linear-gradient(135deg, #0f0a05 0%, #000000 100%);
 }
 

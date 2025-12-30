@@ -12,6 +12,8 @@ import { audioGlobal } from './core/audioManager.js';
 import { dialogoGlobal } from './core/dialogueManager.js';
 import { cenaGlobal } from './core/sceneManager.js';
 import { scrollGlobal } from './core/scrollManagerStory.js';
+import { animationHelper } from './core/animationHelper.js';
+import { sectionAnimations } from './core/sectionAnimations.js';
 
 // Three.js Objects
 import { ChapeuSeletor } from './three/objects/chapeu.js';
@@ -76,10 +78,13 @@ class JornadaAurora {
     // 10. Inicializa Cap 8 Cinematic
     cap8Cinematic.inicializar();
 
-    // 11. Configura botão de início
+    // 11. Inicializa animações de seções (imagem-primeiro, texto sequencial)
+    sectionAnimations.inicializar();
+
+    // 12. Configura botão de início
     this.configurarInicio();
 
-    // 12. Configura botões de debug (desenvolvimento)
+    // 13. Configura botões de debug (desenvolvimento)
     this.configurarBotoesDebug();
 
     console.log('✅ A Jornada inicializada com sucesso!');
@@ -491,6 +496,7 @@ window.estado = estadoGlobal;
 window.audio = audioGlobal;
 window.cena = cenaGlobal;
 window.scroll = scrollGlobal;
+window.animacao = animationHelper;
 
 // Hot Module Replacement (HMR) para desenvolvimento
 if (import.meta.hot) {
