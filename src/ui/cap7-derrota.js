@@ -6,6 +6,7 @@
 import { estadoGlobal } from '../core/stateManager.js';
 import { audioGlobal } from '../core/audioManager.js';
 import { scrollGlobal } from '../core/scrollManagerStory.js';
+import { cap8Cinematic } from './cap8-cinematic.js';
 import gsap from 'gsap';
 
 export class Cap7Derrota {
@@ -44,6 +45,9 @@ export class Cap7Derrota {
     // Bloqueia scroll durante toda a sequência
     estadoGlobal.definir('scrollBloqueado', true);
 
+    // Esconde seta (não precisa mais dela)
+    scrollGlobal.esconderSeta();
+
     // ========== 1. TRANSIÇÃO PARA SEÇÃO AVADA KEDAVRA ==========
     const secaoAvadaVFX = document.querySelector('#cap7-avada-vfx');
     if (!secaoAvadaVFX) {
@@ -63,9 +67,9 @@ export class Cap7Derrota {
 
     console.log('⚫ Transição para seção Avada Kedavra');
 
-    // ========== 2. TOCA SFX + MÚSICA ==========
+    // ========== 2. TOCA SFX + MÚSICA TRISTE ==========
     audioGlobal.tocarSFX('avada-kedavra');
-    audioGlobal.trocarMusicaPorCapitulo('8', 1000, 2000); // Música triste
+    audioGlobal.trocarMusicaDeFundo('triste', 400, 800); // Música triste
     console.log('🗣️ "Avada Kedavra!"');
 
     // Aguarda 1s
@@ -180,17 +184,34 @@ export class Cap7Derrota {
 
     await this.delay(2000);
 
-    // Navega para Cap 8 automaticamente
+    // Navega para Cap 8 e inicia sequência cinematográfica
     const cap8PosDerrota = document.querySelector('#cap8-pos-derrota');
     if (cap8PosDerrota) {
+      // Mostra seção
+      cap8PosDerrota.style.display = 'flex';
+      cap8PosDerrota.style.opacity = '0';
+
+      // Navega
       const indiceCap8 = scrollGlobal.secoes.indexOf(cap8PosDerrota);
       if (indiceCap8 !== -1) {
         scrollGlobal.irParaSecao(indiceCap8, 2);
       }
-      console.log('🎬 Transição para Cap 8');
+
+      // Fade in
+      gsap.to(cap8PosDerrota, {
+        opacity: 1,
+        duration: 2,
+        ease: 'power2.inOut'
+      });
+
+      await this.delay(2000);
+
+      console.log('🎬 Transição para Cap 8 - iniciando sequência cinematográfica');
+
+      // Inicia Cap 8 Cinematic diretamente
+      cap8Cinematic.iniciarSequenciaCinematica();
     }
 
-    // Cap 8 Cinematic assumirá o controle a partir daqui
     console.log('✅ Sequência de derrota concluída');
   }
 

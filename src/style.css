@@ -84,7 +84,6 @@ body {
   position: relative;
   z-index: 2;
   width: 100%;
-  min-
 }
 
 /* ==========================================
@@ -2189,10 +2188,11 @@ body {
 }
 
 .imagem-calvario {
-  width: 100%;
-  height: auto;
-  filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.2));
-  border-radius: var(--borda-radius);
+  width: 40%;
+  height: 80vh;
+  object-fit: cover;
+  mask-image: radial-gradient(circle, black 40%, rgba(0, 0, 0, 0) 75%);
+  -webkit-mask-image: radial-gradient(circle, black 40%, rgba(0, 0, 0, 0) 75%);
 }
 
 .texto-revelacao,
@@ -2607,7 +2607,7 @@ body {
    ========================================== */
 
 .section-patronus-revelado {
-  background: linear-gradient(to bottom, #e0f7fa 0%, #b3e5fc 100%);
+  background: #000000;
 }
 
 .layout-patronus {
@@ -2628,6 +2628,8 @@ body {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  mask-image: radial-gradient(circle, black 40%, rgba(0, 0, 0, 0) 75%);
+  -webkit-mask-image: radial-gradient(circle, black 40%, rgba(0, 0, 0, 0) 75%);
 }
 
 .patronus-image-final {
@@ -2711,6 +2713,8 @@ body {
   filter: grayscale(30%) brightness(0.8);
   opacity: 0;
   transform: scale(0.9);
+  mask-image: radial-gradient(circle, black 40%, rgba(0, 0, 0, 0) 75%);
+  -webkit-mask-image: radial-gradient(circle, black 40%, rgba(0, 0, 0, 0) 75%);
 }
 
 .voldemort-texto-container {

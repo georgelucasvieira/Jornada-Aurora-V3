@@ -17,10 +17,11 @@ export class Cap8Final {
 
   /**
    * Inicializa todos os sistemas do Cap 8+9
+   * NOTA: inicializarPedraRessurreicao() foi DESATIVADO pois o cap8-cinematic.js agora gerencia isso
    */
   inicializar() {
     this.criarFadeOverlay();
-    this.inicializarPedraRessurreicao();
+    // this.inicializarPedraRessurreicao(); // DESATIVADO - usando cap8-cinematic.js
     this.configurarObservadores();
   }
 

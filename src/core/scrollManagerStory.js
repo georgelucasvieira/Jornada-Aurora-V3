@@ -361,7 +361,12 @@ export class ScrollManagerStory {
 
           // Troca música automaticamente quando muda de capítulo
           if (capituloNum !== capituloAnterior && capituloNum > 0) {
-            audioGlobal.trocarMusicaPorCapitulo(capituloNum, 2000, 2500);
+            // Caps 1-7: troca automática normal
+            // Cap 8: NÃO troca (música triste já está tocando desde Cap 7 derrota)
+            if (capituloNum <= 7) {
+              audioGlobal.trocarMusicaPorCapitulo(capituloNum, 500, 800);
+              console.log(`🎵 Música do Cap ${capituloNum} iniciada automaticamente`);
+            }
           }
         }
 
@@ -373,6 +378,12 @@ export class ScrollManagerStory {
           estadoGlobal.bloquearScroll();
           estadoGlobal.definir('desafioAtual', desafio);
           console.log(`🎯 Desafio "${desafio}" ativo`);
+
+          // Se for desafio do Cap 7 (Lumos, Protego, Maze), troca para música de batalha
+          if (desafio === 'lumos' || desafio === 'protego' || desafio === 'maze') {
+            audioGlobal.trocarMusicaDeFundo('cap7_batalha', 400, 600);
+            console.log('⚔️ Música de batalha iniciada (Cap 7 desafios)');
+          }
         } else {
           // Mostra seta se pode avançar E se scroll não está bloqueado E se não há diálogos ativos
           const scrollBloqueado = estadoGlobal.obter('scrollBloqueado');
