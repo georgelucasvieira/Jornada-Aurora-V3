@@ -371,6 +371,12 @@ export class ScrollManagerStory {
 
         // Trigger especial: Sequência do Patrono (Cap 7)
         if (secaoNova.id === 'cap7-esperanca') {
+          // BLOQUEIA scroll e ESCONDE seta ANTES de disparar sequência
+          estadoGlobal.bloquearScroll();
+          this.bloqueado = true;
+          this.esconderSeta();
+          console.log('🔒 Scroll bloqueado e seta escondida para sequência do Patrono');
+
           // Importa dinamicamente para evitar dependência circular
           import('../ui/cap7-patronus.js').then(module => {
             if (module.cap7Patronus) {

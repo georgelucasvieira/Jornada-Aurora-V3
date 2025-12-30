@@ -2639,7 +2639,8 @@ body {
   filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.6));
   opacity: 0;
   transform: scale(0.9);
-  animation: patronoFinalFadeIn 2s ease forwards;
+  /* Animation disabled - controlled by GSAP in cap7-patronus.js */
+  /* animation: patronoFinalFadeIn 2s ease forwards; */
 }
 
 @keyframes patronoFinalFadeIn {
@@ -2664,7 +2665,8 @@ body {
 .patronus-texto-container .texto-narrativo {
   opacity: 0;
   transform: translateY(20px);
-  animation: textoPatronoDireita 1.5s ease 2.5s forwards;
+  /* Animation disabled - controlled by GSAP in cap7-patronus.js */
+  /* animation: textoPatronoDireita 1.5s ease 2.5s forwards; */
 }
 
 @keyframes textoPatronoDireita {

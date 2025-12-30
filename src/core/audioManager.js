@@ -132,67 +132,100 @@ class AudioManager {
         src: ['src/assets/audio/music/intro.mp3'],
         loop: true,
         volume: this.volumeMusica * this.volumeGeral,
-        onloaderror: () => console.warn('Música intro não encontrada')
+        html5: true, // Use HTML5 Audio for better reliability
+        onload: () => console.log('✅ Música "intro" carregada'),
+        onloaderror: (id, err) => console.error('❌ Música intro não carregou:', err),
+        onplayerror: (id, err) => console.error('❌ Erro ao tocar intro:', err)
       }),
       cap1: new Howl({
-        src: ['src/assets/audio/music/cap1.mp3'], // "Hedwig's Theme"
+        src: ['src/assets/audio/music/cap1.mp3'],
         loop: true,
         volume: this.volumeMusica * this.volumeGeral,
-        onloaderror: () => console.warn('Música cap1 não encontrada')
+        html5: true,
+        onload: () => console.log('✅ Música "cap1" carregada'),
+        onloaderror: (id, err) => console.error('❌ Música cap1 não carregou:', err),
+        onplayerror: (id, err) => console.error('❌ Erro ao tocar cap1:', err)
       }),
       cap3: new Howl({
-        src: ['src/assets/audio/music/cap3.mp3'], // "The Chamber of Secrets"
+        src: ['src/assets/audio/music/cap3.mp3'],
         loop: true,
         volume: this.volumeMusica * this.volumeGeral,
-        onloaderror: () => console.warn('Música cap3 não encontrada')
+        html5: true,
+        onload: () => console.log('✅ Música "cap3" carregada'),
+        onloaderror: (id, err) => console.error('❌ Música cap3 não carregou:', err),
+        onplayerror: (id, err) => console.error('❌ Erro ao tocar cap3:', err)
       }),
       cap4: new Howl({
-        src: ['src/assets/audio/music/cap4.mp3'], // "Harry in Winter"
+        src: ['src/assets/audio/music/cap4.mp3'],
         loop: true,
         volume: this.volumeMusica * this.volumeGeral,
-        onloaderror: () => console.warn('Música cap4 não encontrada')
+        html5: true,
+        onload: () => console.log('✅ Música "cap4" carregada'),
+        onloaderror: (id, err) => console.error('❌ Música cap4 não carregou:', err),
+        onplayerror: (id, err) => console.error('❌ Erro ao tocar cap4:', err)
       }),
       cap5: new Howl({
-        src: ['src/assets/audio/music/cap5.mp3'], // "Dumbledore's Army"
+        src: ['src/assets/audio/music/cap5.mp3'],
         loop: true,
         volume: this.volumeMusica * this.volumeGeral,
-        onloaderror: () => console.warn('Música cap5 não encontrada')
+        html5: true,
+        onload: () => console.log('✅ Música "cap5" carregada'),
+        onloaderror: (id, err) => console.error('❌ Música cap5 não carregou:', err),
+        onplayerror: (id, err) => console.error('❌ Erro ao tocar cap5:', err)
       }),
       cap6: new Howl({
-        src: ['src/assets/audio/music/cap6.mp3'], // "Obliviate"
+        src: ['src/assets/audio/music/cap6.mp3'],
         loop: true,
         volume: this.volumeMusica * this.volumeGeral,
-        onloaderror: () => console.warn('Música cap6 não encontrada')
+        html5: true,
+        onload: () => console.log('✅ Música "cap6" carregada'),
+        onloaderror: (id, err) => console.error('❌ Música cap6 não carregou:', err),
+        onplayerror: (id, err) => console.error('❌ Erro ao tocar cap6:', err)
       }),
       cap7_pre: new Howl({
-        src: ['src/assets/audio/music/cap7_pre.mp3'], // "Statues"
+        src: ['src/assets/audio/music/cap7_pre.mp3'],
         loop: true,
         volume: this.volumeMusica * this.volumeGeral,
-        onloaderror: () => console.warn('Música cap7_pre não encontrada')
+        html5: true,
+        onload: () => console.log('✅ Música "cap7_pre" carregada'),
+        onloaderror: (id, err) => console.error('❌ Música cap7_pre não carregou:', err),
+        onplayerror: (id, err) => console.error('❌ Erro ao tocar cap7_pre:', err)
       }),
       cap7_patronus: new Howl({
-        src: ['src/assets/audio/music/cap7_patronus.mp3'], // "The Patronus Light"
+        src: ['src/assets/audio/music/cap7_patronus.mp3'],
         loop: true,
         volume: this.volumeMusica * this.volumeGeral,
-        onloaderror: () => console.warn('Música cap7_patronus não encontrada')
+        html5: true,
+        onload: () => console.log('✅ Música "cap7_patronus" carregada'),
+        onloaderror: (id, err) => console.error('❌ Música cap7_patronus não carregou:', err),
+        onplayerror: (id, err) => console.error('❌ Erro ao tocar cap7_patronus:', err)
       }),
       cap7_batalha: new Howl({
-        src: ['src/assets/audio/music/cap7_batalha.mp3'], // "The Battle of Hogwarts"
+        src: ['src/assets/audio/music/cap7_batalha.mp3'],
         loop: true,
         volume: this.volumeMusica * this.volumeGeral,
-        onloaderror: () => console.warn('Música cap7_batalha não encontrada')
+        html5: true,
+        onload: () => console.log('✅ Música "cap7_batalha" carregada'),
+        onloaderror: (id, err) => console.error('❌ Música cap7_batalha não carregou:', err),
+        onplayerror: (id, err) => console.error('❌ Erro ao tocar cap7_batalha:', err)
       }),
       triste: new Howl({
-        src: ['src/assets/audio/music/triste.mp3'], // "Lily's Theme"
+        src: ['src/assets/audio/music/triste.mp3'],
         loop: true,
         volume: this.volumeMusica * this.volumeGeral,
-        onloaderror: () => console.warn('Música triste não encontrada')
+        html5: true,
+        onload: () => console.log('✅ Música "triste" carregada'),
+        onloaderror: (id, err) => console.error('❌ Música triste não carregou:', err),
+        onplayerror: (id, err) => console.error('❌ Erro ao tocar triste:', err)
       }),
       alegre: new Howl({
-        src: ['src/assets/audio/music/alegre.mp3'], // "Leaving Hogwarts"
+        src: ['src/assets/audio/music/alegre.mp3'],
         loop: true,
         volume: this.volumeMusica * this.volumeGeral,
-        onloaderror: () => console.warn('Música alegre não encontrada')
+        html5: true,
+        onload: () => console.log('✅ Música "alegre" carregada'),
+        onloaderror: (id, err) => console.error('❌ Música alegre não carregou:', err),
+        onplayerror: (id, err) => console.error('❌ Erro ao tocar alegre:', err)
       })
     };
 
@@ -263,21 +296,25 @@ class AudioManager {
     const novaTrilha = this.trilhas[nomeTrilha];
 
     if (!novaTrilha) {
-      console.warn(`Trilha "${nomeTrilha}" não encontrada`);
+      console.error(`❌ Trilha "${nomeTrilha}" não encontrada no mapeamento`);
+      console.log('📋 Trilhas disponíveis:', Object.keys(this.trilhas));
       return;
     }
 
+    console.log(`🎵 [MÚSICA] Solicitando troca para "${nomeTrilha}"`);
+    console.log(`🎵 [MÚSICA] Música atual: ${estadoGlobal.obter('musicaAtual') || 'nenhuma'}`);
+
     // IMPORTANTE: Se a nova trilha é o MESMO OBJETO Howl que está tocando,
-    // NÃO pare e reinicie (isso causa interrupções no sistema placeholder)
+    // NÃO pare e reinicie (isso causa interrupções)
     if (this.musicaFundo && this.musicaFundo === novaTrilha) {
       // Verifica se já está tocando
       if (this.musicaFundo.playing()) {
-        console.log(`🎵 Música "${nomeTrilha}" já está tocando (mesmo arquivo), mantendo reprodução`);
+        console.log(`✅ [MÚSICA] "${nomeTrilha}" já está tocando, mantendo reprodução`);
         estadoGlobal.definir('musicaAtual', nomeTrilha);
         return;
       }
       // Se não está tocando, inicia
-      console.log(`🎵 Iniciando música "${nomeTrilha}"`);
+      console.log(`▶️ [MÚSICA] Reiniciando "${nomeTrilha}" (mesmo objeto Howl)`);
       this.musicaFundo.volume(this.volumeMusica * this.volumeGeral);
       this.musicaFundo.play();
       estadoGlobal.definir('musicaAtual', nomeTrilha);
@@ -285,11 +322,14 @@ class AudioManager {
     }
 
     // Se chegou aqui, são objetos Howl diferentes (arquivos reais diferentes)
+    const musicaAnterior = estadoGlobal.obter('musicaAtual');
 
     // Para música atual com fade out
     if (this.musicaFundo && this.musicaFundo.playing()) {
+      console.log(`⏸️ [MÚSICA] Fazendo fade out de "${musicaAnterior}" (${fadeOut}ms)`);
+
       this.musicaFundo.fade(
-        this.volumeMusica * this.volumeGeral,
+        this.musicaFundo.volume(),
         0,
         fadeOut
       );
@@ -297,19 +337,31 @@ class AudioManager {
       setTimeout(() => {
         if (this.musicaFundo) {
           this.musicaFundo.stop();
+          console.log(`⏹️ [MÚSICA] "${musicaAnterior}" parada`);
         }
       }, fadeOut);
+    } else if (this.musicaFundo) {
+      // Se não estava tocando, para imediatamente
+      this.musicaFundo.stop();
+      console.log(`⏹️ [MÚSICA] "${musicaAnterior}" parada (não estava tocando)`);
     }
 
     // Inicia nova música com fade in
     this.musicaFundo = novaTrilha;
 
-    this.musicaFundo.volume(0);
-    this.musicaFundo.play();
-    this.musicaFundo.fade(0, this.volumeMusica * this.volumeGeral, fadeIn);
+    console.log(`▶️ [MÚSICA] Iniciando "${nomeTrilha}" com fade in (${fadeIn}ms)`);
 
-    estadoGlobal.definir('musicaAtual', nomeTrilha);
-    console.log(`🎵 Música trocada para: ${nomeTrilha}`);
+    this.musicaFundo.volume(0);
+    const playId = this.musicaFundo.play();
+
+    // Verifica se play foi bem-sucedido
+    if (playId !== undefined) {
+      this.musicaFundo.fade(0, this.volumeMusica * this.volumeGeral, fadeIn);
+      estadoGlobal.definir('musicaAtual', nomeTrilha);
+      console.log(`✅ [MÚSICA] "${nomeTrilha}" tocando (ID: ${playId})`);
+    } else {
+      console.error(`❌ [MÚSICA] Falha ao iniciar "${nomeTrilha}"`);
+    }
   }
 
   /**

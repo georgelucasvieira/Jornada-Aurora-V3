@@ -141,35 +141,45 @@ export class Cap7Patronus {
     audioGlobal.trocarMusicaDeFundo('cap7_patronus', 400, 800);
     console.log('🎵 Música do Patrono iniciada (loop)');
 
-    // 11. Imagem do patrono aparece à esquerda (já está na seção, fade in com GSAP)
+    // 11. Imagem do patrono aparece PRIMEIRO (já está na seção, fade in com GSAP)
     const imagemPatronus = secaoPatronusRevelado.querySelector('.patronus-image-final');
     if (imagemPatronus) {
+      // Garante que começa escondida
+      imagemPatronus.style.opacity = '0';
+
       gsap.fromTo(imagemPatronus,
         { opacity: 0, scale: 0.9 },
         { opacity: 1, scale: 1, duration: 2, ease: 'power2.out' }
       );
+      console.log('🖼️ Imagem do Patrono revelada');
     }
 
-    // Aguarda 2s
-    await this.delay(2000);
+    // Aguarda 3s (usuário vê só a imagem)
+    await this.delay(3000);
 
-    // 12. Texto aparece à direita
+    // 12. Texto aparece DEPOIS (seguindo filosofia do site)
     const textoContainer = secaoPatronusRevelado.querySelector('.patronus-texto-container .texto-narrativo');
     if (textoContainer) {
+      // Garante que começa escondido
+      textoContainer.style.opacity = '0';
+
       gsap.fromTo(textoContainer,
         { opacity: 0, y: 20 },
         { opacity: 1, y: 0, duration: 1.5, ease: 'power2.out' }
       );
+      console.log('📝 Texto do Patrono revelado');
     }
 
-    console.log('🦌 Patrono revelado! Imagem e texto apareceram.');
+    console.log('🦌 Patrono revelado! Imagem primeiro, texto depois (filosofia do site)');
 
-    // Aguarda 6s (tempo para usuário ver imagem e texto)
-    await this.delay(6000);
+    // Aguarda 4s (tempo para usuário ler texto)
+    await this.delay(4000);
 
-    // 13. Mostra seta para descer
+    // 13. Desbloqueia scroll e mostra seta
+    estadoGlobal.desbloquearScroll();
+    scrollGlobal.bloqueado = false;
     scrollGlobal.mostrarSeta();
-    console.log('✅ Sequência Patrono concluída! Seta apareceu.');
+    console.log('✅ Sequência Patrono concluída! Scroll desbloqueado e seta apareceu.');
   }
 
   /**

@@ -15,6 +15,9 @@ import { scrollGlobal } from './core/scrollManagerStory.js';
 
 // Three.js Objects
 import { ChapeuSeletor } from './three/objects/chapeu.js';
+import { BauMagico } from './three/objects/bau.js';
+import { Penseira } from './three/objects/penseira.js';
+import { Varinha } from './three/objects/varinha.js';
 import { Fenix } from './three/objects/fenix.js';
 
 // UI Systems
@@ -86,12 +89,27 @@ class JornadaAurora {
    * Cria objetos 3D
    */
   criarObjetos3D() {
-    // Cria Chapéu Seletor
+    // Cria Chapéu Seletor (Cap 1)
     const chapeu = new ChapeuSeletor();
     cenaGlobal.adicionarObjeto('chapeu', chapeu);
     console.log('🎩 Chapéu Seletor criado');
 
-    // Cria Fênix
+    // Cria Baú Mágico (Cap 3)
+    const bau = new BauMagico();
+    cenaGlobal.adicionarObjeto('bau', bau);
+    console.log('📦 Baú Mágico criado');
+
+    // Cria Penseira (Cap 4)
+    const penseira = new Penseira();
+    cenaGlobal.adicionarObjeto('penseira', penseira);
+    console.log('🔮 Penseira criada');
+
+    // Cria Varinha (Cap 5)
+    const varinha = new Varinha();
+    cenaGlobal.adicionarObjeto('varinha', varinha);
+    console.log('✨ Varinha criada');
+
+    // Cria Fênix (Cap 6)
     const fenix = new Fenix();
     cenaGlobal.adicionarObjeto('fenix', fenix);
     console.log('🔥 Fênix criada');
