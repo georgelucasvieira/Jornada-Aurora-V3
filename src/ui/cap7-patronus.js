@@ -14,33 +14,21 @@ export class Cap7Patronus {
   }
 
   /**
-   * Inicializa o observador para a seção "E esperança!"
+   * Inicializa (nada a fazer - sequência é iniciada via método público)
    */
   inicializar() {
-    this.configurarObservador();
+    console.log('✅ Cap7 Patronus pronto (aguardando trigger via progressão narrativa)');
   }
 
   /**
-   * Configura IntersectionObserver para detectar quando usuário chega na seção "E esperança!"
+   * Método público para iniciar a sequência do Patrono
+   * Chamado pelo scrollManager quando o usuário chega na seção #cap7-esperanca
    */
-  configurarObservador() {
-    const secaoEsperanca = document.querySelector('#cap7-esperanca');
-
-    if (!secaoEsperanca) {
-      console.warn('Seção #cap7-esperanca não encontrada');
-      return;
+  disparar() {
+    if (!this.sequenciaIniciada) {
+      console.log('🔮 Trigger Expecto Patronum (via progressão narrativa)');
+      this.iniciarSequenciaPatronus();
     }
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && entry.intersectionRatio > 0.5 && !this.sequenciaIniciada) {
-          console.log('🔮 Trigger Expecto Patronum detectado!');
-          this.iniciarSequenciaPatronus();
-        }
-      });
-    }, { threshold: 0.5 });
-
-    observer.observe(secaoEsperanca);
   }
 
   /**

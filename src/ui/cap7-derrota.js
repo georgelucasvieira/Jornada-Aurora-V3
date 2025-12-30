@@ -129,6 +129,10 @@ export class Cap7Derrota {
 
     console.log('🐍 Transição para seção Voldemort');
 
+    // Inicia SFX de chuva (loop) - ambiente pós-derrota
+    audioGlobal.tocarSFX('chuva');
+    console.log('🌧️ SFX: Chuva (loop) iniciada');
+
     // ========== 6. IMAGEM DE VOLDEMORT APARECE ==========
     const imagemVoldemort = secaoDerrota.querySelector('.imagem-voldemort-final');
     if (imagemVoldemort) {

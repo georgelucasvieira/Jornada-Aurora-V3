@@ -123,26 +123,25 @@ export class ScrollManagerStory {
     }
 
     // Cap 8 - SFX Chuva LOOP (pós-derrota)
-    const cap8PosDerrota = document.querySelector('#cap8-pos-derrota');
-    if (cap8PosDerrota) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
-            // Inicia loop de chuva
-            audioGlobal.tocarSFX('chuva');
-            console.log('🌧️ SFX: Chuva (loop) - Cap 8 pós-derrota iniciado');
-          } else {
-            // Para chuva quando sai da seção
-            if (audioGlobal.sfx.chuva && audioGlobal.sfx.chuva.playing()) {
-              audioGlobal.sfx.chuva.stop();
-              console.log('🌧️ SFX: Chuva (loop) parado');
-            }
-          }
-        });
-      }, { threshold: 0.5 });
-
-      observer.observe(cap8PosDerrota);
-    }
+    // DESATIVADO: A chuva agora é iniciada via cap7-derrota.js (progressão narrativa)
+    // e parada pelo cap8-cinematic.js quando clica na Pedra
+    // const cap8PosDerrota = document.querySelector('#cap8-pos-derrota');
+    // if (cap8PosDerrota) {
+    //   const observer = new IntersectionObserver((entries) => {
+    //     entries.forEach(entry => {
+    //       if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+    //         audioGlobal.tocarSFX('chuva');
+    //         console.log('🌧️ SFX: Chuva (loop) - Cap 8 pós-derrota iniciado');
+    //       } else {
+    //         if (audioGlobal.sfx.chuva && audioGlobal.sfx.chuva.playing()) {
+    //           audioGlobal.sfx.chuva.stop();
+    //           console.log('🌧️ SFX: Chuva (loop) parado');
+    //         }
+    //       }
+    //     });
+    //   }, { threshold: 0.5 });
+    //   observer.observe(cap8PosDerrota);
+    // }
   }
 
   /**
@@ -368,6 +367,16 @@ export class ScrollManagerStory {
               console.log(`🎵 Música do Cap ${capituloNum} iniciada automaticamente`);
             }
           }
+        }
+
+        // Trigger especial: Sequência do Patrono (Cap 7)
+        if (secaoNova.id === 'cap7-esperanca') {
+          // Importa dinamicamente para evitar dependência circular
+          import('../ui/cap7-patronus.js').then(module => {
+            if (module.cap7Patronus) {
+              module.cap7Patronus.disparar();
+            }
+          });
         }
 
         // Verifica desafio

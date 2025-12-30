@@ -36,37 +36,12 @@ export class Cap8Final {
 
   /**
    * Configura observadores de seção para triggers automáticos
+   * DESATIVADO: Cap 8 agora usa cap8-cinematic.js com progressão narrativa controlada
    */
   configurarObservadores() {
-    // Observer para seção pós-derrota (inicia trovões)
-    const secaoPosDer = document.querySelector('#cap8-pos-derrota');
-    if (secaoPosDer) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
-            this.iniciarPosDerrotaSequence();
-          } else if (!entry.isIntersecting) {
-            this.pararTrovoes();
-          }
-        });
-      }, { threshold: 0.5 });
-
-      observer.observe(secaoPosDer);
-    }
-
-    // Observer para seção revelação (música triste)
-    const secaoRevelacao = document.querySelector('#cap8-revelacao');
-    if (secaoRevelacao) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
-            this.iniciarMusicaTriste();
-          }
-        });
-      }, { threshold: 0.5 });
-
-      observer.observe(secaoRevelacao);
-    }
+    // DESATIVADO - observers removidos pois Cap 8 é controlado por cap8-cinematic.js
+    // que gerencia toda a sequência de forma programática via scrollManager
+    console.log('⚠️ Observers do cap8-final.js estão DESATIVADOS (usando cap8-cinematic.js)');
   }
 
   /**
