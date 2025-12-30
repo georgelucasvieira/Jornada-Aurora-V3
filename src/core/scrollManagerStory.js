@@ -367,23 +367,29 @@ export class ScrollManagerStory {
         if (secaoNova.id === 'start') {
           audioGlobal.tocarMusica('inicio');
         }
-        if (secaoNova.id === 'cap1') {
-          audioGlobal.tocarMusica('cap1');
-        }
+        // essa não é necessaria porque é a mesma do inicio
+        // if (secaoNova.id === 'cap1') {
+        //   audioGlobal.tocarMusica('cap1');
+        // }
         if (secaoNova.id === 'cap3') {
-          audioGlobal.tocarMusica('cap3');
+          audioGlobal.pararMusica(1500);
+          audioGlobal.tocarMusica('cap3', 1500);
         }
         if (secaoNova.id === 'cap4') {
-          audioGlobal.tocarMusica('cap4');
+          audioGlobal.pararMusica(1500);
+          audioGlobal.tocarMusica('cap4', 1500);
         }
         if (secaoNova.id === 'cap5') {
-          audioGlobal.tocarMusica('cap5');
+          audioGlobal.pararMusica(1500);
+          audioGlobal.tocarMusica('cap5', 1500);
         }
         if (secaoNova.id === 'cap6') {
-          audioGlobal.tocarMusica('cap6');
+          audioGlobal.pararMusica(1500);
+          audioGlobal.tocarMusica('cap6', 1500);
         }
         if (secaoNova.id === 'cap7') {
-          audioGlobal.tocarMusica('cap7_pre');
+          audioGlobal.pararMusica(1500);
+          audioGlobal.tocarMusica('cap7_pre', 1500);
         }
         // Cap 7 Patronus e Cap 7 Derrota: música tocada manualmente nas sequências
         // Cap 8: música tocada manualmente na sequência (triste → alegre)
@@ -415,7 +421,8 @@ export class ScrollManagerStory {
 
           // Se for desafio do Cap 7 (Lumos, Protego, Maze), troca para música de batalha
           if (desafio === 'lumos' || desafio === 'protego' || desafio === 'maze') {
-            audioGlobal.tocarMusica('cap7_batalha');
+            audioGlobal.pararMusica(1500);
+            audioGlobal.tocarMusica('cap7_batalha', 1500);
             console.log('⚔️ Música de batalha iniciada (Cap 7 desafios)');
           }
         } else {

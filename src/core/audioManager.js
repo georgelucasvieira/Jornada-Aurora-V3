@@ -292,8 +292,11 @@ class AudioManager {
   /**
    * Toca música (SIMPLES - igual tocarSFX)
    * Uso: audioGlobal.tocarMusica('intro')
+   * Uso com delay: audioGlobal.tocarMusica('intro', 1000)
+   * @param {string} nomeTrilha - Nome da música
+   * @param {number} delay - Delay antes de iniciar (ms) - NÃO bloqueia execução
    */
-  tocarMusica(nomeTrilha) {
+  tocarMusica(nomeTrilha, delay = 0) {
     if (this.mudo) return;
 
     const novaTrilha = this.trilhas[nomeTrilha];
@@ -304,27 +307,36 @@ class AudioManager {
       return;
     }
 
-    console.log(`🎵 Tocando música: "${nomeTrilha}"`);
-
     // Se já está tocando a mesma música, não faz nada
     if (this.musicaFundo === novaTrilha && this.musicaFundo.playing()) {
       console.log(`✅ "${nomeTrilha}" já está tocando`);
       return;
     }
 
-    // Para música atual
-    if (this.musicaFundo && this.musicaFundo.playing()) {
-      console.log(`⏹️ Parando música anterior`);
-      this.musicaFundo.stop();
+    // Função interna para tocar
+    const iniciarMusica = () => {
+      // Para música atual (só quando for tocar de fato)
+      if (this.musicaFundo && this.musicaFundo.playing()) {
+        console.log(`⏹️ Parando música anterior`);
+        this.musicaFundo.stop();
+      }
+
+      this.musicaFundo = novaTrilha;
+      this.musicaFundo.volume(this.volumeMusica * this.volumeGeral);
+      this.musicaFundo.play();
+
+      estadoGlobal.definir('musicaAtual', nomeTrilha);
+      console.log(`▶️ Música "${nomeTrilha}" tocando`);
+    };
+
+    // Se tem delay, agenda para o futuro (NÃO bloqueia)
+    if (delay > 0) {
+      console.log(`🎵 Música "${nomeTrilha}" agendada para tocar em ${delay}ms`);
+      setTimeout(iniciarMusica, delay);
+    } else {
+      console.log(`🎵 Tocando música: "${nomeTrilha}"`);
+      iniciarMusica();
     }
-
-    // Toca nova música
-    this.musicaFundo = novaTrilha;
-    this.musicaFundo.volume(this.volumeMusica * this.volumeGeral);
-    this.musicaFundo.play();
-
-    estadoGlobal.definir('musicaAtual', nomeTrilha);
-    console.log(`▶️ Música "${nomeTrilha}" tocando`);
   }
 
   /**
@@ -424,6 +436,7 @@ class AudioManager {
    * Para música de fundo
    */
   pararMusica(fadeOut = 1000) {
+    console.log(`⏹️ Parando a música de fundo ${this.musicaFundo}}`);
     if (this.musicaFundo) {
       this.musicaFundo.fade(
         this.volumeMusica * this.volumeGeral,

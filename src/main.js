@@ -28,7 +28,6 @@ import { flappyBirdGlobal } from './ui/minigames.js';
 import { cap7Patronus } from './ui/cap7-patronus.js';
 import { cap7Derrota } from './ui/cap7-derrota.js';
 import { cap7Minigames } from './ui/cap7-minigames.js';
-import { cap8Final } from './ui/cap8-final.js';
 import { cap8Cinematic } from './ui/cap8-cinematic.js';
 
 /**
@@ -71,9 +70,6 @@ class JornadaAurora {
 
     // 9. Inicializa Cap 7 Minigames
     cap7Minigames.inicializar();
-
-    // 9. Inicializa Cap 8 Final
-    cap8Final.inicializar();
 
     // 10. Inicializa Cap 8 Cinematic
     cap8Cinematic.inicializar();

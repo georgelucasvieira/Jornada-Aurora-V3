@@ -80,7 +80,7 @@ export class Cap7Patronus {
       duration: 1.5,
       ease: 'power2.inOut'
     });
-
+    audioGlobal.pararMusica(5000);
     await this.delay(2000);
 
     console.log('⚫ Transição para seção Patrono (background preto)');
@@ -100,10 +100,10 @@ export class Cap7Patronus {
     console.log('🗣️ Harry: "Expecto Patronum!"');
 
     // 4. Delay 1s + Música do Patrono
-    await this.delay(1000);
-    audioGlobal.tocarMusica('cap7_patronus');
+    audioGlobal.tocarMusica('cap7_patronus', 1500);
     console.log('🎵 Música do Patrono iniciada (loop)');
 
+    await this.delay(1000);
     // 5. Mostra overlay VFX e esfera aparece (fade in)
     overlayVFX.style.display = 'flex';
     overlayVFX.style.opacity = '1';

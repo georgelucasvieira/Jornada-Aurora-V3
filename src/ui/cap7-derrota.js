@@ -66,14 +66,13 @@ export class Cap7Derrota {
     }
 
     console.log('⚫ Transição para seção Avada Kedavra');
-
+    audioGlobal.pararMusica(1500);
     // ========== 2. TOCA SFX + MÚSICA TRISTE ==========
     audioGlobal.tocarSFX('avada-kedavra');
     console.log('🗣️ "Avada Kedavra!"');
 
     // Aguarda 1s + Música Triste
-    await this.delay(1000);
-    audioGlobal.tocarMusica('triste');
+    audioGlobal.tocarMusica('triste', 1500);
     console.log('🎵 Música Triste iniciada');
 
     // ========== 3. VFX AVADA KEDAVRA ==========

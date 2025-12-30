@@ -126,9 +126,9 @@ export class Cap8Cinematic {
 
     botao.addEventListener('click', async () => {
       console.log('💎 Pedra clicada!');
-
+      audioGlobal.pararMusica(1500);
       audioGlobal.tocarSFX('luz');
-      audioGlobal.tocarMusica('alegre');
+      audioGlobal.tocarMusica('alegre', 1500);
       console.log('🎵 Música Alegre iniciada');
 
       if (audioGlobal.sfx.chuva?.playing()) {
