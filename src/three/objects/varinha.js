@@ -1,7 +1,6 @@
 /**
- * Fênix - Objeto 3D Narrativo (Cap 6 - O Voo)
- * Octaedro representando Fênix com efeito de fogo
- * REESCRITO para seguir o padrão do ChapeuSeletor
+ * Varinha - Objeto 3D Narrativo (Cap 5 - Linguagem Sagrada)
+ * Cilindro representando varinha com rastros de luz
  */
 
 import { MockObject } from './mockObject.js';
@@ -11,19 +10,19 @@ import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 // Registra plugin
 gsap.registerPlugin(MotionPathPlugin);
 
-export class Fenix extends MockObject {
+export class Varinha extends MockObject {
   constructor() {
     super({
-      geometry: 'octahedron',
-      color: 0xff4500, // Laranja-vermelho (fogo)
-      emissive: 0xff6347, // Brilho de fogo
-      size: 0.65,
+      geometry: 'cylinder',
+      color: 0x8b7355, // Marrom claro (madeira)
+      emissive: 0xffd700, // Brilho dourado (magia)
+      size: 0.5,
       wireframe: false
     });
 
     // Escalas de referência
-    this.escalaNormal = 0.65;
-    this.escalaGrande = 1.05;
+    this.escalaNormal = 0.5;
+    this.escalaGrande = 0.9;
 
     // Timeline ativa
     this.timeline = null;
@@ -41,9 +40,12 @@ export class Fenix extends MockObject {
   }
 
   /**
-   * Inicializa Fênix
+   * Inicializa Varinha
    */
   init(scene) {
+    // Rotaciona para ficar na horizontal
+    this.mesh.rotation.z = Math.PI / 2;
+
     // Começa escondida fora da tela
     this.definirPosicao(
       this.posicoes.foraTelaEmbaixo.x,
@@ -55,31 +57,31 @@ export class Fenix extends MockObject {
   }
 
   /**
-   * Animação idle (rotação + batimento de asas simulado + chamas)
+   * Animação idle (rotação + brilho mágico)
    */
   update(delta, elapsed) {
     if (!this.mesh || !this.mesh.visible) return;
 
     this.time = elapsed;
 
-    // Rotação contínua (como voo em círculos)
-    this.mesh.rotation.y = elapsed * 0.8;
-    this.mesh.rotation.x = Math.sin(elapsed * 1.2) * 0.15;
+    // Rotação lenta (varinha girando)
+    this.mesh.rotation.y = elapsed * 0.6;
 
-    // Pulsação de fogo (chamas)
-    const pulse = Math.sin(elapsed * 4) * 0.5 + 0.5;
+    // Pulsação mágica (ponta da varinha)
+    const pulse = Math.sin(elapsed * 2.5) * 0.5 + 0.5;
     if (this.mesh.material) {
-      this.mesh.material.emissiveIntensity = pulse * 1.2;
+      this.mesh.material.emissiveIntensity = pulse * 0.9;
     }
 
-    // Flutuação vertical (voo) - idle animation natural
+    // Balanço suave
+    this.mesh.rotation.x = Math.sin(elapsed * 1.0) * 0.08;
   }
 
   /**
    * ANIMAÇÃO DE ENTRADA
    */
   animacaoEntrada(callback) {
-    console.log('🔥 Iniciando animação de entrada da Fênix');
+    console.log('✨ Iniciando animação de entrada da Varinha');
 
     this.pararAnimacoes();
 
@@ -93,12 +95,12 @@ export class Fenix extends MockObject {
 
     this.timeline = gsap.timeline({
       onComplete: () => {
-        console.log('🔥 Animação de entrada completa');
+        console.log('✨ Animação de entrada completa');
         if (callback) callback();
       }
     });
 
-    // Sobe para 1/3 da tela (voa para cima)
+    // Sobe para 1/3 da tela
     this.timeline.to(this.mesh.position, {
       y: this.posicoes.umTercoTela.y,
       duration: 2,
@@ -115,25 +117,25 @@ export class Fenix extends MockObject {
    * ANIMAÇÃO PARA SEÇÃO 1
    */
   animacaoSecao1(callback) {
-    console.log('🔥 Animação Seção 1: voo para direita');
+    console.log('✨ Animação Seção 1: movimento para direita');
 
     this.pararAnimacoes();
 
     this.timeline = gsap.timeline({
       onComplete: () => {
-        console.log('🔥 Seção 1 posicionada');
+        console.log('✨ Seção 1 posicionada');
         if (callback) callback();
       }
     });
 
-    // Sobe
+    // Sube
     this.timeline.to(this.mesh.position, {
       y: 2.0,
       duration: 0.5,
       ease: 'none'
     });
 
-    // Trajetória CURVA para direita (voo em arco)
+    // Trajetória CURVA para direita
     this.timeline.to(this.mesh.position, {
       motionPath: {
         path: [
@@ -164,13 +166,13 @@ export class Fenix extends MockObject {
    * ANIMAÇÃO PARA SEÇÃO 2
    */
   animacaoSecao2(callback) {
-    console.log('🔥 Animação Seção 2: voo para esquerda');
+    console.log('✨ Animação Seção 2: movimento para esquerda');
 
     this.pararAnimacoes();
 
     this.timeline = gsap.timeline({
       onComplete: () => {
-        console.log('🔥 Seção 2 posicionada');
+        console.log('✨ Seção 2 posicionada');
         if (callback) callback();
       }
     });
@@ -198,18 +200,18 @@ export class Fenix extends MockObject {
    * ANIMAÇÃO PARA SEÇÃO 3
    */
   animacaoSecao3(callback) {
-    console.log('🔥 Animação Seção 3: voo em círculo');
+    console.log('✨ Animação Seção 3: traço de feitiço');
 
     this.pararAnimacoes();
 
     this.timeline = gsap.timeline({
       onComplete: () => {
-        console.log('🔥 Seção 3 completa');
+        console.log('✨ Seção 3 completa');
         if (callback) callback();
       }
     });
 
-    // Movimento curvilíneo (voo em círculo)
+    // Movimento curvilíneo (traçando padrão mágico)
     this.timeline.to(this.mesh.position, {
       motionPath: {
         path: [
@@ -241,19 +243,19 @@ export class Fenix extends MockObject {
    * ANIMAÇÃO PARA SEÇÃO 4
    */
   animacaoSecao4(callback) {
-    console.log('🔥 Animação Seção 4: voo para fora da tela');
+    console.log('✨ Animação Seção 4: desaparece');
 
     this.pararAnimacoes();
 
     this.timeline = gsap.timeline({
       onComplete: () => {
-        console.log('🔥 Seção 4 completa - fênix desapareceu');
+        console.log('✨ Seção 4 completa - varinha desapareceu');
         this.esconder();
         if (callback) callback();
       }
     });
 
-    // Voa para fora
+    // Desce para fora
     this.timeline.to(this.mesh.position, {
       motionPath: {
         path: [
@@ -268,7 +270,7 @@ export class Fenix extends MockObject {
       ease: 'power2.out'
     }, 0);
 
-    // Fade out (chamas se apagam)
+    // Fade out
     this.timeline.to(this.mesh.material, {
       opacity: 0,
       duration: 1.2,
@@ -282,7 +284,7 @@ export class Fenix extends MockObject {
   }
 
   /**
-   * Animação de "falar" (batimento de asas intenso)
+   * Animação de "falar" (brilho intenso na ponta)
    */
   falar(duracao = 1) {
     if (!this.mesh) return;
@@ -290,12 +292,12 @@ export class Fenix extends MockObject {
     const escalaAtual = this.mesh.scale.x;
 
     gsap.to(this.mesh.scale, {
-      x: escalaAtual * 0.9,
-      y: escalaAtual * 1.1,
-      z: escalaAtual * 0.9,
-      duration: duracao * 0.3,
+      x: escalaAtual * 0.95,
+      y: escalaAtual * 1.05,
+      z: escalaAtual * 0.95,
+      duration: duracao * 0.5,
       yoyo: true,
-      repeat: Math.floor(duracao / 0.3) - 1,
+      repeat: Math.floor(duracao / 0.5) - 1,
       ease: 'sine.inOut'
     });
   }
