@@ -118,6 +118,8 @@ export class Cap7Derrota {
     const indiceDerrota = scrollGlobal.secoes.indexOf(secaoDerrota);
     if (indiceDerrota !== -1) {
       scrollGlobal.irParaSecao(indiceDerrota, 1.5);
+    } else {
+      console.error(`❌ Seção #cap7-derrota não encontrada no array (índice: ${indiceDerrota})`);
     }
 
     // Fade in da seção
@@ -199,6 +201,8 @@ export class Cap7Derrota {
       const indiceCap8 = scrollGlobal.secoes.indexOf(cap8PosDerrota);
       if (indiceCap8 !== -1) {
         scrollGlobal.irParaSecao(indiceCap8, 2);
+      } else {
+        console.error(`❌ Seção #cap8-pos-derrota não encontrada no array (índice: ${indiceCap8})`);
       }
 
       // Fade in

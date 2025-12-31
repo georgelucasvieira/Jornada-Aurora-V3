@@ -100,7 +100,7 @@ export class Cap7Patronus {
     console.log('🗣️ Harry: "Expecto Patronum!"');
 
     // 4. Delay 1s + Música do Patrono
-    audioGlobal.tocarMusica('cap7_patronus', 1500);
+    audioGlobal.tocarMusica('cap7_patronus', 2000);
     console.log('🎵 Música do Patrono iniciada (loop)');
 
     await this.delay(1000);

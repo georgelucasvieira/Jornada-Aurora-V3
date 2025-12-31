@@ -33,20 +33,39 @@ export class Cap8Cinematic {
     const secoes = [
       '#cap8-pos-derrota',
       '#cap8-revelacao',
+      '#cap8-revelacao-2',
+      '#cap8-revelacao-3',
       '#cap8-sacrificio',
-      '#cap8-vitoria',
-      '#cap8-pedra'
+      '#cap8-vitoria'
     ];
 
     // Progride por cada seção automaticamente
     for (let i = 0; i < secoes.length; i++) {
       const secao = document.querySelector(secoes[i]);
-      if (!secao) continue;
+      if (!secao) {
+        console.warn(`⚠️ Seção ${secoes[i]} não encontrada`);
+        continue;
+      }
 
       console.log(`🎬 Exibindo: ${secoes[i]}`);
-
-      // Mostra textos da seção atual
-      await this.exibirTextos(secao, 2000);
+      // Lógica específica por seção
+      if (secoes[i] === '#cap8-vitoria') {
+        await this.exibirTextosComDelay(secao, 2000);
+        await this.delay(2000);
+        const botao = secao.querySelector('#btn-pedra-ressurreicao');
+        if (botao) {
+          gsap.to(botao, { opacity: 1, duration: 2 });
+        }
+      } else if (secoes[i] === '#cap8-sacrificio') {
+        const imagem = secao.querySelector('.imagem-calvario');
+        if (imagem) {
+          gsap.to(imagem, { opacity: 1, duration: 1.5 });
+        }
+        await this.delay(2000);
+        await this.exibirTextosComDelay(secao, 2000);
+      } else {
+        await this.exibirTextos(secao, 2000);
+      }
 
       // Se não for a última seção, faz transição
       if (i < secoes.length - 1) {
@@ -54,66 +73,45 @@ export class Cap8Cinematic {
         await this.delay(4000);
 
         // Fade-out
-        await this.fadeOut(secao);
+        await this.fadeOutSecao(secao);
+        await this.delay(2000);
 
         // Próxima seção
         const proximaSecao = document.querySelector(secoes[i + 1]);
         const indice = scrollGlobal.secoes.indexOf(proximaSecao);
         if (indice !== -1) {
           scrollGlobal.irParaSecao(indice, 1.5);
+        } else {
+          console.error(`❌ Seção ${secoes[i + 1]} não encontrada no array`);
         }
-
-        // Fade-in
-        await this.fadeIn(proximaSecao);
       }
     }
 
     console.log('✅ Cap 8 - Aguardando clique na Pedra');
   }
 
-  async exibirTextos(secao, delay) {
-    // Garante que seção está visível
-    secao.style.opacity = '1';
-
-    // Exibe imagem se tiver
-    const imagem = secao.querySelector('.imagem-calvario');
-    if (imagem) {
-      imagem.style.opacity = '0';
-      gsap.to(imagem, { opacity: 1, duration: 1.5 });
-      await this.delay(2000);
-    }
-
-    // Exibe textos
+  async exibirTextos(secao, fadeIn = 1) {
+    // Exibe textos todos de uma vez (sem delay entre eles)
     const textos = secao.querySelectorAll('.texto-narrativo p, .versiculo-referencia, .versiculo-texto');
     for (const texto of textos) {
       texto.style.opacity = '0';
+      gsap.to(texto, { opacity: 1, duration: fadeIn });
+    }
+  }
+
+  async exibirTextosComDelay(secao, delay = 2000) {
+    // Exibe textos um por um com delay entre eles
+    const textos = secao.querySelectorAll('.exibir-com-delay');
+    for (const texto of textos) {
       gsap.to(texto, { opacity: 1, duration: 1 });
       await this.delay(delay);
     }
-
-    // Exibe botão se for a Pedra
-    const botao = secao.querySelector('#btn-pedra-ressurreicao');
-    if (botao) {
-      botao.style.opacity = '0';
-      gsap.to(botao, { opacity: 1, duration: 2 });
-    }
   }
 
-  async fadeOut(secao) {
+  async fadeOutSecao(secao) {
     return new Promise(resolve => {
       gsap.to(secao, {
         opacity: 0,
-        duration: 1.5,
-        onComplete: resolve
-      });
-    });
-  }
-
-  async fadeIn(secao) {
-    secao.style.opacity = '0';
-    return new Promise(resolve => {
-      gsap.to(secao, {
-        opacity: 1,
         duration: 1.5,
         onComplete: resolve
       });
@@ -196,7 +194,7 @@ export class Cap8Cinematic {
         </div>
 
         <div style="min-height: 100vh; display: flex; justify-content: center; align-items: center; opacity: 0;" class="imagem-final-container">
-          <img src="src/assets/images/jesus-casal.jpg" alt="Cristo e o Casal" style="max-width: 600px; width: 100%; border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.2);" />
+          <img src="src/assets/images/jesus-casal.png" alt="Cristo e o Casal" style="max-width: 600px; width: 100%; border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.2);" />
         </div>
       `;
 

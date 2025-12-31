@@ -2180,41 +2180,15 @@ body {
 .calvario-container {
   flex: 0 0 auto;
   max-width: 500px;
-  opacity: 0;
 }
 
-.calvario-esquerda {
-  animation: calvarioFadeInEsquerda 2s 0.5s ease forwards;
-}
-
-.calvario-direita {
-  animation: calvarioFadeInDireita 2s 0.5s ease forwards;
-}
-
-@keyframes calvarioFadeInEsquerda {
-  0% {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes calvarioFadeInDireita {
-  0% {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
+.calvario-texto-wrapper{
+  display: flex;
+  flex-direction: column;
 }
 
 .imagem-calvario {
-  width: 40%;
+  width: 100%;
   height: 80vh;
   object-fit: cover;
   mask-image: radial-gradient(circle, black 40%, rgba(0, 0, 0, 0) 75%);
@@ -2246,20 +2220,9 @@ body {
   background: rgba(255, 255, 255, 0.05);
   border-left: 4px solid var(--cor-dourada);
   border-radius: var(--borda-radius);
-  animation: versiculoFadeIn 1.5s 2s ease forwards;
   opacity: 0;
 }
 
-@keyframes versiculoFadeIn {
-  0% {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
 
 /* SEÇÃO 4 - A VITÓRIA (só texto) */
 .section-vitoria {
@@ -2382,19 +2345,7 @@ body {
 
 .versiculo-vida-nova {
   text-align: center;
-  animation: versiculoVidaNovaFadeIn 2s 3s ease forwards;
   opacity: 0;
-}
-
-@keyframes versiculoVidaNovaFadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .versiculo-vida-nova .versiculo-referencia {
