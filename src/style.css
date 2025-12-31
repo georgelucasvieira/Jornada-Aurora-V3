@@ -2252,19 +2252,19 @@ body {
 }
 
 .btn-pedra {
+  background: rgb(218 165 32 / 25%);
   margin-top: var(--espacamento-xl);
   padding: var(--espacamento-md) var(--espacamento-xl);
   font-size: 1.5rem;
   font-weight: bold;
   color: var(--cor-texto);
-  background: linear-gradient(135deg, rgba(100, 108, 255, 0.3), rgba(255, 100, 255, 0.3));
   border: 2px solid var(--cor-dourada);
   border-radius: var(--borda-radius);
   cursor: pointer;
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 2px;
-  box-shadow: 0 0 30px rgba(218, 165, 32, 0.4);
+  box-shadow: 0 0 20px rgba(218, 165, 32, 0.4);
   animation: pedraPulsando 2s ease-in-out infinite;
 }
 
