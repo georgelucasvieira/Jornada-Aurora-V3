@@ -7,6 +7,7 @@ import * as THREE from 'three';
 import { MockObject } from './mockObject.js';
 import gsap from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 // Registra plugin
 gsap.registerPlugin(MotionPathPlugin);
@@ -15,18 +16,21 @@ export class ChapeuSeletor extends MockObject {
   constructor() {
     super({
       geometry: 'cone',
-      color: 0x4a3728, // Marrom escuro
+      color: 0x4a3728, // Marrom escuro (temporário até carregar GLB)
       emissive: 0x2a1a18,
       size: 0.8,
       wireframe: false
     });
 
     // Escalas de referência
-    this.escalaNormal = 0.8;
-    this.escalaGrande = 1.3; // 30% maior mesmo (não proporcional)
+    this.escalaNormal = 3;
+    this.escalaGrande = 3.9; // 30% maior mesmo (não proporcional)
 
     // Timeline ativa para controlar animações complexas
     this.timeline = null;
+
+    // Flag de carregamento do modelo
+    this.modeloCarregado = false;
 
     // Posições de referência em coordenadas do canvas 3D
     // X: -3 (esquerda) a +3 (direita)
@@ -40,6 +44,68 @@ export class ChapeuSeletor extends MockObject {
       centroDireita: { x: 1.5, y: 0, z: 0 },
       centroAbaixo: { x: 0, y: -0.5, z: 0 }
     };
+
+    // Inicia carregamento do modelo GLB
+    this.carregarModelo();
+  }
+
+  /**
+   * Carrega modelo GLB do Chapéu Seletor
+   * Substitui o cone temporário quando carregar
+   */
+  carregarModelo() {
+    const loader = new GLTFLoader();
+
+    loader.load(
+      'src/assets/models/sorting-hat.glb',
+
+      // onLoad: Modelo carregado com sucesso
+      (gltf) => {
+        console.log('✅ Modelo GLB do Chapéu Seletor carregado');
+
+        // Salva estado atual (posição, escala, rotação, visibilidade)
+        const posAtual = this.mesh.position.clone();
+        const escalaAtual = this.mesh.scale.clone();
+        const rotacaoAtual = this.mesh.rotation.clone();
+        const visibilidadeAtual = this.mesh.visible;
+        const cenaAtual = this.mesh.parent;
+
+        // Remove cone antigo da cena
+        if (cenaAtual) {
+          cenaAtual.remove(this.mesh);
+        }
+
+        // Substitui pelo modelo GLB
+        this.mesh = gltf.scene;
+
+        // Restaura estado anterior
+        this.mesh.position.copy(posAtual);
+        this.mesh.scale.copy(escalaAtual);
+        this.mesh.rotation.copy(rotacaoAtual);
+        this.mesh.visible = visibilidadeAtual;
+
+        // Adiciona de volta à cena
+        if (cenaAtual) {
+          cenaAtual.add(this.mesh);
+        }
+
+        this.modeloCarregado = true;
+        console.log('🎩 Chapéu GLB integrado à cena (escala 3x)');
+      },
+
+      // onProgress: Progresso do carregamento
+      (xhr) => {
+        const percentual = Math.round((xhr.loaded / xhr.total) * 100);
+        console.log(`📦 Chapéu GLB: ${percentual}% carregado`);
+      },
+
+      // onError: Erro ao carregar
+      (error) => {
+        console.error('❌ Erro ao carregar modelo do Chapéu:', error);
+        console.warn('⚠️ Usando cone como fallback');
+        this.modeloCarregado = false;
+      }
+    );
   }
 
   /**
@@ -298,7 +364,7 @@ export class ChapeuSeletor extends MockObject {
         path: [
           { x: this.posicoes.centroAbaixo.x, y: this.posicoes.centroAbaixo.y }, // Posição atual (abaixo)
           { x: -1.5, y: -2 },  // Movimento diagonal esquerda-baixo
-          { x: -2, y: -4 }     // Fora da tela (esquerda e embaixo)
+          { x: -2, y: -6 }     // Fora da tela (esquerda e embaixo)
         ],
         curviness: 1,
         autoRotate: false
