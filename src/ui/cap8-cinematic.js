@@ -63,8 +63,11 @@ export class Cap8Cinematic {
         }
         await this.delay(2000);
         await this.exibirTextosComDelay(secao, 2000);
+      }else if(secao[i] === '#cap8-revelacao' || secoes[i] === '#cap8-revelacao-2' || secoes[i] === '#cap8-revelacao-3') {
+        await this.delay(2000);
+        await this.exibirTextos(secao, 2);
       } else {
-        await this.exibirTextos(secao, 2000);
+        await this.exibirTextos(secao, 2);
       }
 
       // Se não for a última seção, faz transição
@@ -92,7 +95,7 @@ export class Cap8Cinematic {
 
   async exibirTextos(secao, fadeIn = 1) {
     // Exibe textos todos de uma vez (sem delay entre eles)
-    const textos = secao.querySelectorAll('.texto-narrativo p, .versiculo-referencia, .versiculo-texto');
+    const textos = secao.querySelectorAll('.texto-narrativo-final p, .versiculo-referencia, .versiculo-texto');
     for (const texto of textos) {
       texto.style.opacity = '0';
       gsap.to(texto, { opacity: 1, duration: fadeIn });
